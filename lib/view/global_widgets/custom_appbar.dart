@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
+import '../chat/chat_screen.dart';
 
 class CustomAppbar extends StatelessWidget {
   const CustomAppbar({super.key});
@@ -36,10 +37,16 @@ class CustomAppbar extends StatelessWidget {
           ),
           Row(
             children: [
-              SizedBox(
-                width: 50.w,
-                height:50.h,
-                child: Image.asset('assets/images/textIcon.png'),
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const ChatScreen()));
+                },
+                child: SizedBox(
+                  width: 50.w,
+                  height:50.h,
+                  child: Image.asset('assets/images/textIcon.png'),
+                ),
               ),
               SizedBox(width: 10.w),
               GestureDetector(
