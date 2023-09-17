@@ -15,7 +15,8 @@ class MilestoneScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(107.h), child: const CustomAppbar(),
+        preferredSize: Size.fromHeight(107.h),
+        child: const CustomAppbar(),
       ),
       body: Column(
         children: [
@@ -76,9 +77,8 @@ class MilestoneScreen extends StatelessWidget {
                     height: 28.h,
                     width: 178.w,
                     decoration: BoxDecoration(
-                      color: primaryColor.withOpacity(0.1),
-                      borderRadius: BorderRadius.all(Radius.circular(5.r))
-                    ),
+                        color: primaryColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.all(Radius.circular(5.r))),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -88,17 +88,17 @@ class MilestoneScreen extends StatelessWidget {
                           width: 11.w,
                           child: Image.asset('assets/images/repeatIcon.png'),
                         ),
-                        subTitleText('Regenerate Response',color: blackTextColor,size: 14),
+                        subTitleText('Regenerate Response',
+                            color: blackTextColor, size: 14),
                         const SizedBox(),
-
                       ],
                     ),
                   ),
                 ),
                 SizedBox(height: 30.h),
-                normalButton('Submit',onPressed: (){
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const ManifestationItemScreen()));
+                normalButton('Submit', onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const ManifestationItemScreen()));
                 })
               ],
             ),

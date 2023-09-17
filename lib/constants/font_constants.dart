@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter/src/painting/text_style.dart';
@@ -17,5 +16,6 @@ double fontTiny = 12.sp;
 
 TextStyle secondaryTextStyle(double size, Color color, FontWeight fontWeight) =>
     GoogleFonts.raleway(color: color, fontSize: size, fontWeight: fontWeight);
+
 TextStyle primaryTextStyle(double size, Color color, FontWeight fontWeight) =>
     GoogleFonts.roboto(color: color, fontSize: size, fontWeight: fontWeight);

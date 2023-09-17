@@ -14,19 +14,16 @@ Widget buildProfileItem(String imgAsset, String text) {
           width: 57.w,
           decoration: BoxDecoration(
               color: primaryColor.withOpacity(0.1),
-              borderRadius:
-              BorderRadius.all(Radius.circular(14.r))),
+              borderRadius: BorderRadius.all(Radius.circular(14.r))),
           child: Center(
             child: Padding(
-              padding:
-              const EdgeInsets.symmetric(horizontal: 15.0),
-              child: Image.asset(imgAsset,
-                  fit: BoxFit.cover),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Image.asset(imgAsset, fit: BoxFit.cover),
             ),
           ),
         ),
         SizedBox(width: 20.w),
-        titleText(text,size: 14,fontWeight: FontWeight.w500)
+        titleText(text, size: 14, fontWeight: FontWeight.w500)
       ],
     ),
   );

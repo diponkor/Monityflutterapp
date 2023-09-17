@@ -4,15 +4,24 @@ import 'package:finance_and_budget/view/global_widgets/normal_button.dart';
 import 'package:finance_and_budget/view/profile/widgets/profile_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
+import '../../controller/profile_controller.dart';
 import '../global_widgets/custom_text.dart';
 import '../global_widgets/named_back_button.dart';
 
 class ProfileEditScreen extends StatelessWidget {
   const ProfileEditScreen({super.key});
 
+  static ProfileController profileController = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController fName =
+        TextEditingController(text: profileController.userData?.firstName);
+    TextEditingController lName =
+        TextEditingController(text: profileController.userData?.lastName);
+    TextEditingController email =
+        TextEditingController(text: profileController.userData?.email);
     return Scaffold(
       backgroundColor: profileBgColor,
       body: SafeArea(
@@ -25,7 +34,10 @@ class ProfileEditScreen extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
                   child: namedBackButton(context, text: 'Profile Edit'),
-                ),SizedBox(height: 125.h,),
+                ),
+                SizedBox(
+                  height: 125.h,
+                ),
                 Container(
                     height: 630.h,
                     padding: EdgeInsets.symmetric(horizontal: 30.w),
@@ -43,20 +55,23 @@ class ProfileEditScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               subTitleText('First Name', authPage: true),
-                              customTextField(TextEditingController()),
+                              customTextField(fName),
                               SizedBox(height: 10.h),
                               subTitleText('Last Name', authPage: true),
-                              customTextField(TextEditingController()),
+                              customTextField(lName),
                               SizedBox(height: 10.h),
                               subTitleText('Email', authPage: true),
-                              customTextField(TextEditingController())
+                              customTextField(email,enabled: false)
                             ],
                           ),
                         ),
-                        SizedBox(),
+                        const SizedBox(),
                         Padding(
-                          padding:  EdgeInsets.only(bottom: 40.0.h),
-                          child: normalButton('Save'),
+                          padding: EdgeInsets.only(bottom: 40.0.h),
+                          child: normalButton('Save', onPressed: () {
+                            profileController.updateProfileData(
+                                fName.text, lName.text);
+                          }),
                         ),
                       ],
                     ))

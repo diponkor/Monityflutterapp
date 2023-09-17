@@ -16,7 +16,8 @@ class CreateDebts extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(107.h), child: const CustomAppbar(),
+        preferredSize: Size.fromHeight(107.h),
+        child: const CustomAppbar(),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -44,7 +45,7 @@ class CreateDebts extends StatelessWidget {
                               ),
                               color: white,
                               borderRadius:
-                              BorderRadius.all(Radius.circular(50.r))),
+                                  BorderRadius.all(Radius.circular(50.r))),
                           child: const Icon(Icons.arrow_back),
                         ),
                         SizedBox(width: 10.w),
@@ -71,9 +72,10 @@ class CreateDebts extends StatelessWidget {
                         decoration: BoxDecoration(
                             border: Border.all(color: blackTextColor, width: 1),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(5.r))),
+                                BorderRadius.all(Radius.circular(5.r))),
                         child: Center(
-                          child: subTitleText('Bank Loan',fontWeight: FontWeight.w500),
+                          child: subTitleText('Bank Loan',
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                       SizedBox(width: 5.w),
@@ -83,9 +85,10 @@ class CreateDebts extends StatelessWidget {
                         decoration: BoxDecoration(
                             border: Border.all(color: blackTextColor, width: 1),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(5.r))),
+                                BorderRadius.all(Radius.circular(5.r))),
                         child: Center(
-                          child: subTitleText('Car Loan',fontWeight: FontWeight.w500),
+                          child: subTitleText('Car Loan',
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                       SizedBox(width: 5.w),
@@ -96,9 +99,10 @@ class CreateDebts extends StatelessWidget {
                             color: blackTextColor,
                             border: Border.all(color: blackTextColor, width: 1),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(5.r))),
+                                BorderRadius.all(Radius.circular(5.r))),
                         child: Center(
-                          child: subTitleText('Mortgage',color: white, fontWeight: FontWeight.w500),
+                          child: subTitleText('Mortgage',
+                              color: white, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -108,7 +112,8 @@ class CreateDebts extends StatelessWidget {
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   singleTextField(
-                      controller: TextEditingController(), hintText: 'ex:-  200'),
+                      controller: TextEditingController(),
+                      hintText: 'ex:-  200'),
                   SizedBox(height: 15.h),
                   subTitleText('How much remaining debt do you have ?',
                       color: secondaryTextColor.withOpacity(0.8)),
@@ -121,9 +126,7 @@ class CreateDebts extends StatelessWidget {
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   singleTextField(
-                      controller: TextEditingController(),
-                      hintText: 'Monthly'),
-
+                      controller: TextEditingController(), hintText: 'Monthly'),
                   SizedBox(height: 15.h),
                   Align(
                     alignment: Alignment.center,
@@ -140,8 +143,8 @@ class CreateDebts extends StatelessWidget {
                       hintText: 'Ex. - 30 JUNE 2023'),
                   SizedBox(height: 20.h),
                   normalButton('Next', onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const DebtsItemScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const DebtsItemScreen()));
                   }),
                 ],
               ),

@@ -28,7 +28,7 @@ Container customButton({
   );
 }
 
-CircleAvatar circleAvatar(IconData iconData , {Color color = primaryColor}) {
+CircleAvatar circleAvatar(IconData iconData, {Color color = primaryColor}) {
   return CircleAvatar(
     backgroundColor: color,
     radius: 12.r,

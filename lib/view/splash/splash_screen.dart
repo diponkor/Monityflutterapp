@@ -13,11 +13,11 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: white,
       body: AnimatedSplashScreen(
         splash: Center(
-            child: SizedBox(
-              height:180.h,
-              width: 160.w,
-              child: Image.asset("assets/images/monity.png"),
-            ),
+          child: SizedBox(
+            height: 180.h,
+            width: 160.w,
+            child: Image.asset("assets/images/monity.png"),
+          ),
         ),
         nextScreen: const IntroOne(),
         splashIconSize: 1000.sp,

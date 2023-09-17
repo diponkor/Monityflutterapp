@@ -23,7 +23,8 @@ class _CreateManifestationState extends State<CreateManifestation> {
     return Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(107.h), child: const CustomAppbar(),
+        preferredSize: Size.fromHeight(107.h),
+        child: const CustomAppbar(),
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -83,7 +84,8 @@ class _CreateManifestationState extends State<CreateManifestation> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(5.r))),
                         child: Center(
-                          child: subTitleText('Home Loan',fontWeight: FontWeight.w500),
+                          child: subTitleText('Home Loan',
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                       SizedBox(width: 5.w),
@@ -93,9 +95,10 @@ class _CreateManifestationState extends State<CreateManifestation> {
                         decoration: BoxDecoration(
                             border: Border.all(color: blackTextColor, width: 1),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(5.r))),
+                                BorderRadius.all(Radius.circular(5.r))),
                         child: Center(
-                          child: subTitleText('Car Loan',fontWeight: FontWeight.w500),
+                          child: subTitleText('Car Loan',
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                       SizedBox(width: 5.w),
@@ -103,12 +106,13 @@ class _CreateManifestationState extends State<CreateManifestation> {
                         height: 40.h,
                         width: 122.w,
                         decoration: BoxDecoration(
-                          color: blackTextColor,
+                            color: blackTextColor,
                             border: Border.all(color: blackTextColor, width: 1),
                             borderRadius:
-                            BorderRadius.all(Radius.circular(5.r))),
+                                BorderRadius.all(Radius.circular(5.r))),
                         child: Center(
-                          child: subTitleText('Mortgage',color: white, fontWeight: FontWeight.w500),
+                          child: subTitleText('Mortgage',
+                              color: white, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -183,10 +187,9 @@ class _CreateManifestationState extends State<CreateManifestation> {
                     ],
                   ),
                   SizedBox(height: 20.h),
-
                   normalButton('Next', onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const MilestoneScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const MilestoneScreen()));
                   }),
                 ],
               ),

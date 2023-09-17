@@ -33,12 +33,12 @@ class _NewPassowrdScreenState extends State<NewPassowrdScreen> {
         child: ListView(
           physics: const BouncingScrollPhysics(),
           children: [
-            titleText('New Password',authPage: true),
+            titleText('New Password', authPage: true),
             SizedBox(height: 20.h),
-            subTitleText('New Password',authPage: true),
+            subTitleText('New Password', authPage: true),
             customTextField(newPass, icon: Icons.done, iconColor: green),
             SizedBox(height: 20.h),
-            subTitleText('Confirm Password',authPage: true),
+            subTitleText('Confirm Password', authPage: true),
             customTextField(conPass, icon: Icons.done, iconColor: green),
             SizedBox(height: 100.h),
             normalButton('Sign In', onPressed: () {
@@ -56,12 +56,19 @@ class _NewPassowrdScreenState extends State<NewPassowrdScreen> {
                               fit: BoxFit.cover,
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 20.0),
-                              child: subTitleText('Password Changed !',authPage: true,color: blackTextColor2),
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 20.0),
+                              child: subTitleText('Password Changed !',
+                                  authPage: true, color: blackTextColor2),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              child: subTitleText('Your password has changed successfully',authPage: true,size: 15,color: secondaryTextColor),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: subTitleText(
+                                  'Your password has changed successfully',
+                                  authPage: true,
+                                  size: 15,
+                                  color: secondaryTextColor),
                             ),
                           ],
                         ),

@@ -5,6 +5,7 @@ import '../../../constants/colors.dart';
 
 class BackgroundScreen extends StatelessWidget {
   final Widget widget;
+
   const BackgroundScreen({super.key, required this.widget});
 
   @override
@@ -33,7 +34,7 @@ class BackgroundScreen extends StatelessWidget {
                     topRight: Radius.circular(40.r)),
               ),
               height: 686.h,
-              width:double.infinity,
+              width: double.infinity,
               child: widget,
             ),
           )

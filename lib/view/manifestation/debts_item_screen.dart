@@ -51,10 +51,10 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
                               decoration: BoxDecoration(
                                   color: white,
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(10.r))),
+                                      BorderRadius.all(Radius.circular(10.r))),
                               child: ClipRRect(
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(10.r)),
+                                    BorderRadius.all(Radius.circular(10.r)),
                                 child: const TabBar(
                                   indicator: BoxDecoration(
                                     color: primaryColor,
@@ -91,8 +91,7 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 10.h),
-        titleText('Debts',
-            size: 25, color: titleTextColor, authPage: true),
+        titleText('Debts', size: 25, color: titleTextColor, authPage: true),
         SizedBox(height: 10.h),
         subTitleText(
             'Having  multiple Debt to aspire to is a great way to learn \nhow to money manage!',
@@ -104,8 +103,7 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
         customCard(
             118.h,
             Container(
-              padding:
-              EdgeInsets.symmetric(horizontal: 10.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
               child: Row(
                 children: [
                   Container(
@@ -113,8 +111,7 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
                     width: 70.w,
                     decoration: BoxDecoration(
                         color: primaryColor.withOpacity(0.1),
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(14.r))),
+                        borderRadius: BorderRadius.all(Radius.circular(14.r))),
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -132,15 +129,16 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            titleText('Credit card',color: blackTextColor,size: 24,fontWeight: FontWeight.w400),
-                            subTitleText('80.00%',size: 10)
+                            titleText('Credit card',
+                                color: blackTextColor,
+                                size: 24,
+                                fontWeight: FontWeight.w400),
+                            subTitleText('80.00%', size: 10)
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            subTitleText('13/12/2023',size: 10)
-                          ],
+                          children: [subTitleText('13/12/2023', size: 10)],
                         ),
                         Stack(
                           children: [
@@ -148,17 +146,16 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
                               height: 8.h,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(10.r)),
-                                  color: secondaryTextColor
-                                      .withOpacity(0.2)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.r)),
+                                  color: secondaryTextColor.withOpacity(0.2)),
                             ),
                             Container(
                               height: 8.h,
                               width: 177.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(10.r)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.r)),
                                   color: primaryColor),
                             ),
                           ],
@@ -166,8 +163,8 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            subTitleText('20\$ to go',size: 10),
-                            subTitleText('\$ 300',size: 10),
+                            subTitleText('20\$ to go', size: 10),
+                            subTitleText('\$ 300', size: 10),
                           ],
                         ),
                       ],
@@ -197,11 +194,10 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
                         spreadRadius: 1,
                         blurRadius: 5,
                         offset:
-                        const Offset(0, 2), // changes position of shadow
+                            const Offset(0, 2), // changes position of shadow
                       ),
                     ],
-                    borderRadius:
-                    BorderRadius.all(Radius.circular(50.r))),
+                    borderRadius: BorderRadius.all(Radius.circular(50.r))),
                 child: const Icon(Icons.add, color: blackTextColor),
               ),
             ),

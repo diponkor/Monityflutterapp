@@ -5,7 +5,7 @@ import '../../../constants/colors.dart';
 import '../../global_widgets/custom_text.dart';
 import '../create_manifestation.dart';
 
-Widget firstTab(BuildContext context){
+Widget firstTab(BuildContext context) {
   return Column(
     children: [
       SizedBox(height: 10.h),
@@ -33,20 +33,18 @@ Widget firstTab(BuildContext context){
       SizedBox(height: 10.h),
       titleText('Add More Goals',
           size: 25, color: titleTextColor, authPage: true),
-
-
       SizedBox(height: 100.h),
       Align(
         alignment: Alignment.bottomRight,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5.0),
           child: GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const CreateManifestation()));
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => const CreateManifestation()));
             },
             child: Container(
-              height:56.h,
+              height: 56.h,
               width: 60.w,
               decoration: BoxDecoration(
                   color: white,
@@ -58,9 +56,8 @@ Widget firstTab(BuildContext context){
                       offset: const Offset(0, 2), // changes position of shadow
                     ),
                   ],
-                  borderRadius: BorderRadius.all(Radius.circular(50.r))
-              ),
-              child: const Icon(Icons.add,color: blackTextColor),
+                  borderRadius: BorderRadius.all(Radius.circular(50.r))),
+              child: const Icon(Icons.add, color: blackTextColor),
             ),
           ),
         ),

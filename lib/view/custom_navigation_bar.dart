@@ -56,7 +56,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
                   height: 20.h,
                   width: 21.w,
                   child: Image.asset('assets/images/nav_home.png',
-                      fit: BoxFit.contain,color: primaryColor)),
+                      fit: BoxFit.contain, color: primaryColor)),
               label: 'Home',
             ),
             BottomNavigationBarItem(
@@ -70,7 +70,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
                   height: 20.h,
                   width: 21.w,
                   child: Image.asset('assets/images/nav_manifes.png',
-                      fit: BoxFit.contain,color: primaryColor)),
+                      fit: BoxFit.contain, color: primaryColor)),
               label: 'Manifestation',
             ),
             BottomNavigationBarItem(
@@ -84,7 +84,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
                   height: 20.h,
                   width: 21.w,
                   child: Image.asset('assets/images/nav_budget.png',
-                      fit: BoxFit.contain,color: primaryColor)),
+                      fit: BoxFit.contain, color: primaryColor)),
               label: 'Budget',
             ),
             BottomNavigationBarItem(
@@ -98,7 +98,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
                   height: 20.h,
                   width: 21.w,
                   child: Image.asset('assets/images/nav_analytics.png',
-                      fit: BoxFit.contain,color: primaryColor)),
+                      fit: BoxFit.contain, color: primaryColor)),
               label: 'Analytics',
             ),
             BottomNavigationBarItem(
@@ -112,7 +112,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
                   height: 20.h,
                   width: 21.w,
                   child: Image.asset('assets/images/nav_life.png',
-                      fit: BoxFit.contain,color: primaryColor)),
+                      fit: BoxFit.contain, color: primaryColor)),
               label: 'Life Admin',
             ),
           ],

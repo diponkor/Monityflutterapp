@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../constants/colors.dart';
 import 'custom_text.dart';
 
-Widget namedBackButton(BuildContext context,{ String? text}){
+Widget namedBackButton(BuildContext context, {String? text}) {
   return GestureDetector(
     onTap: () {
       Navigator.of(context).pop();
@@ -20,12 +20,11 @@ Widget namedBackButton(BuildContext context,{ String? text}){
                 width: 1,
               ),
               color: white,
-              borderRadius:
-              BorderRadius.all(Radius.circular(50.r))),
+              borderRadius: BorderRadius.all(Radius.circular(50.r))),
           child: const Icon(Icons.arrow_back),
         ),
         SizedBox(width: 10.w),
-        titleText(text??'Back',
+        titleText(text ?? 'Back',
             color: titleTextColor, size: 25, authPage: true),
         SizedBox(width: 10.w),
       ],

@@ -14,7 +14,8 @@ class BudgetScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(107.h), child: const CustomAppbar(),
+        preferredSize: Size.fromHeight(107.h),
+        child: const CustomAppbar(),
       ),
       body: Column(
         children: [
@@ -52,39 +53,38 @@ class BudgetScreen extends StatelessWidget {
               titleText('Add More Budget',
                   size: 25, color: titleTextColor, authPage: true),
               SizedBox(height: 10.h),
-
               subTitleText(
                   'Having  multiple Budget to aspire to is a great \nway to learn how to money manage!',
                   authPage: true,
                   color: secondaryTextColor,
                   fontWeight: FontWeight.w400),
-
               SizedBox(height: 130.h),
               Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: GestureDetector(
-                    onTap: (){
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => const CreateBudget()));
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const CreateBudget()));
                     },
                     child: Container(
-                        height:56.h,
+                      height: 56.h,
                       width: 60.w,
                       decoration: BoxDecoration(
-                        color: white,
+                          color: white,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset: const Offset(0, 2), // changes position of shadow
+                              offset: const Offset(
+                                  0, 2), // changes position of shadow
                             ),
                           ],
-                        borderRadius: BorderRadius.all(Radius.circular(50.r))
-                      ),
-                      child: const Icon(Icons.add,color: blackTextColor),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(50.r))),
+                      child: const Icon(Icons.add, color: blackTextColor),
                     ),
                   ),
                 ),

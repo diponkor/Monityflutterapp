@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
 
-Widget customCard(double height,Widget widget){
+Widget customCard(double height, Widget widget) {
   return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 20.h),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
       height: height.h,
       width: 380.w,
       decoration: ShapeDecoration(
@@ -22,6 +22,5 @@ Widget customCard(double height,Widget widget){
           )
         ],
       ),
-      child: widget
-  );
+      child: widget);
 }

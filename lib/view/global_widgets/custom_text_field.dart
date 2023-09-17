@@ -9,15 +9,20 @@ Widget customTextField(TextEditingController controller,
     bool? isValid,
     bool? isKeyboardPhone,
     IconData? icon,
-      Color? iconColor,
-    String? errorText}) {
+    Function()? onPressIcon,
+    Color? iconColor,
+    String? errorText,
+    bool enabled = true}) {
   return Column(
     children: [
       TextField(
+        obscureText: obscureText,
         controller: controller,
+        enabled: enabled,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           filled: true,
+
           //hintText: text,
           fillColor: Colors.white,
           contentPadding: EdgeInsets.only(top: 20.h),
@@ -25,7 +30,11 @@ Widget customTextField(TextEditingController controller,
             color: blackTextColor,
             fontSize: fontMedium,
           ),
-          suffixIcon:icon!=null? Icon(icon,color: iconColor??blackTextColor): const SizedBox(),
+          suffixIcon: icon != null
+              ? GestureDetector(
+                  onTap: onPressIcon,
+                  child: Icon(icon, color: iconColor ?? blackTextColor))
+              : const SizedBox(),
         ),
         style: const TextStyle(
           fontWeight: FontWeight.w600,

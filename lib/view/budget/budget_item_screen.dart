@@ -15,7 +15,8 @@ class BudgetItemScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(107.h), child: const CustomAppbar(),
+        preferredSize: Size.fromHeight(107.h),
+        child: const CustomAppbar(),
       ),
       body: Column(
         children: [
@@ -45,15 +46,14 @@ class BudgetItemScreen extends StatelessWidget {
               ),
               SizedBox(height: 20.h),
               GestureDetector(
-                onTap: (){
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const BudgetViewScreen()));
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const BudgetViewScreen()));
                 },
                 child: customCard(
                     118.h,
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10.w),
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
                       child: Row(
                         children: [
                           Container(
@@ -65,8 +65,10 @@ class BudgetItemScreen extends StatelessWidget {
                                     BorderRadius.all(Radius.circular(14.r))),
                             child: Center(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                                child: Image.asset('assets/images/home_vector.png',
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15.0),
+                                child: Image.asset(
+                                    'assets/images/home_vector.png',
                                     fit: BoxFit.cover),
                               ),
                             ),
@@ -78,16 +80,21 @@ class BudgetItemScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    titleText('Car loan',color: blackTextColor,size: 24,fontWeight: FontWeight.w400),
-                                    subTitleText('80.00%',size: 10)
+                                    titleText('Car loan',
+                                        color: blackTextColor,
+                                        size: 24,
+                                        fontWeight: FontWeight.w400),
+                                    subTitleText('80.00%', size: 10)
                                   ],
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    subTitleText('13/12/2023',size: 10)
+                                    subTitleText('13/12/2023', size: 10)
                                   ],
                                 ),
                                 Stack(
@@ -112,10 +119,11 @@ class BudgetItemScreen extends StatelessWidget {
                                   ],
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    subTitleText('20\$ to go',size: 10),
-                                    subTitleText('\$ 300',size: 10),
+                                    subTitleText('20\$ to go', size: 10),
+                                    subTitleText('\$ 300', size: 10),
                                   ],
                                 ),
                               ],
@@ -145,8 +153,8 @@ class BudgetItemScreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 1,
                               blurRadius: 5,
-                              offset:
-                                  const Offset(0, 2), // changes position of shadow
+                              offset: const Offset(
+                                  0, 2), // changes position of shadow
                             ),
                           ],
                           borderRadius:

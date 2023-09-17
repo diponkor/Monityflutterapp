@@ -32,119 +32,123 @@ class _OtpScreenState extends State<OtpScreen> {
         padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 10.h),
         child: ListView(
           children: [
-            titleText('OTP code',authPage: true),
+            titleText('OTP code', authPage: true),
             SizedBox(height: 20.h),
-            subTitleText('We have send you a one time password on',authPage: true,
-                color: blackTextColor2),
-            subTitleText('Admin@gmail.com',authPage: true,
-                color: blackTextColor, fontWeight: FontWeight.w800),
+            subTitleText('We have send you a one time password on',
+                authPage: true, color: blackTextColor2),
+            subTitleText('Admin@gmail.com',
+                authPage: true,
+                color: blackTextColor,
+                fontWeight: FontWeight.w800),
             SizedBox(height: 20.h),
-            Form(child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(),
-                SizedBox(
-                  height: 50.h,
-                  width: 49.5.h,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    onSaved: (pin1){},
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                    maxLength: 1,
-
-                    decoration: InputDecoration(
-                      counterText: '',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                        )),
-                    keyboardType: TextInputType.phone,
+            Form(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(),
+                  SizedBox(
+                    height: 50.h,
+                    width: 49.5.h,
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      onSaved: (pin1) {},
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                      },
+                      maxLength: 1,
+                      decoration: InputDecoration(
+                          counterText: '',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50.r),
+                          )),
+                      keyboardType: TextInputType.phone,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 50.h,
-                  width: 49.5.h,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    onSaved: (pin2){},
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                    maxLength: 1,
-                    decoration: InputDecoration(
-                        counterText: '',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                        )),
-                    keyboardType: TextInputType.phone,
+                  SizedBox(
+                    height: 50.h,
+                    width: 49.5.h,
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      onSaved: (pin2) {},
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                      },
+                      maxLength: 1,
+                      decoration: InputDecoration(
+                          counterText: '',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50.r),
+                          )),
+                      keyboardType: TextInputType.phone,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 50.h,
-                  width: 49.5.h,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    onSaved: (pin3){},
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                    maxLength: 1,
-                    decoration: InputDecoration(
-                        counterText: '',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                        )),
-                    keyboardType: TextInputType.phone,
+                  SizedBox(
+                    height: 50.h,
+                    width: 49.5.h,
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      onSaved: (pin3) {},
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                      },
+                      maxLength: 1,
+                      decoration: InputDecoration(
+                          counterText: '',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50.r),
+                          )),
+                      keyboardType: TextInputType.phone,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 50.h,
-                  width: 49.5.h,
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    onSaved: (pin3){},
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                    maxLength: 1,
-                    decoration: InputDecoration(
-                        counterText: '',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.r),
-                        )),
-                    keyboardType: TextInputType.phone,
+                  SizedBox(
+                    height: 50.h,
+                    width: 49.5.h,
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      onSaved: (pin3) {},
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          FocusScope.of(context).nextFocus();
+                        }
+                      },
+                      maxLength: 1,
+                      decoration: InputDecoration(
+                          counterText: '',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(50.r),
+                          )),
+                      keyboardType: TextInputType.phone,
+                    ),
                   ),
-                ),
-                const SizedBox()
-              ],
-            ),),
-            SizedBox(height:30.h),
-
+                  const SizedBox()
+                ],
+              ),
+            ),
+            SizedBox(height: 30.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                subTitleText('Din\'t received OTP ! ',authPage: true,fontWeight: FontWeight.w400,
+                subTitleText('Din\'t received OTP ! ',
+                    authPage: true,
+                    fontWeight: FontWeight.w400,
                     color: blackTextColor),
                 GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (_) => SignupScreen()));
                     },
-                    child: subTitleText('Resend Again',authPage: true, color: primaryColor)),
+                    child: subTitleText('Resend Again',
+                        authPage: true, color: primaryColor)),
               ],
             ),
-            SizedBox(height:50.h),
-
-            normalButton('Submit',onPressed: (){
+            SizedBox(height: 50.h),
+            normalButton('Submit', onPressed: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => const NewPassowrdScreen()));
             }),

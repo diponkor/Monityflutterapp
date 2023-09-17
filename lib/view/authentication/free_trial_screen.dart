@@ -18,17 +18,23 @@ class FreeTrialScreen extends StatelessWidget {
           SizedBox(
             height: 200.h,
             width: double.infinity,
-            child: Image.asset('assets/images/topdesign.png',fit: BoxFit.fill,),
+            child: Image.asset(
+              'assets/images/topdesign.png',
+              fit: BoxFit.fill,
+            ),
           ),
           Column(
             children: [
               SizedBox(
                 height: 250.h,
                 width: 200.w,
-                child: Image.asset('assets/images/trialMan.png',fit: BoxFit.cover,),
+                child: Image.asset(
+                  'assets/images/trialMan.png',
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(height: 10.h),
-              titleText("Free Trial",authPage: true),
+              titleText("Free Trial", authPage: true),
               SizedBox(height: 20.h),
               SizedBox(
                   height: 60.h,
@@ -37,7 +43,7 @@ class FreeTrialScreen extends StatelessWidget {
               SizedBox(height: 20.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: normalButton('Processed with Payment',onPressed: (){
+                child: normalButton('Processed with Payment', onPressed: () {
                   showDialog(
                       context: context,
                       builder: (_) {
@@ -55,7 +61,8 @@ class FreeTrialScreen extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 20.0),
                                   child: subTitleText(
-                                      'Payment Successfully Done',authPage: true,
+                                      'Payment Successfully Done',
+                                      authPage: true,
                                       color: blackTextColor2),
                                 ),
                                 Padding(
@@ -75,9 +82,11 @@ class FreeTrialScreen extends StatelessWidget {
           SizedBox(
             height: 200.h,
             width: double.infinity,
-            child: Image.asset('assets/images/bottomflow.png',fit: BoxFit.fill,),
+            child: Image.asset(
+              'assets/images/bottomflow.png',
+              fit: BoxFit.fill,
+            ),
           )
-
         ],
       ),
     );

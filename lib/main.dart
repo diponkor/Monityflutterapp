@@ -1,13 +1,38 @@
-
-import 'package:finance_and_budget/view/authentication/signin_screen.dart';
+import 'package:finance_and_budget/view/home/home_screen.dart';
 import 'package:finance_and_budget/view/splash/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'constants/colors.dart';
 
-void main() {
+/*
+  ------Here is some necessary information about this project------
+  Firebase Account Information***
+        email:monityapp@gmail.com
+        password:monityapp123
+*/
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Check the current platform
+  if (kIsWeb) {
+    // Web configuration
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+      apiKey: "AIzaSyBmPZKCqoup_p1AiRo5xlv8KmKomt7rLXw",
+      appId: "1:467595902392:web:113fbb3c517f6d4f7de34d",
+      messagingSenderId: "467595902392",
+      projectId: "monity-app-9dcb7",
+    ));
+  } else {
+    await Firebase.initializeApp();
+  }
+
   runApp(const MyApp());
 }
 
@@ -17,15 +42,44 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-        designSize: const Size(430, 844),
+        designSize: screenWidth > 730 ? Size(1424, 768) : Size(430, 844),
         builder: (context, child) {
-          return MaterialApp(
+          if (screenWidth > 730) {
+            return Center(
+              child: SizedBox(
+                height: 768.h,
+                width: 530.w,
+                child: GetMaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  theme: _buildTheme(Brightness.light),
+                  home: const Scaffold(
+                    body: HomeScreen(),
+                  ),
+                ),
+              ),
+            );
+          } else if (screenWidth > 430) {
+            return Center(
+              child: SizedBox(
+                height: 768.h,
+                width: 430.w,
+                child: GetMaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  theme: _buildTheme(Brightness.light),
+                  home: const Scaffold(
+                    body: HomeScreen(),
+                  ),
+                ),
+              ),
+            );
+          }
+          return GetMaterialApp(
               debugShowCheckedModeBanner: false,
               theme: _buildTheme(Brightness.light),
               home: const Scaffold(
                 body: SplashScreen(),
-                //body: SigninScreen()
               ));
         });
   }

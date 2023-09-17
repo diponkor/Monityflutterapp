@@ -27,7 +27,8 @@ class _ManifestationScreenState extends State<ManifestationScreen>
     return Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(107.h), child: const CustomAppbar(),
+        preferredSize: Size.fromHeight(107.h),
+        child: const CustomAppbar(),
       ),
       body: Column(
         children: [
@@ -72,7 +73,7 @@ class _ManifestationScreenState extends State<ManifestationScreen>
                         children: [
                           firstTab(context),
                           secondTab(context),
-                          ],
+                        ],
                       ),
                     )
                   ],
@@ -82,5 +83,4 @@ class _ManifestationScreenState extends State<ManifestationScreen>
       ),
     );
   }
-
 }

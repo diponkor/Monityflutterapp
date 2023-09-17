@@ -14,7 +14,7 @@ Widget normalButton(String text, {Function()? onPressed, double? width}) {
           borderRadius: BorderRadius.circular(10.sp),
         ),
         child: Center(
-          child: subTitleText(text, color: white,authPage: true),
+          child: subTitleText(text, color: white, authPage: true),
         )),
   );
 }

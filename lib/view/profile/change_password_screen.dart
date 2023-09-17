@@ -1,17 +1,23 @@
+import 'package:finance_and_budget/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../constants/colors.dart';
 import '../global_widgets/custom_text.dart';
 import '../global_widgets/custom_text_field.dart';
 import '../global_widgets/named_back_button.dart';
 import '../global_widgets/normal_button.dart';
+import 'package:get/get.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
   const ChangePasswordScreen({super.key});
 
+  static final ProfileController _profileController = Get.find();
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController oldPass = TextEditingController();
+    TextEditingController newPass = TextEditingController();
+    TextEditingController confirmNewPass = TextEditingController();
     return Scaffold(
       backgroundColor: profileBgColor,
       body: SafeArea(
@@ -44,20 +50,29 @@ class ChangePasswordScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           subTitleText('Old Password', authPage: true),
-                          customTextField(TextEditingController()),
+                          customTextField(oldPass),
                           SizedBox(height: 10.h),
                           subTitleText('New Password', authPage: true),
-                          customTextField(TextEditingController()),
+                          customTextField(newPass),
                           SizedBox(height: 10.h),
                           subTitleText('Confirm Password', authPage: true),
-                          customTextField(TextEditingController()),
+                          customTextField(confirmNewPass),
                           SizedBox(height: 50.h),
                         ],
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 40.0.h),
-                      child: normalButton('Save'),
+                      child: normalButton('Save', onPressed: () async {
+                        await _profileController.changePassword(
+                          email: _profileController.currentUser?.email.toString(),
+                          newPassword: newPass.text,
+                          oldPassword: oldPass.text,
+                        );
+                        oldPass.clear();
+                        newPass.clear();
+                        confirmNewPass.clear();
+                      }),
                     ),
                   ],
                 ))

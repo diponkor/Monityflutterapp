@@ -116,24 +116,28 @@ class _ItemDetailsState extends State<ItemDetails> {
                       ],
                     ),
                     SizedBox(height: 10.h),
-                    subTitleText('Milestones',size: 20,color: blackTextColor),
+                    subTitleText('Milestones', size: 20, color: blackTextColor),
                     SizedBox(height: 15.h),
-
                     Row(
                       children: [
                         SizedBox(
                             height: 142.h,
-                            child: Image.asset('assets/images/vertical_indicator.png')),
+                            child: Image.asset(
+                                'assets/images/vertical_indicator.png')),
                         SizedBox(width: 20.w),
                         SizedBox(
                           height: 130.h,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              subTitleText('Save \$ 10',size: 15,fontWeight: FontWeight.w500),
-                              subTitleText('Save \$ 100',size: 15,fontWeight: FontWeight.w500),
-                              subTitleText('Save \$ 1500',size: 15,fontWeight: FontWeight.w500),
-                              subTitleText('New Income',size: 15,fontWeight: FontWeight.w500),
+                              subTitleText('Save \$ 10',
+                                  size: 15, fontWeight: FontWeight.w500),
+                              subTitleText('Save \$ 100',
+                                  size: 15, fontWeight: FontWeight.w500),
+                              subTitleText('Save \$ 1500',
+                                  size: 15, fontWeight: FontWeight.w500),
+                              subTitleText('New Income',
+                                  size: 15, fontWeight: FontWeight.w500),
                             ],
                           ),
                         )
@@ -150,7 +154,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                         child: Center(
                           child: subTitleText('View Goals', color: white),
                         )),
-
                   ],
                 ))
           ],

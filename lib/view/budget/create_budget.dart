@@ -96,8 +96,8 @@ class CreateBudget extends StatelessWidget {
                       iconBgColor: primaryColor),
                   SizedBox(height: 15.h),
                   normalButton('Next', onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const BudgetItemScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const BudgetItemScreen()));
                   }),
                   SizedBox(height: 15.h),
                 ],

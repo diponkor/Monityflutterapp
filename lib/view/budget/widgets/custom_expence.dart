@@ -10,43 +10,48 @@ Widget customExpence({
   String? row1text2,
   String? row2text1,
   String? row2text2,
-
 }) {
   return customCard(
     156.h,
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.h),
-            child: titleText(title??'Income',size: 20),
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 5.h),
+          child: titleText(title ?? 'Income', size: 20),
+        ),
+        Divider(
+          color: secondaryTextColor.withOpacity(0.3),
+          thickness: 1,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              subTitleText(row1text1 ?? 'Salary'),
+              subTitleText(row1text2 ?? '\$ 45350', color: blackTextColor),
+            ],
           ),
-          Divider(color: secondaryTextColor.withOpacity(0.3),thickness: 1,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                subTitleText(row1text1??'Salary'),
-                subTitleText(row1text2??'\$ 45350',color: blackTextColor),
-              ],
-            ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Divider(
+            color: secondaryTextColor.withOpacity(0.3),
+            thickness: 1,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Divider(color: secondaryTextColor.withOpacity(0.3),thickness: 1,),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              subTitleText(row2text1 ?? 'Support'),
+              subTitleText(row2text2 ?? '\$ 55350', color: blackTextColor),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                subTitleText(row2text1??'Support'),
-                subTitleText(row2text2??'\$ 55350',color: blackTextColor),
-              ],
-            ),
-          ),
-        ],
+        ),
+      ],
     ),
   );
 }

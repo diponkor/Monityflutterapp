@@ -30,7 +30,8 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
     return Scaffold(
         backgroundColor: bgWhite,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(107.h), child: const CustomAppbar(),
+          preferredSize: Size.fromHeight(107.h),
+          child: const CustomAppbar(),
         ),
         body: SingleChildScrollView(
           child: Column(children: [
@@ -76,8 +77,8 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                 color: Colors.grey.withOpacity(0.1),
                                 spreadRadius: 1,
                                 blurRadius: 5,
-                                offset:
-                                    const Offset(0, 2), // changes position of shadow
+                                offset: const Offset(
+                                    0, 2), // changes position of shadow
                               ),
                             ],
                             borderRadius:

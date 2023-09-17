@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../constants/colors.dart';
 import '../../global_widgets/custom_text.dart';
-Widget secondTab(BuildContext context){
+
+Widget secondTab(BuildContext context) {
   return Column(
     children: [
       SizedBox(height: 50.h),
@@ -16,24 +17,22 @@ Widget secondTab(BuildContext context){
       SizedBox(height: 10.h),
       titleText('Add More Debts',
           size: 25, color: titleTextColor, authPage: true),
-      subTitleText(
-          'Add your debts here',
+      subTitleText('Add your debts here',
           authPage: true,
           color: secondaryTextColor,
           fontWeight: FontWeight.w400),
-
       SizedBox(height: 140.h),
       Align(
         alignment: Alignment.bottomRight,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5.0),
           child: GestureDetector(
-            onTap: (){
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const CreateDebts()));
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => const CreateDebts()));
             },
             child: Container(
-              height:56.h,
+              height: 56.h,
               width: 60.w,
               decoration: BoxDecoration(
                   color: white,
@@ -45,9 +44,8 @@ Widget secondTab(BuildContext context){
                       offset: const Offset(0, 2), // changes position of shadow
                     ),
                   ],
-                  borderRadius: BorderRadius.all(Radius.circular(50.r))
-              ),
-              child: const Icon(Icons.add,color: blackTextColor),
+                  borderRadius: BorderRadius.all(Radius.circular(50.r))),
+              child: const Icon(Icons.add, color: blackTextColor),
             ),
           ),
         ),

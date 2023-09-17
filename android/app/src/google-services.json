@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1045924173756",
-    "project_id": "monity-app",
-    "storage_bucket": "monity-app.appspot.com"
+    "project_number": "467595902392",
+    "project_id": "monity-app-9dcb7",
+    "storage_bucket": "monity-app-9dcb7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1045924173756:android:53b27a27493503b5483db9",
+        "mobilesdk_app_id": "1:467595902392:android:ef47ce9283e828757de34d",
         "android_client_info": {
           "package_name": "com.example.finance_and_budget"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1045924173756-6rq98s9bh8kemi0bi3eg1mcqh5vsuve3.apps.googleusercontent.com",
+          "client_id": "467595902392-n6mbf1bj90jl0eo0mf6ammabp6f0kqnd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC6ca7yjTMslTOVy5YYbIj4OA2pnpYASi0"
+          "current_key": "AIzaSyAlVKS0ClFflGNIrAAp4Nunku3NDdApz3Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1045924173756-6rq98s9bh8kemi0bi3eg1mcqh5vsuve3.apps.googleusercontent.com",
+              "client_id": "467595902392-n6mbf1bj90jl0eo0mf6ammabp6f0kqnd.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

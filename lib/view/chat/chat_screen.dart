@@ -17,7 +17,7 @@ class ChatScreen extends StatelessWidget {
         child: const CustomAppbar(),
       ),
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 20.0,vertical: 20.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.h),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -56,7 +56,6 @@ class ChatScreen extends StatelessWidget {
                       height: 314.h,
                       child: Image.asset('assets/images/chat.png'),
                     ),
-
                   ],
                 ),
               ),
@@ -83,7 +82,7 @@ class ChatScreen extends StatelessWidget {
                             contentPadding: EdgeInsets.only(left: 20.w)),
                       ),
                     ),
-                    const Icon(Icons.send,color: secondaryTextColor)
+                    const Icon(Icons.send, color: secondaryTextColor)
                   ],
                 ),
               )

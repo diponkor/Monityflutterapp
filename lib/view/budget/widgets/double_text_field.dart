@@ -30,12 +30,11 @@ Widget doubleTextField({
               onEditingComplete: () async {},
               keyboardType: TextInputType.text,
               controller: controller,
-              style: TextStyle(
-                  fontSize: 18.h, color: blackTextColor),
+              style: TextStyle(fontSize: 18.h, color: blackTextColor),
               decoration: InputDecoration(
                 hintText: hintText1,
-                hintStyle: TextStyle(
-                    fontSize: 18.sp, color: secondaryTextColor),
+                hintStyle:
+                    TextStyle(fontSize: 18.sp, color: secondaryTextColor),
               ),
             ),
           ),
@@ -51,13 +50,11 @@ Widget doubleTextField({
             onEditingComplete: () async {},
             keyboardType: TextInputType.text,
             controller: controller,
-            style: TextStyle(
-                fontSize: 18.h, color: blackTextColor),
-           decoration: InputDecoration(
-             hintText: hintText2,
-             hintStyle: TextStyle(
-                 fontSize: 18.sp, color: secondaryTextColor),
-           ),
+            style: TextStyle(fontSize: 18.h, color: blackTextColor),
+            decoration: InputDecoration(
+              hintText: hintText2,
+              hintStyle: TextStyle(fontSize: 18.sp, color: secondaryTextColor),
+            ),
           ),
         ),
         Expanded(

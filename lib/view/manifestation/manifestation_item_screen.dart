@@ -20,7 +20,6 @@ class _ManifestationItemScreenState extends State<ManifestationItemScreen>
   late TabController controller;
   double intValue = 0;
 
-
   @override
   void initState() {
     controller = TabController(vsync: this, length: 2);
@@ -118,13 +117,11 @@ class _ManifestationItemScreenState extends State<ManifestationItemScreen>
                       decoration: BoxDecoration(
                           color: primaryColor.withOpacity(0.1),
                           borderRadius:
-                          BorderRadius.all(Radius.circular(14.r))),
+                              BorderRadius.all(Radius.circular(14.r))),
                       child: Center(
                         child: Padding(
-                          padding:
-                          const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: Image.asset(
-                              'assets/images/home2.png',
+                          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                          child: Image.asset('assets/images/home2.png',
                               fit: BoxFit.cover),
                         ),
                       ),
@@ -133,9 +130,12 @@ class _ManifestationItemScreenState extends State<ManifestationItemScreen>
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        titleText('Home Deposit',size: 20,fontWeight: FontWeight.w600),
+                        titleText('Home Deposit',
+                            size: 20, fontWeight: FontWeight.w600),
                         SizedBox(height: 5.h),
-                        subTitleText('You have saved 10.00% of your goal\nGreat Work!',size: 16)
+                        subTitleText(
+                            'You have saved 10.00% of your goal\nGreat Work!',
+                            size: 16)
                       ],
                     ),
                   ],
@@ -143,8 +143,7 @@ class _ManifestationItemScreenState extends State<ManifestationItemScreen>
                 SliderTheme(
                     data: SliderTheme.of(context).copyWith(
                       showValueIndicator: ShowValueIndicator.always,
-                      inactiveTrackColor:
-                      secondaryTextColor.withOpacity(0.2),
+                      inactiveTrackColor: secondaryTextColor.withOpacity(0.2),
                     ),
                     child: Slider(
                       onChanged: (value) {
@@ -157,26 +156,32 @@ class _ManifestationItemScreenState extends State<ManifestationItemScreen>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    subTitleText('\$ 250',size: 16,fontWeight: FontWeight.w500),
-                    subTitleText('\$ 1500',size: 16,fontWeight: FontWeight.w500),
-                    subTitleText('\$ 2500',size: 16,fontWeight: FontWeight.w500),
+                    subTitleText('\$ 250',
+                        size: 16, fontWeight: FontWeight.w500),
+                    subTitleText('\$ 1500',
+                        size: 16, fontWeight: FontWeight.w500),
+                    subTitleText('\$ 2500',
+                        size: 16, fontWeight: FontWeight.w500),
                   ],
                 ),
                 SizedBox(height: 10.h),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const ItemDetails()));
                   },
                   child: Row(
                     children: [
-                      subTitleText('View Goals',size: 16,color: blackTextColor),
+                      subTitleText('View Goals',
+                          size: 16, color: blackTextColor),
                       SizedBox(width: 10.w),
-                      const Icon(Icons.arrow_forward,size: 16,)
+                      const Icon(
+                        Icons.arrow_forward,
+                        size: 16,
+                      )
                     ],
                   ),
                 )
-
               ],
             ))
       ],

@@ -13,7 +13,7 @@ class AddAccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: profileBgColor,
       body: SafeArea(
         child: ListView(
@@ -58,9 +58,9 @@ class AddAccountScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 40.0.h),
-                      child: normalButton('Add Account',onPressed: (){
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => const ViewAccountScreen()));
+                      child: normalButton('Add Account', onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => const ViewAccountScreen()));
                       }),
                     ),
                   ],
