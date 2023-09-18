@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,7 +34,7 @@ Widget firstTab(BuildContext context) {
       SizedBox(height: 10.h),
       titleText('Add More Goals',
           size: 25, color: titleTextColor, authPage: true),
-      SizedBox(height: 100.h),
+      kIsWeb ? const SizedBox() : SizedBox(height: 100.h),
       Align(
         alignment: Alignment.bottomRight,
         child: Padding(

@@ -5,18 +5,30 @@ import 'package:finance_and_budget/view/home/widgets/accounts_row.dart';
 import 'package:finance_and_budget/view/home/widgets/month_budget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
+import '../../controller/budget_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   double intValue = 0;
+  static final BudgetController _budgetController = Get.put(BudgetController());
+
+  @override
+  void initState() {
+    setState(() {
+      _budgetController.fetchBudget();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           children: [
                             customCard(
-                                134,
+                                150,
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

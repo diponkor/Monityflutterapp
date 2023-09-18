@@ -49,18 +49,20 @@ class ViewAccountScreen extends StatelessWidget {
                                 fit: BoxFit.contain,
                               )),
                           SizedBox(width: 30.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              titleText('City Bank',
-                                  size: 20,
-                                  fontWeight: FontWeight.w600,
-                                  authPage: true),
-                              titleText('Saving Account',
-                                  size: 16,
-                                  fontWeight: FontWeight.w400,
-                                  authPage: true)
-                            ],
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                titleText('City Bank',
+                                    size: 20,
+                                    fontWeight: FontWeight.w600,
+                                    authPage: true),
+                                titleText('Saving Account',
+                                    size: 16,
+                                    fontWeight: FontWeight.w400,
+                                    authPage: true)
+                              ],
+                            ),
                           ),
                           Expanded(child: Container()),
                           titleText('Primary',
@@ -84,18 +86,20 @@ class ViewAccountScreen extends StatelessWidget {
                                 fit: BoxFit.contain,
                               )),
                           SizedBox(width: 30.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              titleText('Standard Charted Bank',
-                                  size: 20,
-                                  fontWeight: FontWeight.w600,
-                                  authPage: true),
-                              titleText('Saving Account',
-                                  size: 16,
-                                  fontWeight: FontWeight.w400,
-                                  authPage: true)
-                            ],
+                          SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                titleText('Standard Charted Bank',
+                                    size: 20,
+                                    fontWeight: FontWeight.w600,
+                                    authPage: true),
+                                titleText('Saving Account',
+                                    size: 16,
+                                    fontWeight: FontWeight.w400,
+                                    authPage: true)
+                              ],
+                            ),
                           ),
                           Expanded(child: Container()),
                         ],

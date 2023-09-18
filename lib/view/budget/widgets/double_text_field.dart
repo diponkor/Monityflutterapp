@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget doubleTextField({
-  TextEditingController? controller,
+  TextEditingController? controller1,
+  TextEditingController? controller2,
   IconData? icon,
   Color? iconBgColor,
   String? hintText1,
@@ -29,7 +30,7 @@ Widget doubleTextField({
               onChanged: (text) async {},
               onEditingComplete: () async {},
               keyboardType: TextInputType.text,
-              controller: controller,
+              controller: controller1,
               style: TextStyle(fontSize: 18.h, color: blackTextColor),
               decoration: InputDecoration(
                 hintText: hintText1,
@@ -49,7 +50,7 @@ Widget doubleTextField({
             onChanged: (text) async {},
             onEditingComplete: () async {},
             keyboardType: TextInputType.text,
-            controller: controller,
+            controller: controller2,
             style: TextStyle(fontSize: 18.h, color: blackTextColor),
             decoration: InputDecoration(
               hintText: hintText2,

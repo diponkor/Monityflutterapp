@@ -54,7 +54,7 @@ class _ItemDetailsState extends State<ItemDetails> {
             ),
             SizedBox(height: 20.h),
             customCard(
-                490.h,
+                490,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

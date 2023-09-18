@@ -31,57 +31,59 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
         preferredSize: Size.fromHeight(107.h),
         child: const CustomAppbar(),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          DefaultTabController(
-            initialIndex: 1,
-            length: 2,
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Row(
-                        children: [
-                          Container(
-                              height: 39.h,
-                              width: 360.w,
-                              decoration: BoxDecoration(
-                                  color: white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            DefaultTabController(
+              initialIndex: 1,
+              length: 2,
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Row(
+                          children: [
+                            Container(
+                                height: 39.h,
+                                width: 360.w,
+                                decoration: BoxDecoration(
+                                    color: white,
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.r))),
+                                child: ClipRRect(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.r))),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.r)),
-                                child: const TabBar(
-                                  indicator: BoxDecoration(
-                                    color: primaryColor,
+                                      BorderRadius.all(Radius.circular(10.r)),
+                                  child: const TabBar(
+                                    indicator: BoxDecoration(
+                                      color: primaryColor,
+                                    ),
+                                    unselectedLabelColor: blackTextColor,
+                                    tabs: [
+                                      Text('Goals'),
+                                      Text('Debts'),
+                                    ],
                                   ),
-                                  unselectedLabelColor: blackTextColor,
-                                  tabs: [
-                                    Text('Goals'),
-                                    Text('Debts'),
-                                  ],
-                                ),
-                              )),
-                        ],
+                                )),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 600.h,
-                      child: TabBarView(
-                        children: [
-                          second(),
-                          second(),
-                        ],
-                      ),
-                    )
-                  ],
-                )),
-          )
-        ],
+                      SizedBox(
+                        height: 600.h,
+                        child: TabBarView(
+                          children: [
+                            second(),
+                            second(),
+                          ],
+                        ),
+                      )
+                    ],
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -123,51 +125,53 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
                   SizedBox(width: 20.w),
                   SizedBox(
                     width: 250.w,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            titleText('Credit card',
-                                color: blackTextColor,
-                                size: 24,
-                                fontWeight: FontWeight.w400),
-                            subTitleText('80.00%', size: 10)
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [subTitleText('13/12/2023', size: 10)],
-                        ),
-                        Stack(
-                          children: [
-                            Container(
-                              height: 8.h,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.r)),
-                                  color: secondaryTextColor.withOpacity(0.2)),
-                            ),
-                            Container(
-                              height: 8.h,
-                              width: 177.w,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.r)),
-                                  color: primaryColor),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            subTitleText('20\$ to go', size: 10),
-                            subTitleText('\$ 300', size: 10),
-                          ],
-                        ),
-                      ],
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              titleText('Credit card',
+                                  color: blackTextColor,
+                                  size: 24,
+                                  fontWeight: FontWeight.w400),
+                              subTitleText('80.00%', size: 10)
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [subTitleText('13/12/2023', size: 10)],
+                          ),
+                          Stack(
+                            children: [
+                              Container(
+                                height: 8.h,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.r)),
+                                    color: secondaryTextColor.withOpacity(0.2)),
+                              ),
+                              Container(
+                                height: 8.h,
+                                width: 177.w,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.r)),
+                                    color: primaryColor),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              subTitleText('20\$ to go', size: 10),
+                              subTitleText('\$ 300', size: 10),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   )
                 ],

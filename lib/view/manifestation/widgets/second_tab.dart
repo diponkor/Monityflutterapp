@@ -1,4 +1,5 @@
 import 'package:finance_and_budget/view/manifestation/create_debts.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,7 +22,7 @@ Widget secondTab(BuildContext context) {
           authPage: true,
           color: secondaryTextColor,
           fontWeight: FontWeight.w400),
-      SizedBox(height: 140.h),
+      kIsWeb ? const SizedBox() : SizedBox(height: 140.h),
       Align(
         alignment: Alignment.bottomRight,
         child: Padding(

@@ -1,6 +1,5 @@
 import 'package:finance_and_budget/controller/auth_controller.dart';
 import 'package:finance_and_budget/model/user_model.dart';
-import 'package:finance_and_budget/view/authentication/free_trial_screen.dart';
 import 'package:finance_and_budget/view/authentication/signin_screen.dart';
 import 'package:finance_and_budget/view/authentication/widgets/background_screen.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text_field.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
+import '../../constants/font_constants.dart';
 import '../../utils/utils.dart';
 import '../global_widgets/custom_text.dart';
 import '../global_widgets/normal_button.dart';
@@ -22,6 +22,7 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen>
     with SingleTickerProviderStateMixin {
+
   late TabController controller;
 
   AuthController authController = Get.find();
@@ -33,6 +34,9 @@ class _SignupScreenState extends State<SignupScreen>
   TextEditingController conPass = TextEditingController();
   TextEditingController companyName = TextEditingController();
   TextEditingController userRole = TextEditingController();
+
+  List<String> dropdownItems = ['CEO', 'COO', 'CFO', 'CTO'];
+  String? selectedValue;
 
   @override
   void initState() {
@@ -145,10 +149,18 @@ class _SignupScreenState extends State<SignupScreen>
       physics: const BouncingScrollPhysics(),
       children: [
         subTitleText('Company Name', authPage: true),
-        customTextField(companyName, icon: Icons.keyboard_arrow_down),
+        customTextField(companyName),
         SizedBox(height: 20.h),
         subTitleText('User Role', authPage: true),
-        customTextField(userRole, icon: Icons.keyboard_arrow_down),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(selectedValue ?? ''),
+            Expanded(child: dropDown()),
+            const Icon(Icons.keyboard_arrow_down_outlined),
+          ],
+        ),
+        const Divider(thickness: 1, color: black),
         SizedBox(height: 120.h),
         normalButton('Sign Up', onPressed: () {
           if (fName.text.isNotEmpty &&
@@ -157,7 +169,7 @@ class _SignupScreenState extends State<SignupScreen>
               pass.text.isNotEmpty &&
               conPass.text.isNotEmpty &&
               companyName.text.isNotEmpty &&
-              userRole.text.isNotEmpty) {
+              selectedValue.toString().isNotEmpty) {
             authController.signUp(email.text, pass.text).then((value) async {
               final user = UserModel(
                 firstName: fName.text.trim(),
@@ -166,12 +178,13 @@ class _SignupScreenState extends State<SignupScreen>
                 password: pass.text.trim(),
                 confirmPassword: conPass.text.trim(),
                 companyName: companyName.text.trim(),
-                userRole: userRole.text.trim(),
+                userRole: selectedValue.toString(),
               );
               await authController.createUser(user);
               Utils.showSnackBar('Account has been created');
             });
           } else {
+            print(selectedValue);
             Utils.showSnackBar('Input Fields is required!');
           }
           // Navigator.of(context)
@@ -193,6 +206,35 @@ class _SignupScreenState extends State<SignupScreen>
           ],
         ),
       ],
+    );
+  }
+
+  Widget dropDown() {
+    return DropdownButton<String>(
+      iconEnabledColor: white,
+      value: selectedValue,
+      items: dropdownItems.map((dynamic val) {
+        return DropdownMenuItem<String>(
+          value: val,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(val,
+                style: TextStyle(color: white, fontSize: fontVerySmall)),
+          ),
+        );
+      }).toList(),
+      borderRadius: BorderRadius.circular(10),
+      underline: const SizedBox(),
+      disabledHint: const Text('Disable'),
+      isExpanded: true,
+      dropdownColor: primaryColor,
+      hint: const Text('Choose Donation Type', style: TextStyle(color: white)),
+      style: TextStyle(color: primaryColor, fontSize: fontVerySmall),
+      onChanged: (value) {
+        setState(() {
+          selectedValue = value;
+        });
+      },
     );
   }
 }

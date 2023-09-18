@@ -1,14 +1,18 @@
+import 'package:finance_and_budget/controller/budget_controller.dart';
 import 'package:finance_and_budget/view/budget/widgets/custom_expence.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../global_widgets/custom_appbar.dart';
 import '../global_widgets/custom_card.dart';
 
 class BudgetViewScreen extends StatefulWidget {
-  const BudgetViewScreen({super.key});
+  final int index;
+
+  const BudgetViewScreen({Key? key, required this.index}) : super(key: key);
 
   @override
   State<BudgetViewScreen> createState() => _BudgetViewScreenState();
@@ -16,8 +20,10 @@ class BudgetViewScreen extends StatefulWidget {
 
 class _BudgetViewScreenState extends State<BudgetViewScreen>
     with SingleTickerProviderStateMixin {
+  static final BudgetController _budgetController = Get.find();
   late TabController controller;
   double intValue = 0;
+  var currentIndex;
 
   @override
   void initState() {
@@ -27,6 +33,12 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
 
   @override
   Widget build(BuildContext context) {
+
+    currentIndex =widget.index;
+    var totalExp = int.parse(_budgetController.budgetList[currentIndex].fixedExp) +
+
+        int.parse(_budgetController.budgetList[currentIndex].variableExp)+
+        int.parse(_budgetController.budgetList[currentIndex].sinkingFunds) ;
     return Scaffold(
         backgroundColor: bgWhite,
         appBar: PreferredSize(
@@ -59,7 +71,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                           child: const Icon(Icons.arrow_back),
                         ),
                         SizedBox(width: 10.w),
-                        titleText('Car loan',
+                        titleText(_budgetController.budgetList[currentIndex].budgetName,
                             color: titleTextColor, size: 25, authPage: true),
                       ],
                     ),
@@ -71,6 +83,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                     children: [
                       Container(
                         height: 215.h,
+                        width: double.infinity,
                         decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
@@ -116,11 +129,11 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              titleText('Car loan', size: 25, authPage: true),
+                              titleText(_budgetController.budgetList[currentIndex].budgetName, size: 25, authPage: true),
                               Row(
                                 children: [
                                   subTitleText('Created : '),
-                                  subTitleText('13/12/2023',
+                                  subTitleText(_budgetController.budgetList[currentIndex].date,
                                       color: blackTextColor),
                                 ],
                               )
@@ -178,28 +191,28 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                     children: [
                       customExpence(
                           title: 'Income',
-                          row1text1: 'Salary',
-                          row1text2: '\$ 45350',
-                          row2text1: 'Support',
-                          row2text2: '\$ 55350'),
+                          row1text1: _budgetController.budgetList[currentIndex].income,
+                          row1text2: '\$ ${_budgetController.budgetList[currentIndex].amount}',
+                          row2text1: '',
+                          row2text2: ''),
                       customExpence(
                           title: 'Fixed Expense',
-                          row1text1: 'Rent',
-                          row1text2: '\$  5350',
-                          row2text1: 'Car loan',
-                          row2text2: '\$ 50050'),
+                          row1text1: _budgetController.budgetList[currentIndex].fixedName,
+                          row1text2: '\$  ${_budgetController.budgetList[currentIndex].fixedExp}',
+                          row2text1: '',
+                          row2text2: ''),
                       customExpence(
                           title: 'Variable Expense',
-                          row1text1: 'Shopping',
-                          row1text2: '\$ 25350',
-                          row2text1: 'Car loan',
-                          row2text2: '\$ 55350'),
+                          row1text1: _budgetController.budgetList[currentIndex].variableName,
+                          row1text2: '\$ ${_budgetController.budgetList[currentIndex].variableExp}',
+                          row2text1: '',
+                          row2text2: ''),
                       customExpence(
                           title: 'Sinking Funds',
-                          row1text1: 'Gifts ',
-                          row1text2: '\$ 350',
-                          row2text1: 'Birthday',
-                          row2text2: '\$ 5350'),
+                          row1text1: _budgetController.budgetList[currentIndex].sinkingName,
+                          row1text2: '\$ ${_budgetController.budgetList[currentIndex].sinkingFunds}',
+                          row2text1: '',
+                          row2text2: ''),
                     ],
                   ),
                 ),
@@ -208,36 +221,38 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                     160,
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          subTitleText('Budet Total'),
-                          subTitleText('\$ 300',
-                              color: blackTextColor, size: 22),
-                          SliderTheme(
-                              data: SliderTheme.of(context).copyWith(
-                                showValueIndicator: ShowValueIndicator.always,
-                                inactiveTrackColor:
-                                    secondaryTextColor.withOpacity(0.2),
-                              ),
-                              child: Slider(
-                                onChanged: (value) {
-                                  setState(() {
-                                    intValue = value;
-                                  });
-                                },
-                                value: intValue,
-                              )),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              subTitleText('\$ 250',
-                                  size: 16, color: secondaryTextColor),
-                              subTitleText('\$ 300',
-                                  size: 16, color: secondaryTextColor)
-                            ],
-                          )
-                        ],
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            subTitleText('Budet Total'),
+                            subTitleText('\$ ${_budgetController.budgetList[currentIndex].amount}',
+                                color: blackTextColor, size: 22),
+                            SliderTheme(
+                                data: SliderTheme.of(context).copyWith(
+                                  showValueIndicator: ShowValueIndicator.always,
+                                  inactiveTrackColor:
+                                      secondaryTextColor.withOpacity(0.2),
+                                ),
+                                child: Slider(
+                                  onChanged: (value) {
+                                    setState(() {
+                                      intValue = value;
+                                    });
+                                  },
+                                  value: intValue,
+                                )),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                subTitleText('\$ $totalExp',
+                                    size: 16, color: secondaryTextColor),
+                                subTitleText('\$ ${_budgetController.budgetList[currentIndex].amount}',
+                                    size: 16, color: secondaryTextColor)
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     )),
               ],

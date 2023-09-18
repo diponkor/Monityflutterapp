@@ -2,6 +2,7 @@ import 'package:finance_and_budget/constants/colors.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text_field.dart';
 import 'package:finance_and_budget/view/global_widgets/normal_button.dart';
 import 'package:finance_and_budget/view/profile/widgets/profile_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -61,7 +62,7 @@ class ProfileEditScreen extends StatelessWidget {
                               customTextField(lName),
                               SizedBox(height: 10.h),
                               subTitleText('Email', authPage: true),
-                              customTextField(email,enabled: false)
+                              customTextField(email, enabled: false)
                             ],
                           ),
                         ),
@@ -81,9 +82,10 @@ class ProfileEditScreen extends StatelessWidget {
                 top: 130.h,
                 left: 170.w,
                 child: Material(
-                    elevation: 10,
-                    borderRadius: BorderRadius.all(Radius.circular(50.r)),
-                    child: profileImage())),
+                  elevation: 10,
+                  borderRadius: BorderRadius.all(Radius.circular(50.r)),
+                  child:kIsWeb?const SizedBox(): profileImage(),
+                )),
           ],
         ),
       ),

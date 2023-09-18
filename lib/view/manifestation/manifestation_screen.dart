@@ -30,56 +30,58 @@ class _ManifestationScreenState extends State<ManifestationScreen>
         preferredSize: Size.fromHeight(107.h),
         child: const CustomAppbar(),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          DefaultTabController(
-            length: 2,
-            child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Row(
-                        children: [
-                          Container(
-                              height: 39.h,
-                              width: 360.w,
-                              decoration: BoxDecoration(
-                                  color: white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            DefaultTabController(
+              length: 2,
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Row(
+                          children: [
+                            Container(
+                                height: 39.h,
+                                width: 360.w,
+                                decoration: BoxDecoration(
+                                    color: white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.r))),
+                                child: ClipRRect(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10.r))),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10.r)),
-                                child: const TabBar(
-                                  indicator: BoxDecoration(
-                                    color: primaryColor,
+                                      BorderRadius.all(Radius.circular(10.r)),
+                                  child: const TabBar(
+                                    indicator: BoxDecoration(
+                                      color: primaryColor,
+                                    ),
+                                    unselectedLabelColor: blackTextColor,
+                                    tabs: [
+                                      Text('Goals'),
+                                      Text('Debts'),
+                                    ],
                                   ),
-                                  unselectedLabelColor: blackTextColor,
-                                  tabs: [
-                                    Text('Goals'),
-                                    Text('Debts'),
-                                  ],
-                                ),
-                              )),
-                        ],
+                                )),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 600.h,
-                      child: TabBarView(
-                        children: [
-                          firstTab(context),
-                          secondTab(context),
-                        ],
-                      ),
-                    )
-                  ],
-                )),
-          )
-        ],
+                      SizedBox(
+                        height: 600.h,
+                        child: TabBarView(
+                          children: [
+                            firstTab(context),
+                            secondTab(context),
+                          ],
+                        ),
+                      )
+                    ],
+                  )),
+            )
+          ],
+        ),
       ),
     );
   }
