@@ -236,9 +236,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                 ),
                                 child: Slider(
                                   onChanged: (value) {
-                                    setState(() {
-                                      intValue = value;
-                                    });
+                                    // setState(() {
+                                    //   intValue = value;
+                                    // });
                                   },
                                   value: intValue,
                                 )),

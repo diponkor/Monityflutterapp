@@ -177,36 +177,6 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
                 ],
               ),
             )),
-        SizedBox(height: 300.h),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: GestureDetector(
-              onTap: () {
-                // Navigator.of(context).push(
-                //     MaterialPageRoute(builder: (_) => CreateBudget()));
-              },
-              child: Container(
-                height: 56.h,
-                width: 60.w,
-                decoration: BoxDecoration(
-                    color: white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset:
-                            const Offset(0, 2), // changes position of shadow
-                      ),
-                    ],
-                    borderRadius: BorderRadius.all(Radius.circular(50.r))),
-                child: const Icon(Icons.add, color: blackTextColor),
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }

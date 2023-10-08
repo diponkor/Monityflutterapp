@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../../controller/budget_controller.dart';
+import '../../controller/manifestation_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,6 +22,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   double intValue = 0;
   static final BudgetController _budgetController = Get.put(BudgetController());
+  ManifestationController manifestationController =
+  Get.put(ManifestationController());
 
   @override
   void initState() {

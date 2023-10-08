@@ -23,6 +23,16 @@ class _BudgetScreenState extends State<BudgetScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: bgWhite,
+      floatingActionButton: Container(
+        padding: EdgeInsets.only(bottom: 80.h),
+        child: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const CreateBudget()));
+            },
+            backgroundColor: white,
+            child: const Icon(Icons.add, color: blackTextColor)),
+      ),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(107.h),
         child: const CustomAppbar(),
@@ -214,39 +224,6 @@ class _BudgetScreenState extends State<BudgetScreen> {
                         }),
                 SizedBox(height: 60.h)
               ],
-            ),
-          ),
-          Positioned(
-            bottom: 80,
-            right: 10,
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const CreateBudget()));
-                  },
-                  child: Container(
-                    height: 56.h,
-                    width: 60.w,
-                    decoration: BoxDecoration(
-                        color: white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 1,
-                            blurRadius: 5,
-                            offset: const Offset(
-                                0, 2), // changes position of shadow
-                          ),
-                        ],
-                        borderRadius: BorderRadius.all(Radius.circular(50.r))),
-                    child: const Icon(Icons.add, color: blackTextColor),
-                  ),
-                ),
-              ),
             ),
           ),
         ],

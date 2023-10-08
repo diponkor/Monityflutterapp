@@ -2,6 +2,7 @@ import 'package:finance_and_budget/view/global_widgets/normal_button.dart';
 import 'package:finance_and_budget/view/manifestation/manifestation_item_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../global_widgets/custom_appbar.dart';
@@ -97,8 +98,8 @@ class MilestoneScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 30.h),
                 normalButton('Submit', onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => const ManifestationItemScreen()));
+                  Get.back();
+                  Get.back();
                 })
               ],
             ),

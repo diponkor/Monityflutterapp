@@ -1,5 +1,7 @@
+import 'package:finance_and_budget/controller/manifestation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../global_widgets/custom_appbar.dart';
@@ -7,7 +9,8 @@ import '../global_widgets/custom_card.dart';
 import '../global_widgets/custom_text.dart';
 
 class ItemDetails extends StatefulWidget {
-  const ItemDetails({super.key});
+  final int index;
+  const ItemDetails({super.key, required this.index});
 
   @override
   State<ItemDetails> createState() => _ItemDetailsState();
@@ -15,6 +18,7 @@ class ItemDetails extends StatefulWidget {
 
 class _ItemDetailsState extends State<ItemDetails> {
   double intValue = 0;
+  ManifestationController manifestationController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                     child: const Icon(Icons.arrow_back),
                   ),
                   SizedBox(width: 10.w),
-                  titleText('Home Deposit',
+                  titleText(manifestationController.manifestationList[widget.index].goalName,
                       color: titleTextColor, size: 25, authPage: true),
                 ],
               ),
@@ -80,11 +84,11 @@ class _ItemDetailsState extends State<ItemDetails> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            titleText('Home Deposit',
+                            titleText(manifestationController.manifestationList[widget.index].goalName,
                                 size: 20, fontWeight: FontWeight.w600),
                             SizedBox(height: 5.h),
                             subTitleText(
-                                'You have saved 10.00% of your goal\nGreat Work!',
+                                'You have saved amount of your goal\nGreat Work!',
                                 size: 16)
                           ],
                         ),

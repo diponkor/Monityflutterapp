@@ -1,4 +1,5 @@
 import 'package:finance_and_budget/constants/colors.dart';
+import 'package:finance_and_budget/view/analytics/analytics_screen.dart';
 import 'package:finance_and_budget/view/budget/budget_screen.dart';
 import 'package:finance_and_budget/view/home/home_screen.dart';
 import 'package:finance_and_budget/view/manifestation/manifestation_screen.dart';
@@ -28,7 +29,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
     const HomeScreen(),
     const ManifestationScreen(),
     const BudgetScreen(),
-    const HomeScreen(), //please add here the required page
+    const AnalyticsScreen(), //please add here the required page
     const HomeScreen(), //please add here the required page
   ];
 

@@ -6,9 +6,11 @@ Widget doubleTextField({
   TextEditingController? controller1,
   TextEditingController? controller2,
   IconData? icon,
+  Function()? iconPress,
   Color? iconBgColor,
   String? hintText1,
   String? hintText2,
+  bool isEnable =true,
 }) {
   return Container(
     height: 50.h,
@@ -27,6 +29,7 @@ Widget doubleTextField({
           child: Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: TextFormField(
+              enabled: isEnable,
               onChanged: (text) async {},
               onEditingComplete: () async {},
               keyboardType: TextInputType.text,
@@ -47,6 +50,7 @@ Widget doubleTextField({
         SizedBox(
           width: 157.w,
           child: TextFormField(
+            enabled: isEnable,
             onChanged: (text) async {},
             onEditingComplete: () async {},
             keyboardType: TextInputType.text,
@@ -59,16 +63,19 @@ Widget doubleTextField({
           ),
         ),
         Expanded(
-          child: Container(
-            height: 50.h,
-            width: 20.h,
-            decoration: BoxDecoration(
-                color: iconBgColor,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(5.r),
-                  bottomRight: Radius.circular(5.r),
-                )),
-            child: Icon(icon, color: white),
+          child: GestureDetector(
+            onTap: iconPress,
+            child: Container(
+              height: 50.h,
+              width: 20.h,
+              decoration: BoxDecoration(
+                  color: iconBgColor,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(5.r),
+                    bottomRight: Radius.circular(5.r),
+                  )),
+              child: Icon(icon, color: white),
+            ),
           ),
         )
       ],

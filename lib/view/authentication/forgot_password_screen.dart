@@ -1,5 +1,5 @@
+import 'package:email_otp/email_otp.dart';
 import 'package:finance_and_budget/controller/auth_controller.dart';
-import 'package:finance_and_budget/view/authentication/otp_screen.dart';
 import 'package:finance_and_budget/view/authentication/widgets/background_screen.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +19,61 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   AuthController authController = Get.find();
-  TextEditingController forgotPass = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   void dispose() {
-    forgotPass.dispose();
+    _emailController.dispose();
     super.dispose();
   }
+
+  //late EmailAuth emailAuth;
+
+  @override
+  void initState() {
+    EmailOTP myauth = EmailOTP();
+    super.initState();
+
+    myauth.setSMTP(
+        host: "monityapp@gmail.com",
+        auth: true,
+        username: "monityapp@gmail.com",
+        password: "rajibtalukder1234567890",
+        secure: "TLS",
+        port: 576
+    );
+
+    myauth.setConfig(
+        appEmail: "monityapp@gmail.com",
+        appName: "Monity",
+        userEmail: _emailController.text,
+        otpLength: 4,
+        otpType: OTPType.digitsOnly
+    );
+    // Initialize the package
+    // final remoteServerConfiguration = {
+    //   "server": "https://vltajkttjkfkrvrvtycx.supabase.co",
+    //   "serverKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZsdGFqa3R0amtma3J2cnZ0eWN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY1MDgwODgsImV4cCI6MjAxMjA4NDA4OH0._BeTdTp7GoyYFGjS-Lj68864F1T35xTAjsMF0OfK5zo"
+    // };
+    // emailAuth = EmailAuth(
+    //   sessionName: "Sample session",
+    // );
+
+   // emailAuth.config(remoteServerConfiguration);
+  }
+
+  // void sendOtp() async {
+  //   var res = await emailAuth.sendOtp(
+  //       recipientMail: _emailController.text, otpLength: 4
+  //   );
+  //   if(res){
+  //     print('Sent Otp');
+  //   }else{
+  //     print('We could not sent otp');
+  //   }
+  // }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +86,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             titleText('Forgot Password', authPage: true),
             SizedBox(height: 20.h),
             subTitleText('Email Address', authPage: true),
-            customTextField(forgotPass, icon: Icons.done, iconColor: green),
+            customTextField(_emailController, icon: Icons.done, iconColor: green),
             SizedBox(height: 100.h),
             normalButton('Sign In', onPressed: () {
-              authController
-                  .sendPasswordResetOTP(forgotPass.text)
-                  .then((value) {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => const OtpScreen()));
-              });
+             // sendOtp();
+            //   authController
+            //       .sendPasswordResetOTP(_emailController.text)
+            //       .then((value) {
+            //     Navigator.of(context)
+            //         .push(MaterialPageRoute(builder: (_) => const OtpScreen()));
+            //   });
             }),
             SizedBox(height: 20.h),
           ],

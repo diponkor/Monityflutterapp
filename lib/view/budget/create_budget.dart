@@ -20,6 +20,10 @@ class CreateBudget extends StatefulWidget {
 }
 
 class _CreateBudgetState extends State<CreateBudget> {
+  int incomeItem = 0;
+  int fixedItem = 0;
+  int varItem = 0;
+  int sinkItem = 0;
   BudgetController budgetController = Get.find();
   final TextEditingController _budgetName = TextEditingController();
   final TextEditingController _date = TextEditingController();
@@ -75,52 +79,245 @@ class _CreateBudgetState extends State<CreateBudget> {
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   doubleTextField(
+                      iconPress: () {
+                        setState(() {
+                          incomeItem++;
+                        });
+                      },
                       icon: Icons.add,
                       controller1: _income,
                       controller2: _amount,
                       hintText1: 'Income',
                       hintText2: 'Amount',
                       iconBgColor: primaryColor),
+                  Column(children: [
+                    for (int i = 0; i < incomeItem; i++)
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.0.h),
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: const Text('Please upgrade your storage'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          incomeItem=0;
+                                          fixedItem=0;
+                                          varItem = 0;
+                                          sinkItem = 0;
+                                        });
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: doubleTextField(
+                              icon: Icons.remove,
+                              iconPress: () {
+                                setState(() {
+                                  incomeItem--;
+                                });
+                              },
+                              isEnable: false,
+                              controller1: TextEditingController(),
+                              controller2: TextEditingController(),
+                              hintText1: 'Income',
+                              hintText2: 'Amount',
+                              iconBgColor: extraColor),
+                        ),
+                      ),
+                  ]),
                   SizedBox(height: 10.h),
                   subTitleText('Fixed Expense',
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   doubleTextField(
                       icon: Icons.add,
+                      iconPress: () {
+                        setState(() {
+                          fixedItem++;
+                        });
+                      },
                       controller1: _fixedName,
                       controller2: _fixedExp,
                       hintText1: 'Fixed Name',
                       hintText2: 'Fixed Expense',
                       iconBgColor: primaryColor),
+                  Column(children: [
+                    for (int i = 0; i < fixedItem; i++)
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.0.h),
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: const Text('Please upgrade your storage'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          incomeItem=0;
+                                          fixedItem=0;
+                                          varItem = 0;
+                                          sinkItem = 0;
+                                        });
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: doubleTextField(
+                              icon: Icons.remove,
+                              iconPress: () {
+                                setState(() {
+                                  fixedItem--;
+                                });
+                              },
+                              isEnable: false,
+                              controller1: TextEditingController(),
+                              controller2: TextEditingController(),
+                              hintText1: 'Fixed Name',
+                              hintText2: 'Fixed Expense',
+                              iconBgColor: extraColor),
+                        ),
+                      ),
+                  ]),
                   SizedBox(height: 15.h),
-                  // doubleTextField(
-                  //     icon: Icons.remove,
-                  //     controller: TextEditingController(),
-                  //     hintText1: 'Fixed Name',
-                  //     hintText2: 'Fixed Expense',
-                  //     iconBgColor: extraColor),
-                  // SizedBox(height: 10.h),
                   subTitleText('Variable Expense',
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   doubleTextField(
                       icon: Icons.add,
+                      iconPress: (){
+                        setState(() {
+                          varItem++;
+                        });
+                      },
                       controller1: _varName,
                       controller2: _varExp,
                       hintText1: 'Variable Name',
                       hintText2: 'Variable Expense',
                       iconBgColor: primaryColor),
+                  Column(children: [
+                    for (int i = 0; i <varItem; i++)
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.0.h),
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: const Text('Please upgrade your storage'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          incomeItem=0;
+                                          fixedItem=0;
+                                          varItem = 0;
+                                          sinkItem = 0;
+                                        });
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: doubleTextField(
+                              icon: Icons.remove,
+                              iconPress: () {
+                                setState(() {
+                                  varItem--;
+                                });
+                              },
+                              isEnable: false,
+                              controller1: TextEditingController(),
+                              controller2: TextEditingController(),
+                              hintText1: 'Variable Name',
+                              hintText2: 'Variable Expense',
+                              iconBgColor: extraColor),
+                        ),
+                      ),
+                  ]),
                   SizedBox(height: 10.h),
                   subTitleText('Sinking Funds',
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   doubleTextField(
                       icon: Icons.add,
+                      iconPress: (){
+                        setState(() {
+                          sinkItem++;
+                        });
+                      },
                       controller1: _sinkName,
                       controller2: _sinkFunds,
                       hintText1: 'Sinking Name',
                       hintText2: 'Sinking Funds',
                       iconBgColor: primaryColor),
+                  Column(children: [
+                    for (int i = 0; i < sinkItem; i++)
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.0.h),
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: const Text('Please upgrade your storage'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          incomeItem=0;
+                                          fixedItem=0;
+                                          varItem = 0;
+                                          sinkItem = 0;
+                                        });
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                          child: doubleTextField(
+                              icon: Icons.remove,
+                              iconPress: () {
+                                setState(() {
+                                  sinkItem--;
+                                });
+                              },
+                              isEnable: false,
+                              controller1: TextEditingController(),
+                              controller2: TextEditingController(),
+                              hintText1: 'Sinking Name',
+                              hintText2: 'Sinking Funds',
+                              iconBgColor: extraColor),
+                        ),
+                      ),
+                  ]),
                   SizedBox(height: 15.h),
                   normalButton('Next', onPressed: () async {
                     if (_budgetName.text.isNotEmpty &&
@@ -148,7 +345,7 @@ class _CreateBudgetState extends State<CreateBudget> {
                       await budgetController.createBudget(budget).then((value) {
                         Navigator.of(context).pop();
                       });
-                    }else{
+                    } else {
                       Utils.showSnackBar('Input Fields is required!');
                     }
                   }),

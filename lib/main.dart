@@ -10,9 +10,13 @@ import 'constants/colors.dart';
 
 /*
   ------Here is some necessary information about this project------
-  Firebase Account Information***
-        email:monityapp@gmail.com
-        password:monityapp123
+  Firebase Account Information(Google Account).......
+        Email:monityapp@gmail.com
+        Password:monityapp123
+
+   Plaid Account Information.......
+        Email:monityapp@gmail.com
+        Password:Monity12345678
 */
 
 void main() async {

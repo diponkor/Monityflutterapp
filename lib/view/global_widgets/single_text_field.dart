@@ -2,15 +2,19 @@ import 'package:finance_and_budget/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget singleTextField(
-    {TextEditingController? controller, bool? icon, String? hintText}) {
+Widget singleTextField({
+  TextEditingController? controller,
+  bool? icon,
+  TextInputType ? textType = TextInputType.text,
+  String? hintText,
+}) {
   return SizedBox(
     height: 50.h,
     width: double.infinity,
     child: TextFormField(
         onChanged: (text) async {},
         onEditingComplete: () async {},
-        keyboardType: TextInputType.text,
+        keyboardType: textType,
         controller: controller,
         style: TextStyle(
             fontSize: 18.h, color: blackTextColor, fontWeight: FontWeight.w600),

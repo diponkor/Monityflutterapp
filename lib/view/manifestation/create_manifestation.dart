@@ -1,8 +1,13 @@
+import 'package:finance_and_budget/controller/manifestation_controller.dart';
+import 'package:finance_and_budget/model/manifestation_model.dart';
 import 'package:finance_and_budget/view/manifestation/milestone_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../constants/colors.dart';
+import '../../utils/utils.dart';
 import '../global_widgets/single_text_field.dart';
 import '../global_widgets/custom_appbar.dart';
 import '../global_widgets/custom_text.dart';
@@ -16,7 +21,21 @@ class CreateManifestation extends StatefulWidget {
 }
 
 class _CreateManifestationState extends State<CreateManifestation> {
+  ManifestationController manifestationController =
+      Get.put(ManifestationController());
   bool? isChecked = false;
+  TextEditingController goalNameController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+  TextEditingController bankController = TextEditingController();
+  var dateText = 'Ex. - 30 JUNE 2023';
+
+  List<String> popularGoalsList = [
+    'Home Loan',
+    'Car Loan',
+    'Mortgage',
+    'Money'
+  ];
+  String selectedPopularGoal = '';
 
   @override
   Widget build(BuildContext context) {
@@ -69,68 +88,103 @@ class _CreateManifestationState extends State<CreateManifestation> {
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   singleTextField(
-                      controller: TextEditingController(),
+                      controller: goalNameController,
                       hintText: 'Name your goal'),
                   SizedBox(height: 20.h),
                   subTitleText('Choose Popular goals'),
                   SizedBox(height: 5.h),
-                  Row(
-                    children: [
-                      Container(
-                        height: 40.h,
-                        width: 122.w,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: blackTextColor, width: 1),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.r))),
-                        child: Center(
-                          child: subTitleText('Home Loan',
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      SizedBox(width: 5.w),
-                      Container(
-                        height: 40.h,
-                        width: 122.w,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: blackTextColor, width: 1),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.r))),
-                        child: Center(
-                          child: subTitleText('Car Loan',
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                      SizedBox(width: 5.w),
-                      Container(
-                        height: 40.h,
-                        width: 122.w,
-                        decoration: BoxDecoration(
-                            color: blackTextColor,
-                            border: Border.all(color: blackTextColor, width: 1),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.r))),
-                        child: Center(
-                          child: subTitleText('Mortgage',
-                              color: white, fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (int x = 0; x < popularGoalsList.length; x++)
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedPopularGoal = popularGoalsList[x];
+                              });
+                              print(selectedPopularGoal);
+                            },
+                            child: Container(
+                              height: 40.h,
+                              width: 122.w,
+                              margin: EdgeInsets.only(right: 5.w),
+                              decoration: BoxDecoration(
+                                  color:
+                                      selectedPopularGoal == popularGoalsList[x]
+                                          ? blackTextColor
+                                          : bgWhite,
+                                  border: Border.all(
+                                      color: blackTextColor, width: 1),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.r))),
+                              child: Center(
+                                child: subTitleText(popularGoalsList[x],
+                                    color: selectedPopularGoal ==
+                                            popularGoalsList[x]
+                                        ? white
+                                        : secondaryTextColor,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 20.h),
                   subTitleText('Amount',
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   singleTextField(
-                      controller: TextEditingController(), hintText: 'Amount'),
+                      controller: amountController,
+                      hintText: 'Amount',
+                      textType: TextInputType.number),
                   SizedBox(height: 20.h),
                   subTitleText('By when',
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
-                  singleTextField(
-                      controller: TextEditingController(),
-                      icon: true,
-                      hintText: 'Ex. - 30 JUNE 2023'),
+                  Container(
+                    height: 50.h,
+                    width: double.infinity,
+                    padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.r),
+                        border: Border.all(color: black, width: 1)),
+                    child: GestureDetector(
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2101));
+                        String formattedDate =
+                            DateFormat('yMMMMd').format(pickedDate!);
+
+                        setState(() {
+                          dateText = formattedDate;
+                        });
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: subTitleText(dateText,
+                                  color: blackTextColor,
+                                  fontWeight: FontWeight.w400,
+                                  size: 18)),
+                          const Icon(
+                            Icons.calendar_month,
+                            color: secondaryTextColor,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  // singleTextField(
+                  //     controller: TextEditingController(),
+                  //     icon: true,
+                  //     hintText: 'Ex. - 30 JUNE 2023'),
                   SizedBox(height: 20.h),
                   subTitleText('Bank',
                       color: secondaryTextColor.withOpacity(0.8)),
@@ -142,7 +196,7 @@ class _CreateManifestationState extends State<CreateManifestation> {
                         onChanged: (text) async {},
                         onEditingComplete: () async {},
                         keyboardType: TextInputType.text,
-                        controller: TextEditingController(),
+                        controller: bankController,
                         style: TextStyle(fontSize: 18.h, color: blackTextColor),
                         decoration: InputDecoration(
                           fillColor: white,
@@ -187,9 +241,28 @@ class _CreateManifestationState extends State<CreateManifestation> {
                     ],
                   ),
                   SizedBox(height: 20.h),
-                  normalButton('Next', onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const MilestoneScreen()));
+                  normalButton('Next', onPressed: () async {
+                    if (goalNameController.text.isNotEmpty &&
+                        selectedPopularGoal.isNotEmpty &&
+                        amountController.text.isNotEmpty &&
+                        dateText.isNotEmpty &&
+                        bankController.text.isNotEmpty) {
+                      final manifestation = ManifestationModel(
+                        goalNameController.text,
+                        selectedPopularGoal,
+                        amountController.text,
+                        dateText,
+                        bankController.text,
+                      );
+                      await manifestationController
+                          .createManifestation(manifestation)
+                          .then((value) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => const MilestoneScreen()));
+                      });
+                    } else{
+                      Utils.showSnackBar('Input Fields is required!');
+                    }
                   }),
                 ],
               ),

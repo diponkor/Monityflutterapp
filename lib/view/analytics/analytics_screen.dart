@@ -1,18 +1,21 @@
-import 'package:finance_and_budget/constants/colors.dart';
-import 'package:finance_and_budget/view/global_widgets/custom_appbar.dart';
-import 'package:finance_and_budget/view/manifestation/widgets/manifestation_main_screen.dart';
-import 'package:finance_and_budget/view/manifestation/widgets/debt_main_screen.dart';
+import 'package:finance_and_budget/view/analytics/receipts_screen.dart';
+import 'package:finance_and_budget/view/analytics/widget/first_analytics_screen.dart';
+import 'package:finance_and_budget/view/analytics/widget/second_analytics_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-class ManifestationScreen extends StatefulWidget {
-  const ManifestationScreen({super.key});
+import '../../constants/colors.dart';
+import '../global_widgets/custom_appbar.dart';
+
+class AnalyticsScreen extends StatefulWidget {
+  const AnalyticsScreen({super.key});
 
   @override
-  State<ManifestationScreen> createState() => _ManifestationScreenState();
+  State<AnalyticsScreen> createState() => _AnalyticsScreenState();
 }
 
-class _ManifestationScreenState extends State<ManifestationScreen>
+class _AnalyticsScreenState extends State<AnalyticsScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
 
@@ -29,6 +32,15 @@ class _ManifestationScreenState extends State<ManifestationScreen>
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(107.h),
         child: const CustomAppbar(),
+      ),
+      floatingActionButton: Container(
+        padding: EdgeInsets.only(bottom: 80.h),
+        child: FloatingActionButton(
+            onPressed: () {
+              Get.to(const ReceiptsScreen());
+            },
+            backgroundColor: white,
+            child: const Icon(Icons.add, color: blackTextColor)),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -49,8 +61,8 @@ class _ManifestationScreenState extends State<ManifestationScreen>
                                 width: 360.w,
                                 decoration: BoxDecoration(
                                     color: white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10.r))),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(10.r))),
                                 child: ClipRRect(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10.r)),
@@ -60,8 +72,8 @@ class _ManifestationScreenState extends State<ManifestationScreen>
                                     ),
                                     unselectedLabelColor: blackTextColor,
                                     tabs: [
-                                      Text('Goals'),
-                                      Text('Debts'),
+                                      Text('Account Summary'),
+                                      Text('Transactions'),
                                     ],
                                   ),
                                 )),
@@ -70,11 +82,11 @@ class _ManifestationScreenState extends State<ManifestationScreen>
                       ),
                       SizedBox(
                         height: 600.h,
-                        child:const TabBarView(
-                          physics: BouncingScrollPhysics(),
+                        child: TabBarView(
+                          physics: const BouncingScrollPhysics(),
                           children: [
-                            ManifestationMainScreen(),
-                             DebtMainScreen()
+                            firstAnalyticsScreen(context),
+                            secondAnalyticsScreen(context),
                           ],
                         ),
                       )
@@ -86,4 +98,5 @@ class _ManifestationScreenState extends State<ManifestationScreen>
       ),
     );
   }
+
 }
