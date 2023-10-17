@@ -203,10 +203,10 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                                                 .spaceBetween,
                                                         children: [
                                                           subTitleText(
-                                                              '20\$ to go',
+                                                              '${controller.budgetList[i].amount} \$ to go',
                                                               size: 10),
                                                           subTitleText(
-                                                              '\$ ${controller.budgetList[i].amount}',
+                                                              '\$ ${int.parse(_budgetController.budgetList[i].fixedExp) + int.parse(_budgetController.budgetList[i].variableExp) + int.parse(_budgetController.budgetList[i].sinkingFunds)}',
                                                               size: 10),
                                                         ],
                                                       ),

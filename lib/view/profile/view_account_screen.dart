@@ -1,9 +1,11 @@
+import 'package:finance_and_budget/view/profile/add_account_screen.dart';
+import 'package:finance_and_budget/view/profile/plaid_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../global_widgets/custom_text.dart';
-import '../global_widgets/custom_text_field.dart';
 import '../global_widgets/named_back_button.dart';
 
 class ViewAccountScreen extends StatelessWidget {
@@ -36,7 +38,7 @@ class ViewAccountScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 50.h),
-                    Container(
+                    /*Container(
                       padding: EdgeInsets.all(10.w),
                       height: 66.h,
                       child: Row(
@@ -104,7 +106,7 @@ class ViewAccountScreen extends StatelessWidget {
                           Expanded(child: Container()),
                         ],
                       ),
-                    ),
+                    ),*/
                     SizedBox(height: 10.h),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -128,8 +130,13 @@ class ViewAccountScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: 20.w),
-                          titleText('Add Account',
-                              size: 20, fontWeight: FontWeight.w500)
+                          GestureDetector(
+                            onTap: (){
+                              Get.to(const AddAccountScreen());
+                            },
+                            child: titleText('Add Account',
+                                size: 20, fontWeight: FontWeight.w500),
+                          )
                         ],
                       ),
                     ),

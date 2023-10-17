@@ -36,7 +36,6 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
 
     currentIndex =widget.index;
     var totalExp = int.parse(_budgetController.budgetList[currentIndex].fixedExp) +
-
         int.parse(_budgetController.budgetList[currentIndex].variableExp)+
         int.parse(_budgetController.budgetList[currentIndex].sinkingFunds) ;
     return Scaffold(
@@ -225,8 +224,8 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            subTitleText('Budet Total'),
-                            subTitleText('\$ ${_budgetController.budgetList[currentIndex].amount}',
+                            subTitleText('Budget Total'),
+                            subTitleText(totalExp.toString(),
                                 color: blackTextColor, size: 22),
                             SliderTheme(
                                 data: SliderTheme.of(context).copyWith(

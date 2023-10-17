@@ -7,9 +7,21 @@ import '../utils/utils.dart';
 
 class BudgetController extends GetxController {
 
+
   FirebaseAuth auth = FirebaseAuth.instance;
   final _db = FirebaseFirestore.instance;
   List<CreateBudgetModel> budgetList = [];
+
+
+  String top3ExpThisYear = 'Your top 3 expense are : \$500, \$300, \$100';
+  String makeLastWeek = 'You make\$1500 in last week';
+  String spendLastMonth = 'You spent \$2000 in last week';
+
+  // List<double> topTwoAmounts = budgetList
+  //     .map((budget) => double.parse(budget.amount))
+  //     .toList()
+  //   ..sort((a, b) => b.compareTo(a))
+  //   ..take(2);
 
   Future<void> createBudget(CreateBudgetModel budgetModel) async {
     await _db

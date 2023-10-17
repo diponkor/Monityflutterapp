@@ -100,7 +100,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
               // SizedBox(
               //     height: 640.h, child: MessagesScreen(messages: messages)),
-              
+
               RawAutocomplete(
                 optionsBuilder: (TextEditingValue textEditingValue) {
                   if (textEditingValue.text == '') {
@@ -120,14 +120,13 @@ class _ChatScreenState extends State<ChatScreen> {
                 onSelected: (String selection) {
                   print('You just selected $selection');
                   sendMessage(selection.toString());
-
                 },
                 fieldViewBuilder: (BuildContext context,
                     TextEditingController textEditingController,
                     FocusNode focusNode,
                     VoidCallback onFieldSubmitted) {
                   return TextField(
-                    decoration: InputDecoration(border: OutlineInputBorder()),
+                    decoration: const InputDecoration(border: OutlineInputBorder()),
                     controller: textEditingController,
                     focusNode: focusNode,
                     onSubmitted: (String value) {},
@@ -159,10 +158,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 },
               ),
 
-              
               SizedBox(
                   height: 640.h, child: MessagesScreen(messages: messages)),
-              
+
               // Container(
               //   height: 48.h,
               //   width: double.infinity,
@@ -202,7 +200,6 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
-
 
   sendMessage(String text) async {
     if (text.isEmpty) {

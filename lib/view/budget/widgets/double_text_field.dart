@@ -53,7 +53,7 @@ Widget doubleTextField({
             enabled: isEnable,
             onChanged: (text) async {},
             onEditingComplete: () async {},
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.number,
             controller: controller2,
             style: TextStyle(fontSize: 18.h, color: blackTextColor),
             decoration: InputDecoration(

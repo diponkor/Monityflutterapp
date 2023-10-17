@@ -3,6 +3,7 @@ import 'package:finance_and_budget/view/global_widgets/named_back_button.dart';
 import 'package:finance_and_budget/view/profile/add_account_screen.dart';
 import 'package:finance_and_budget/view/profile/change_password_screen.dart';
 import 'package:finance_and_budget/view/profile/profile_edit_screen.dart';
+import 'package:finance_and_budget/view/profile/view_account_screen.dart';
 import 'package:finance_and_budget/view/profile/widgets/build_profile_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -100,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                           GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => const AddAccountScreen()));
+                                    builder: (_) => const ViewAccountScreen()));
                               },
                               child: buildProfileItem(
                                   'assets/images/home2.png', 'Add Account')),

@@ -1,6 +1,8 @@
-import 'package:finance_and_budget/view/profile/view_account_screen.dart';
+import 'package:finance_and_budget/controller/account_controller.dart';
+import 'package:finance_and_budget/view/profile/plaid_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
 import '../global_widgets/custom_text.dart';
@@ -11,8 +13,15 @@ import '../global_widgets/normal_button.dart';
 class AddAccountScreen extends StatelessWidget {
   const AddAccountScreen({super.key});
 
+  static AccountController accountController = Get.put(AccountController());
+
   @override
   Widget build(BuildContext context) {
+    // accountController.generatePublicToken().then((value) {
+    //   accountController.generateAccessToken().then((value) {
+    //     //accountController.generateLinkToken();
+    //   });
+    // });
     return Scaffold(
       backgroundColor: profileBgColor,
       body: SafeArea(
@@ -59,8 +68,10 @@ class AddAccountScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 40.0.h),
                       child: normalButton('Add Account', onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => const ViewAccountScreen()));
+
+                        print(accountController.publicToken);
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => PlaidScreen()));
                       }),
                     ),
                   ],

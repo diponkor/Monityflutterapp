@@ -100,3 +100,5 @@ ThemeData _buildTheme(brightness) {
     scaffoldBackgroundColor: Colors.white,
   );
 }
+
+//flutter build web --no-tree-shake-icons
