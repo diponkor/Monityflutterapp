@@ -3,15 +3,19 @@ import 'package:finance_and_budget/model/user_model.dart';
 import 'package:finance_and_budget/view/authentication/signin_screen.dart';
 import 'package:finance_and_budget/view/authentication/widgets/background_screen.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text_field.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/font_constants.dart';
 import '../../utils/utils.dart';
+import '../custom_navigation_bar.dart';
 import '../global_widgets/custom_text.dart';
 import '../global_widgets/normal_button.dart';
 import 'package:get/get.dart';
+
+import '../web_navigation.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -56,7 +60,69 @@ class _SignupScreenState extends State<SignupScreen>
 
   @override
   Widget build(BuildContext context) {
-    return BackgroundScreen(
+    var screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth > 730 && kIsWeb?Center(
+      child: SizedBox(
+        width: 600.w,
+        child: BackgroundScreen(
+          widget: Container(
+            padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 5.h),
+            child: Column(
+              children: [
+                TabBar(
+                  controller: controller,
+                  tabs: [
+                    Tab(
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: primaryColor.withOpacity(0.1),
+                            radius: 10,
+                            child: subTitleText('1',
+                                authPage: true, color: primaryColor),
+                          ),
+                          SizedBox(width: 2.w),
+                          subTitleText('Pesonal Info',
+                              authPage: true,
+                              fontWeight: FontWeight.w700,
+                              color: blackTextColor2),
+                        ],
+                      ),
+                    ),
+                    Tab(
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: primaryColor.withOpacity(0.1),
+                            radius: 10,
+                            child: subTitleText('2',
+                                authPage: true, color: primaryColor),
+                          ),
+                          SizedBox(width: 2.w),
+                          subTitleText('Customer Info',
+                              authPage: true,
+                              fontWeight: FontWeight.w700,
+                              color: blackTextColor2),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Expanded(
+                  child: TabBarView(
+                    controller: controller,
+                    children: [
+                      firstPageSignUp(),
+                      secondPageSignUp(screenWidth),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ): BackgroundScreen(
       widget: Container(
         padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 5.h),
         child: Column(
@@ -105,7 +171,7 @@ class _SignupScreenState extends State<SignupScreen>
                 controller: controller,
                 children: [
                   firstPageSignUp(),
-                  secondPageSignUp(),
+                  secondPageSignUp(screenWidth),
                 ],
               ),
             ),
@@ -144,7 +210,7 @@ class _SignupScreenState extends State<SignupScreen>
     );
   }
 
-  Widget secondPageSignUp() {
+  Widget secondPageSignUp(var screenWidth) {
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
@@ -180,7 +246,9 @@ class _SignupScreenState extends State<SignupScreen>
                 companyName: companyName.text.trim(),
                 userRole: selectedValue.toString(),
               );
-              await authController.createUser(user);
+              await authController.createUser(user).then((value) {
+                Get.offAll( screenWidth > 730 && kIsWeb?const WebNavigation(): const CustomNavigation());
+              });
               Utils.showSnackBar('Account has been created');
             });
           } else {

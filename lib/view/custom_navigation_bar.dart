@@ -16,15 +16,6 @@ class CustomNavigation extends StatefulWidget {
 class _CustomNavigationState extends State<CustomNavigation> {
   int _bottomNavIndex = 0;
 
-  List<IconData> iconsTemp = [
-    Icons.home_outlined,
-    Icons.shopping_cart_outlined,
-    Icons.favorite_outline,
-    Icons.person_outline,
-  ];
-
-  List<IconData> icons = [];
-
   List<Widget> pages = [
     const HomeScreen(),
     const ManifestationScreen(),

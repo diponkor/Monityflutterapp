@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
+import '../../controller/account_controller.dart';
 import '../../controller/budget_controller.dart';
 import '../../controller/manifestation_controller.dart';
 
@@ -16,19 +17,26 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
-
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   double intValue = 0;
-  static final BudgetController _budgetController = Get.put(BudgetController());
+  final BudgetController _budgetController = Get.put(BudgetController());
   ManifestationController manifestationController =
-  Get.put(ManifestationController());
+      Get.put(ManifestationController());
+  AccountController accountController = Get.put(AccountController());
 
   @override
   void initState() {
     setState(() {
       _budgetController.fetchBudget();
+      accountController.generateLinkToken().then((value) {
+        accountController.generatePublicToken().then((value) {
+          accountController.generateAccessToken().then((value) {
+            accountController.getAllAccount();
+          });
+        });
+      });
     });
     super.initState();
   }
@@ -53,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           children: [
                             customCard(
-                                150,
+                                400,
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -68,33 +76,177 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                         child: Slider(
                                           onChanged: (value) {
-                                            setState(() {
-                                              intValue = value;
-                                            });
+                                            // setState(() {
+                                            //   intValue = value;
+                                            // });
                                           },
                                           value: intValue,
                                         )),
                                     subTitleText(
                                         'Cool! let\'s keep your expense below the budget',
                                         size: 15),
+                                    GetBuilder<ManifestationController>(
+                                        id: 'updateDebtList',
+                                        builder: (controller) {
+                                          return controller.debtList.isEmpty
+                                              ? const Center(
+                                                  child:
+                                                      CircularProgressIndicator())
+                                              : Center(
+                                                  child: SingleChildScrollView(
+                                                    physics:
+                                                        const BouncingScrollPhysics(),
+                                                    child: Column(
+                                                      children: [
+                                                        for (int j = 0;
+                                                            j < 2;
+                                                            j++)
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    top: 10.h),
+                                                            child: customCard(
+                                                                118.h,
+                                                                Row(
+                                                                  children: [
+                                                                    Container(
+                                                                      height:
+                                                                          80.h,
+                                                                      width:
+                                                                          70.w,
+                                                                      decoration: BoxDecoration(
+                                                                          color: primaryColor.withOpacity(
+                                                                              0.1),
+                                                                          borderRadius:
+                                                                              BorderRadius.all(Radius.circular(14.r))),
+                                                                      child:
+                                                                          Center(
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.symmetric(horizontal: 15.0),
+                                                                          child: Image.asset(
+                                                                              'assets/images/creditcard.png',
+                                                                              fit: BoxFit.cover),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(
+                                                                        width: 20
+                                                                            .w),
+                                                                    SizedBox(
+                                                                      width:
+                                                                          250.w,
+                                                                      child:
+                                                                          SingleChildScrollView(
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          children: [
+                                                                            Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              children: [
+                                                                                titleText(manifestationController.debtList[j].debtName, color: blackTextColor, size: 24, fontWeight: FontWeight.w400),
+                                                                                subTitleText('${manifestationController.debtList[j].interestRate}%', size: 10)
+                                                                              ],
+                                                                            ),
+                                                                            Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              children: [
+                                                                                subTitleText(manifestationController.debtList[j].date, size: 10)
+                                                                              ],
+                                                                            ),
+                                                                            Stack(
+                                                                              children: [
+                                                                                Container(
+                                                                                  height: 8.h,
+                                                                                  width: double.infinity,
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10.r)), color: secondaryTextColor.withOpacity(0.2)),
+                                                                                ),
+                                                                                Container(
+                                                                                  height: 8.h,
+                                                                                  width: 177.w,
+                                                                                  decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10.r)), color: primaryColor),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                            Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              children: [
+                                                                                subTitleText('${manifestationController.debtList[j].haveDebt}\$ to go', size: 10),
+                                                                                subTitleText('\$ ${manifestationController.debtList[j].monthlyPayment}', size: 10),
+                                                                              ],
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                )),
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                        }),
                                   ],
                                 )),
                             SizedBox(height: 20.h),
                             customCard(
-                                173,
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    titleText('Accounts Overview',
-                                        color: titleTextColor, size: 20),
-                                    accountsRow('Cash Count', '1234567890'),
-                                    accountsRow('Credit Score', '775\$'),
-                                    accountsRow('Credit Card Utilization',
-                                        'N12,000.00'),
-                                  ],
-                                )),
+                                200,
+                                GetBuilder<AccountController>(
+                                    id: 'updateDetails',
+                                    builder: (context) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          GestureDetector(
+                                            onTap:(){
+                                              setState(() {
+
+                                              });
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                titleText('Accounts Overview',
+                                                    color: titleTextColor, size: 20),
+                                                titleText('See Accounts Info',
+                                                    color: titleTextColor, size: 14),
+
+                                              ],
+                                            ),
+                                          ),
+                                          for (int m = 0; m < 2; m++)
+                                            Column(
+                                              children: [
+                                                accountsRow(
+                                                    'Account Name',
+                                                    accountController
+                                                            .plaidAccountsModel
+                                                            .accounts?[m]
+                                                            .name ??
+                                                        ''),
+                                                accountsRow(
+                                                    'Balance',
+                                                    accountController
+                                                            .plaidAccountsModel
+                                                            .accounts?[m]
+                                                            .balances
+                                                            .current
+                                                            .toString() ??
+                                                        ''),
+                                              ],
+                                            ),
+                                          // accountsRow('Credit Card Utilization',
+                                          //     'N12,000.00'),
+                                        ],
+                                      );
+                                    })),
                             SizedBox(height: 20.h),
                             const MonthBudget(),
                             SizedBox(height: 20.h),

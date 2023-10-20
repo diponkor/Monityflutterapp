@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:finance_and_budget/view/profile/show_account_details.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:plaid_flutter/plaid_flutter.dart';
 
@@ -41,8 +43,8 @@ class _PlaidScreenState extends State<PlaidScreen> {
   void _createLegacyTokenConfiguration() {
     setState(() {
       _configuration = LegacyLinkConfiguration(
-        clientName: "PersonalFinanceApp",
-        publicKey: 'public-sandbox-6fc930b1-c667-418b-a9b4-3bd9c86bc454',
+        clientName: "Monity",
+        publicKey: accountController.publicToken,
         environment: LinkEnvironment.sandbox,
         products: <LinkProduct>[
           LinkProduct.auth,
@@ -59,7 +61,7 @@ class _PlaidScreenState extends State<PlaidScreen> {
   void _createLinkTokenConfiguration() {
     setState(() {
       _configuration = LinkTokenConfiguration(
-        token: "link-sandbox-ff6f67cf-7421-49b7-a3c9-292265844590",
+        token: accountController.linkToken,
       );
     });
   }
@@ -86,51 +88,62 @@ class _PlaidScreenState extends State<PlaidScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        color: Colors.grey[200],
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: Text(
-                  _configuration?.toJson().toString() ?? "",
-                  textAlign: TextAlign.center,
-                ),
+      body: SafeArea(
+        child: GetBuilder<AccountController>(
+          id: 'upadtePlaid',
+          builder: (con) {
+            return con.isLoading?Center(child: CircularProgressIndicator()): Container(
+              width: double.infinity,
+              color: Colors.grey[200],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        _configuration?.toJson().toString() ?? "",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: _createLegacyTokenConfiguration,
+                    child: const Text("Create Legacy Token Configuration"),
+                  ),
+                  const SizedBox(height: 15),
+                  ElevatedButton(
+                    onPressed: _createLinkTokenConfiguration,
+                    child: const Text("Create Link Token Configuration"),
+                  ),
+                  const SizedBox(height: 15),
+                  ElevatedButton(
+                    onPressed: _configuration != null
+                        ? () => PlaidLink.open(configuration: _configuration!)
+                        : null,
+                    child: const Text("Open"),
+                  ),
+                  // Expanded(
+                  //   child: Center(
+                  //     child: Text(
+                  //       _successObject?.toJson().toString() ?? "",
+                  //       textAlign: TextAlign.center,
+                  //     ),
+                  //   ),
+                  // ),
+                  SizedBox(height: 200.h,),
+                  ElevatedButton(
+                    onPressed: (){
+                      accountController.getAllAccount();
+                      Get.to(ShowAccountDetails());
+
+                    },
+                    child: const Text("See Account details"),
+                  ),
+                  Expanded(child: SizedBox()),
+                ],
               ),
-            ),
-            ElevatedButton(
-              onPressed: _createLegacyTokenConfiguration,
-              child: const Text("Create Legacy Token Configuration"),
-            ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: _createLinkTokenConfiguration,
-              child: const Text("Create Link Token Configuration"),
-            ),
-            const SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: _configuration != null
-                  ? () => PlaidLink.open(configuration: _configuration!)
-                  : null,
-              child: const Text("Open"),
-            ),
-            Expanded(
-              child: Center(
-                child: Text(
-                  _successObject?.toJson().toString() ?? "",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: (){
-                accountController.getAllAccount();
-              },
-              child: const Text("See Account details"),
-            ),
-          ],
+            );
+          }
         ),
       ),
     );

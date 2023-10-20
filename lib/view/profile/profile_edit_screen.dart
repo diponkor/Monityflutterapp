@@ -23,7 +23,80 @@ class ProfileEditScreen extends StatelessWidget {
         TextEditingController(text: profileController.userData?.lastName);
     TextEditingController email =
         TextEditingController(text: profileController.userData?.email);
-    return Scaffold(
+
+    var screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth > 730 && kIsWeb?Center(
+      child: SizedBox(
+        width: 600.w,
+        child: Scaffold(
+          backgroundColor: profileBgColor,
+          body: SafeArea(
+            child: Stack(
+              children: [
+                ListView(
+                  children: [
+                    SizedBox(height: 10.h),
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
+                      child: namedBackButton(context, text: 'Profile Edit'),
+                    ),
+                    SizedBox(
+                      height: 125.h,
+                    ),
+                    Container(
+                        height: 630.h,
+                        padding: EdgeInsets.symmetric(horizontal: 30.w),
+                        decoration: BoxDecoration(
+                            color: white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(40.r),
+                                topRight: Radius.circular(40.r))),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(),
+                            SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  subTitleText('First Name', authPage: true),
+                                  customTextField(fName),
+                                  SizedBox(height: 10.h),
+                                  subTitleText('Last Name', authPage: true),
+                                  customTextField(lName),
+                                  SizedBox(height: 10.h),
+                                  // subTitleText('Email', authPage: true),
+                                  // customTextField(email, enabled: false)
+                                ],
+                              ),
+                            ),
+                            const SizedBox(),
+                            Padding(
+                              padding: EdgeInsets.only(bottom: 40.0.h),
+                              child: normalButton('Save', onPressed: () {
+                                profileController.updateProfileData(
+                                    fName.text, lName.text);
+                              }),
+                            ),
+                          ],
+                        ))
+                  ],
+                ),
+                Positioned(
+                    top: 130.h,
+                    left: 170.w,
+                    child: Material(
+                      elevation: 10,
+                      borderRadius: BorderRadius.all(Radius.circular(50.r)),
+                      child:kIsWeb?const SizedBox(): profileImage(),
+                    )),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ): Scaffold(
       backgroundColor: profileBgColor,
       body: SafeArea(
         child: Stack(
@@ -33,7 +106,7 @@ class ProfileEditScreen extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Padding(
                   padding:
-                      EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
+                  EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
                   child: namedBackButton(context, text: 'Profile Edit'),
                 ),
                 SizedBox(
@@ -61,8 +134,8 @@ class ProfileEditScreen extends StatelessWidget {
                               subTitleText('Last Name', authPage: true),
                               customTextField(lName),
                               SizedBox(height: 10.h),
-                              subTitleText('Email', authPage: true),
-                              customTextField(email, enabled: false)
+                              // subTitleText('Email', authPage: true),
+                              // customTextField(email, enabled: false)
                             ],
                           ),
                         ),

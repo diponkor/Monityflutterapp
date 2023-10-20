@@ -1,4 +1,5 @@
 import 'package:finance_and_budget/view/global_widgets/custom_card.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +26,73 @@ class _DebtsItemScreenState extends State<DebtsItemScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    var screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth > 730 && kIsWeb? Center(
+      child: SizedBox(
+        width: 600.w,
+        child: Scaffold(
+          backgroundColor: bgWhite,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(107.h),
+            child: const CustomAppbar(),
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                DefaultTabController(
+                  initialIndex: 1,
+                  length: 2,
+                  child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Row(
+                              children: [
+                                Container(
+                                    height: 39.h,
+                                    width: 360.w,
+                                    decoration: BoxDecoration(
+                                        color: white,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.r))),
+                                    child: ClipRRect(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(10.r)),
+                                      child: const TabBar(
+                                        indicator: BoxDecoration(
+                                          color: primaryColor,
+                                        ),
+                                        unselectedLabelColor: blackTextColor,
+                                        tabs: [
+                                          Text('Goals'),
+                                          Text('Debts'),
+                                        ],
+                                      ),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 600.h,
+                            child: TabBarView(
+                              children: [
+                                second(),
+                                second(),
+                              ],
+                            ),
+                          )
+                        ],
+                      )),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    ): Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(107.h),

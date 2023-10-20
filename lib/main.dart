@@ -1,3 +1,4 @@
+
 import 'package:finance_and_budget/view/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -47,17 +48,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     return ScreenUtilInit(
-        designSize: screenWidth > 730 ? Size(1424, 768) : Size(430, 844),
+        designSize: screenWidth > 730 ? const Size(1424, 768) : const Size(430, 844),
         builder: (context, child) {
-          if (screenWidth > 730) {
+          if (screenWidth > 730 && kIsWeb) {
             return Center(
               child: SizedBox(
                 height: 768.h,
-                width: 530.w,
+                //width: 530.w,
                 child: GetMaterialApp(
                   debugShowCheckedModeBanner: false,
                   theme: _buildTheme(Brightness.light),
-                  home: const Scaffold(
+                  home:
+                  const Scaffold(
+                    //body: SplashScreen(),
                     body: SplashScreen(),
                   ),
                 ),
@@ -73,6 +76,7 @@ class MyApp extends StatelessWidget {
                   theme: _buildTheme(Brightness.light),
                   home: const Scaffold(
                     body: SplashScreen(),
+                    //body: CustomNavigation(),
                   ),
                 ),
               ),
@@ -101,4 +105,10 @@ ThemeData _buildTheme(brightness) {
   );
 }
 
+
+//-------- For Update hosting firebase by command ****************
+
 //flutter build web --no-tree-shake-icons
+//npm install -g firebase-tools
+//PowerShell -ExecutionPolicy Bypass -File "C:\Users\Admin\AppData\Roaming\npm\firebase.ps1" login
+//PowerShell -ExecutionPolicy Bypass -File "C:\Users\Admin\AppData\Roaming\npm\firebase.ps1" deploy --only hosting

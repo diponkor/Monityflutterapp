@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../constants/colors.dart';
+import '../../../controller/budget_controller.dart';
+import '../../budget/budget_view_screen.dart';
 import '../../global_widgets/custom_card.dart';
 import '../../global_widgets/custom_text.dart';
 
@@ -14,11 +17,12 @@ class MonthBudget extends StatefulWidget {
 
 class _MonthBudgetState extends State<MonthBudget> {
   double intValue = 0;
+  final BudgetController _budgetController = Get.put(BudgetController());
 
   @override
   Widget build(BuildContext context) {
     return customCard(
-        473,
+        600,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -30,120 +34,144 @@ class _MonthBudgetState extends State<MonthBudget> {
                 ),
                 child: Slider(
                   onChanged: (value) {
-                    setState(() {
-                      intValue = value;
-                    });
+                    // setState(() {
+                    //   intValue = value;
+                    // });
                   },
                   value: intValue,
                 )),
             subTitleText('Top Spending categones', size: 18),
-            SizedBox(
-              height: 70.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: primaryColor.withOpacity(0.1),
-                    radius: 20,
-                    child: Image.asset(
-                      'assets/images/shopping.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      titleText('Shopping',
-                          size: 18, fontWeight: FontWeight.w400),
-                      SizedBox(height: 8.w),
-                      subTitleText('15 Mar 2019, 8:20 PM',
-                          size: 12, fontWeight: FontWeight.w300)
-                    ],
-                  ),
-                  SizedBox(
-                    width: 80.w,
-                  ),
-                  titleText('-\$120', size: 18, fontWeight: FontWeight.w400),
-                  const Icon(
-                    Icons.arrow_forward_ios_sharp,
-                    color: secondaryTextColor,
-                    size: 15,
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 70.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: primaryColor.withOpacity(0.1),
-                    child: Image.asset(
-                      'assets/images/medicine.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      titleText('Medicine',
-                          size: 18, fontWeight: FontWeight.w400),
-                      SizedBox(height: 8.w),
-                      subTitleText('13 Mar 2019, 12:10 AM',
-                          size: 12, fontWeight: FontWeight.w300)
-                    ],
-                  ),
-                  SizedBox(
-                    width: 80.w,
-                  ),
-                  titleText('- \$89.50', size: 18, fontWeight: FontWeight.w400),
-                  const Icon(
-                    Icons.arrow_forward_ios_sharp,
-                    color: secondaryTextColor,
-                    size: 15,
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 70.h,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: primaryColor.withOpacity(0.1),
-                    radius: 20,
-                    child: Image.asset(
-                      'assets/images/sport.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      titleText('Sport', size: 18, fontWeight: FontWeight.w400),
-                      SizedBox(height: 8.w),
-                      subTitleText('10 Mar 2019, 6:50 PM',
-                          size: 12, fontWeight: FontWeight.w300)
-                    ],
-                  ),
-                  SizedBox(
-                    width: 80.w,
-                  ),
-                  titleText('- \$99.90', size: 18, fontWeight: FontWeight.w400),
-                  const Icon(
-                    Icons.arrow_forward_ios_sharp,
-                    color: secondaryTextColor,
-                    size: 15,
-                  )
-                ],
-              ),
-            ),
+            GetBuilder<BudgetController>(
+                id: 'updateBudList',
+                builder: (controller) {
+                  return controller.budgetList.isEmpty
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Column(
+                          children: [
+                            for (int i = 0; i < 3; i++)
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) =>
+                                          BudgetViewScreen(index: i)));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: customCard(
+                                      118.h,
+                                      Row(
+                                        children: [
+                                          Container(
+                                            height: 80.h,
+                                            width: 70.w,
+                                            decoration: BoxDecoration(
+                                                color: primaryColor
+                                                    .withOpacity(0.1),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(14.r))),
+                                            child: Center(
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 15.0),
+                                                child: Image.asset(
+                                                    'assets/images/home_vector.png',
+                                                    fit: BoxFit.cover),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 20.w),
+                                          SizedBox(
+                                            width: 250.w,
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      titleText(
+                                                          controller
+                                                              .budgetList[i]
+                                                              .budgetName,
+                                                          color: blackTextColor,
+                                                          size: 24,
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                      subTitleText('80.00%',
+                                                          size: 10)
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      subTitleText(
+                                                          controller
+                                                              .budgetList[i]
+                                                              .date,
+                                                          size: 10)
+                                                    ],
+                                                  ),
+                                                  Stack(
+                                                    children: [
+                                                      Container(
+                                                        height: 8.h,
+                                                        width: double.infinity,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        10.r)),
+                                                            color:
+                                                                secondaryTextColor
+                                                                    .withOpacity(
+                                                                        0.2)),
+                                                      ),
+                                                      Container(
+                                                        height: 8.h,
+                                                        width: 177.w,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        10.r)),
+                                                            color:
+                                                                primaryColor),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      subTitleText(
+                                                          '${controller.budgetList[i].amount} \$ to go',
+                                                          size: 10),
+                                                      subTitleText(
+                                                          '\$ ${int.parse(_budgetController.budgetList[i].fixedExp) + int.parse(_budgetController.budgetList[i].variableExp) + int.parse(_budgetController.budgetList[i].sinkingFunds)}',
+                                                          size: 10),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )),
+                                ),
+                              ),
+                          ],
+                        );
+                }),
             Divider(
               color: secondaryTextColor.withOpacity(0.2),
               thickness: 1,

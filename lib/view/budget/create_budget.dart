@@ -2,6 +2,7 @@ import 'package:finance_and_budget/model/create_budget_model.dart';
 import 'package:finance_and_budget/view/budget/widgets/double_text_field.dart';
 import 'package:finance_and_budget/view/global_widgets/single_text_field.dart';
 import 'package:finance_and_budget/view/global_widgets/normal_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,331 @@ class _CreateBudgetState extends State<CreateBudget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    var screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth > 730 && kIsWeb?Center(
+      child: SizedBox(
+        width: 600.w,
+        child: Scaffold(
+          backgroundColor: bgWhite,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(107.h),
+            child: const CustomAppbar(),
+          ),
+          body: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10.h),
+                      titleText('Budget',
+                          size: 30, color: titleTextColor, authPage: true),
+                      SizedBox(height: 10.h),
+                      subTitleText(
+                          'Let\'s say the user\'s total monthly income is '),
+                      SizedBox(height: 10.h),
+                      subTitleText('Budget Name',
+                          color: secondaryTextColor.withOpacity(0.8)),
+                      SizedBox(height: 5.h),
+                      singleTextField(
+                          controller: _budgetName, hintText: 'Budget Name'),
+                      SizedBox(height: 10.h),
+                      subTitleText('Start Date & End Date',
+                          color: secondaryTextColor.withOpacity(0.8)),
+                      SizedBox(height: 5.h),
+                      singleTextField(
+                          controller: _date,
+                          //icon: true,
+                          hintText: '30 JUNE 2023 - 30 JULY 2023'),
+                      SizedBox(height: 10.h),
+                      subTitleText('Income',
+                          color: secondaryTextColor.withOpacity(0.8)),
+                      SizedBox(height: 5.h),
+                      doubleTextField(
+                          iconPress: () {
+                            setState(() {
+                              incomeItem++;
+                            });
+                          },
+                          icon: Icons.add,
+                          controller1: _income,
+                          controller2: _amount,
+                          hintText1: 'Income',
+                          hintText2: 'Amount',
+                          iconBgColor: primaryColor),
+                      Column(children: [
+                        for (int i = 0; i < incomeItem; i++)
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0.h),
+                            child: GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: const Text('Please upgrade your storage'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              incomeItem=0;
+                                              fixedItem=0;
+                                              varItem = 0;
+                                              sinkItem = 0;
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: doubleTextField(
+                                  icon: Icons.remove,
+                                  iconPress: () {
+                                    setState(() {
+                                      incomeItem--;
+                                    });
+                                  },
+                                  isEnable: false,
+                                  controller1: TextEditingController(),
+                                  controller2: TextEditingController(),
+                                  hintText1: 'Income',
+                                  hintText2: 'Amount',
+                                  iconBgColor: extraColor),
+                            ),
+                          ),
+                      ]),
+                      SizedBox(height: 10.h),
+                      subTitleText('Fixed Expense',
+                          color: secondaryTextColor.withOpacity(0.8)),
+                      SizedBox(height: 5.h),
+                      doubleTextField(
+                          icon: Icons.add,
+                          iconPress: () {
+                            setState(() {
+                              fixedItem++;
+                            });
+                          },
+                          controller1: _fixedName,
+                          controller2: _fixedExp,
+                          hintText1: 'Fixed Name',
+                          hintText2: 'Fixed Expense',
+                          iconBgColor: primaryColor),
+                      Column(children: [
+                        for (int i = 0; i < fixedItem; i++)
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0.h),
+                            child: GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: const Text('Please upgrade your storage'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              incomeItem=0;
+                                              fixedItem=0;
+                                              varItem = 0;
+                                              sinkItem = 0;
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: doubleTextField(
+                                  icon: Icons.remove,
+                                  iconPress: () {
+                                    setState(() {
+                                      fixedItem--;
+                                    });
+                                  },
+                                  isEnable: false,
+                                  controller1: TextEditingController(),
+                                  controller2: TextEditingController(),
+                                  hintText1: 'Fixed Name',
+                                  hintText2: 'Fixed Expense',
+                                  iconBgColor: extraColor),
+                            ),
+                          ),
+                      ]),
+                      SizedBox(height: 15.h),
+                      subTitleText('Variable Expense',
+                          color: secondaryTextColor.withOpacity(0.8)),
+                      SizedBox(height: 5.h),
+                      doubleTextField(
+                          icon: Icons.add,
+                          iconPress: (){
+                            setState(() {
+                              varItem++;
+                            });
+                          },
+                          controller1: _varName,
+                          controller2: _varExp,
+                          hintText1: 'Variable Name',
+                          hintText2: 'Variable Expense',
+                          iconBgColor: primaryColor),
+                      Column(children: [
+                        for (int i = 0; i <varItem; i++)
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0.h),
+                            child: GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: const Text('Please upgrade your storage'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              incomeItem=0;
+                                              fixedItem=0;
+                                              varItem = 0;
+                                              sinkItem = 0;
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: doubleTextField(
+                                  icon: Icons.remove,
+                                  iconPress: () {
+                                    setState(() {
+                                      varItem--;
+                                    });
+                                  },
+                                  isEnable: false,
+                                  controller1: TextEditingController(),
+                                  controller2: TextEditingController(),
+                                  hintText1: 'Variable Name',
+                                  hintText2: 'Variable Expense',
+                                  iconBgColor: extraColor),
+                            ),
+                          ),
+                      ]),
+                      SizedBox(height: 10.h),
+                      subTitleText('Sinking Funds',
+                          color: secondaryTextColor.withOpacity(0.8)),
+                      SizedBox(height: 5.h),
+                      doubleTextField(
+                          icon: Icons.add,
+                          iconPress: (){
+                            setState(() {
+                              sinkItem++;
+                            });
+                          },
+                          controller1: _sinkName,
+                          controller2: _sinkFunds,
+                          hintText1: 'Sinking Name',
+                          hintText2: 'Sinking Funds',
+                          iconBgColor: primaryColor),
+                      Column(children: [
+                        for (int i = 0; i < sinkItem; i++)
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0.h),
+                            child: GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      content: const Text('Please upgrade your storage'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              incomeItem=0;
+                                              fixedItem=0;
+                                              varItem = 0;
+                                              sinkItem = 0;
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              child: doubleTextField(
+                                  icon: Icons.remove,
+                                  iconPress: () {
+                                    setState(() {
+                                      sinkItem--;
+                                    });
+                                  },
+                                  isEnable: false,
+                                  controller1: TextEditingController(),
+                                  controller2: TextEditingController(),
+                                  hintText1: 'Sinking Name',
+                                  hintText2: 'Sinking Funds',
+                                  iconBgColor: extraColor),
+                            ),
+                          ),
+                      ]),
+                      SizedBox(height: 15.h),
+                      normalButton('Next', onPressed: () async {
+                        if (_budgetName.text.isNotEmpty &&
+                            _date.text.isNotEmpty &&
+                            _income.text.isNotEmpty &&
+                            _amount.text.isNotEmpty &&
+                            _fixedName.text.isNotEmpty &&
+                            _fixedExp.text.isNotEmpty &&
+                            _varName.text.isNotEmpty &&
+                            _varExp.text.isNotEmpty &&
+                            _sinkName.text.isNotEmpty &&
+                            _sinkFunds.text.isNotEmpty) {
+                          final budget = CreateBudgetModel(
+                            _budgetName.text,
+                            _date.text,
+                            _income.text,
+                            _amount.text,
+                            _fixedName.text,
+                            _fixedExp.text,
+                            _varName.text,
+                            _varExp.text,
+                            _sinkName.text,
+                            _sinkFunds.text,
+                          );
+                          await budgetController.createBudget(budget).then((value) {
+                            Navigator.of(context).pop();
+                          });
+                        } else {
+                          Utils.showSnackBar('Input Fields is required!');
+                        }
+                      }),
+                      SizedBox(height: 15.h),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ): Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(107.h),

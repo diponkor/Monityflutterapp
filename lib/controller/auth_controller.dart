@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_and_budget/model/user_model.dart';
 import 'package:finance_and_budget/utils/utils.dart';
 import 'package:finance_and_budget/view/custom_navigation_bar.dart';
+import 'package:finance_and_budget/view/web_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -38,7 +40,6 @@ class AuthController extends GetxController {
     await auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      Get.offAll(const CustomNavigation());
       Utils.showSnackBar('You\'re logged in successfully');
       Utils.hidePopup();
     }).catchError((e) {
@@ -54,7 +55,6 @@ class AuthController extends GetxController {
     await auth
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      Get.offAll(const CustomNavigation());
       Utils.hidePopup();
       //isLoading.value = false;
     }).catchError((e) {
