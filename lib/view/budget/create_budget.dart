@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../constants/colors.dart';
 import '../../controller/budget_controller.dart';
@@ -36,6 +37,8 @@ class _CreateBudgetState extends State<CreateBudget> {
   final TextEditingController _varExp = TextEditingController();
   final TextEditingController _sinkName = TextEditingController();
   final TextEditingController _sinkFunds = TextEditingController();
+
+  var dateText = '30 JUNE 2023 - 30 JULY 2023';
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +78,48 @@ class _CreateBudgetState extends State<CreateBudget> {
                       subTitleText('Start Date & End Date',
                           color: secondaryTextColor.withOpacity(0.8)),
                       SizedBox(height: 5.h),
-                      singleTextField(
-                          controller: _date,
-                          //icon: true,
-                          hintText: '30 JUNE 2023 - 30 JULY 2023'),
+                      Container(
+                        height: 50.h,
+                        width: double.infinity,
+                        padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5.r),
+                            border: Border.all(color: black, width: 1)),
+                        child: GestureDetector(
+                          onTap: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2101));
+                            String formattedDate =
+                            DateFormat('yMMMMd').format(pickedDate!);
+
+                            setState(() {
+                              dateText = formattedDate;
+                            });
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: subTitleText(dateText,
+                                      color: blackTextColor,
+                                      fontWeight: FontWeight.w400,
+                                      size: 18)),
+                              const Icon(
+                                Icons.calendar_month,
+                                color: secondaryTextColor,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      // singleTextField(
+                      //     controller: _date,
+                      //     //icon: true,
+                      //     hintText: '30 JUNE 2023 - 30 JULY 2023'),
                       SizedBox(height: 10.h),
                       subTitleText('Income',
                           color: secondaryTextColor.withOpacity(0.8)),
@@ -395,10 +436,48 @@ class _CreateBudgetState extends State<CreateBudget> {
                   subTitleText('Start Date & End Date',
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
-                  singleTextField(
-                      controller: _date,
-                      //icon: true,
-                      hintText: '30 JUNE 2023 - 30 JULY 2023'),
+                  Container(
+                    height: 50.h,
+                    width: double.infinity,
+                    padding: EdgeInsets.only(left: 10.w, right: 10.w),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.r),
+                        border: Border.all(color: black, width: 1)),
+                    child: GestureDetector(
+                      onTap: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2101));
+                        String formattedDate =
+                        DateFormat('yMMMMd').format(pickedDate!);
+
+                        setState(() {
+                          dateText = formattedDate;
+                        });
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: subTitleText(dateText,
+                                  color: blackTextColor,
+                                  fontWeight: FontWeight.w400,
+                                  size: 18)),
+                          const Icon(
+                            Icons.calendar_month,
+                            color: secondaryTextColor,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  // singleTextField(
+                  //     controller: _date,
+                  //     //icon: true,
+                  //     hintText: '30 JUNE 2023 - 30 JULY 2023'),
                   SizedBox(height: 10.h),
                   subTitleText('Income',
                       color: secondaryTextColor.withOpacity(0.8)),

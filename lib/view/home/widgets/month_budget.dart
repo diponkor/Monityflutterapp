@@ -40,7 +40,7 @@ class _MonthBudgetState extends State<MonthBudget> {
                   },
                   value: intValue,
                 )),
-            subTitleText('Top Spending categones', size: 18),
+            subTitleText('Top Spending categories', size: 18),
             GetBuilder<BudgetController>(
                 id: 'updateBudList',
                 builder: (controller) {
