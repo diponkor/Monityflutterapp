@@ -39,8 +39,9 @@ class _CreateBudgetState extends State<CreateBudget> {
   final TextEditingController _sinkName = TextEditingController();
   final TextEditingController _sinkFunds = TextEditingController();
 
-  var dateText = '30 JUNE 2023 - 30 JULY 2023';
-
+   String startDate = '30 JUNE 2023';
+   String endDate = '30 JULY 2023';
+  var dateText ;
   @override
   void initState() {
     // TODO: implement initState
@@ -110,9 +111,6 @@ class _CreateBudgetState extends State<CreateBudget> {
                                 color: titleTextColor,
                                 authPage: true),
                             SizedBox(height: 10.h),
-                            subTitleText(
-                                'Let\'s say the user\'s total monthly income is '),
-                            SizedBox(height: 10.h),
                             subTitleText('Budget Name',
                                 color: secondaryTextColor.withOpacity(0.8)),
                             SizedBox(height: 5.h),
@@ -126,46 +124,81 @@ class _CreateBudgetState extends State<CreateBudget> {
                             Container(
                               height: 50.h,
                               width: double.infinity,
-                              padding: EdgeInsets.only(left: 10.w, right: 10.w),
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.r),
-                                  border: Border.all(color: black, width: 1)),
-                              child: GestureDetector(
-                                onTap: () async {
-                                  DateTime? pickedDate = await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(2000),
-                                      lastDate: DateTime(2101));
-                                  String formattedDate =
-                                      DateFormat('yMMMMd').format(pickedDate!);
-
-                                  setState(() {
-                                    dateText = formattedDate;
-                                  });
-                                },
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: subTitleText(dateText,
-                                            color: blackTextColor,
-                                            fontWeight: FontWeight.w400,
-                                            size: 18)),
-                                    const Icon(
-                                      Icons.calendar_month,
-                                      color: secondaryTextColor,
-                                    )
-                                  ],
+                                borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                                border: Border.all(
+                                  color: blackTextColor,
+                                  width: 1.w,
                                 ),
                               ),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap:() async {
+                                      DateTime? pickedDate = await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(2000),
+                                          lastDate: DateTime(2101));
+                                      String formattedDate =
+                                      DateFormat('yMMMMd').format(pickedDate!);
+
+                                      setState(() {
+                                        startDate = formattedDate;
+                                        dateText = '$startDate $endDate';
+                                      });
+                                    },
+                                    child: SizedBox(
+                                      width: 175.w,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 8.0),
+                                        child: TextFormField(
+                                          enabled: false,
+                                          controller: TextEditingController(text: startDate),
+                                          style: TextStyle(fontSize: 16.h, color: blackTextColor),
+                                          decoration: InputDecoration(
+                                            hintStyle:
+                                            TextStyle(fontSize: 16.sp, color: secondaryTextColor),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const VerticalDivider(
+                                    color: blackTextColor,
+                                    thickness: 1,
+                                  ),
+                                  InkWell(
+                                    onTap:() async {
+                                      DateTime? pickedDate = await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(2000),
+                                          lastDate: DateTime(2101));
+                                      String formattedDate =
+                                      DateFormat('yMMMMd').format(pickedDate!);
+
+                                      setState(() {
+                                        endDate = formattedDate;
+                                        dateText = '$startDate $endDate';
+                                      });
+                                    },
+                                    child: SizedBox(
+                                      width: 175.w,
+                                      child: TextFormField(
+                                        enabled: false,
+                                        controller: TextEditingController(text: endDate),
+                                        style: TextStyle(fontSize: 16.h, color: blackTextColor),
+                                        decoration: InputDecoration(
+                                          hintText: 'hintText2',
+                                          hintStyle: TextStyle(fontSize: 16.sp, color: secondaryTextColor),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            // singleTextField(
-                            //     controller: _date,
-                            //     //icon: true,
-                            //     hintText: '30 JUNE 2023 - 30 JULY 2023'),
                             SizedBox(height: 10.h),
                             subTitleText('Income',
                                 color: secondaryTextColor.withOpacity(0.8)),
@@ -487,9 +520,6 @@ class _CreateBudgetState extends State<CreateBudget> {
                         titleText('Budget',
                             size: 30, color: titleTextColor, authPage: true),
                         SizedBox(height: 10.h),
-                        subTitleText(
-                            'Let\'s say the user\'s total monthly income is '),
-                        SizedBox(height: 10.h),
                         subTitleText('Budget Name',
                             color: secondaryTextColor.withOpacity(0.8)),
                         SizedBox(height: 5.h),
@@ -502,45 +532,81 @@ class _CreateBudgetState extends State<CreateBudget> {
                         Container(
                           height: 50.h,
                           width: double.infinity,
-                          padding: EdgeInsets.only(left: 10.w, right: 10.w),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.r),
-                              border: Border.all(color: black, width: 1)),
-                          child: GestureDetector(
-                            onTap: () async {
-                              DateTime? pickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(2000),
-                                  lastDate: DateTime(2101));
-                              String formattedDate =
-                                  DateFormat('yMMMMd').format(pickedDate!);
-
-                              setState(() {
-                                dateText = formattedDate;
-                              });
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: subTitleText(dateText,
-                                        color: blackTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        size: 18)),
-                                const Icon(
-                                  Icons.calendar_month,
-                                  color: secondaryTextColor,
-                                )
-                              ],
+                            borderRadius: BorderRadius.all(Radius.circular(5.r)),
+                            border: Border.all(
+                              color: blackTextColor,
+                              width: 1.w,
                             ),
                           ),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                onTap:() async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2101));
+                                  String formattedDate =
+                                  DateFormat('yMMMMd').format(pickedDate!);
+
+                                  setState(() {
+                                    startDate = formattedDate;
+                                    dateText = '$startDate $endDate';
+                                  });
+                                },
+                                child: SizedBox(
+                                  width: 175.w,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: TextFormField(
+                                      enabled: false,
+                                      controller: TextEditingController(text: startDate),
+                                      style: TextStyle(fontSize: 16.h, color: blackTextColor),
+                                      decoration: InputDecoration(
+                                        hintStyle:
+                                        TextStyle(fontSize: 16.sp, color: secondaryTextColor),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const VerticalDivider(
+                                color: blackTextColor,
+                                thickness: 1,
+                              ),
+                              InkWell(
+                                onTap:() async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2101));
+                                  String formattedDate =
+                                  DateFormat('yMMMMd').format(pickedDate!);
+
+                                  setState(() {
+                                    endDate = formattedDate;
+                                    dateText = '$startDate $endDate';
+                                  });
+                                },
+                                child: SizedBox(
+                                  width: 175.w,
+                                  child: TextFormField(
+                                    enabled: false,
+                                    controller: TextEditingController(text: endDate),
+                                    style: TextStyle(fontSize: 16.h, color: blackTextColor),
+                                    decoration: InputDecoration(
+                                      hintText: 'hintText2',
+                                      hintStyle: TextStyle(fontSize: 16.sp, color: secondaryTextColor),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        // singleTextField(
-                        //     controller: _date,
-                        //     //icon: true,
-                        //     hintText: '30 JUNE 2023 - 30 JULY 2023'),
                         SizedBox(height: 10.h),
                         subTitleText('Income',
                             color: secondaryTextColor.withOpacity(0.8)),
