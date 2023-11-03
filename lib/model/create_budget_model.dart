@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CreateBudgetModel {
+    late String id;
   final String budgetName;
   final String date;
   final String income;
@@ -13,6 +14,7 @@ class CreateBudgetModel {
   final String sinkingFunds;
 
   CreateBudgetModel(
+      this.id,
     this.budgetName,
     this.date,
     this.income,
@@ -27,6 +29,7 @@ class CreateBudgetModel {
 
   toJson() {
     return {
+      'Id': id,
       'BudgetName': budgetName,
       'Date': date,
       'Income': income,

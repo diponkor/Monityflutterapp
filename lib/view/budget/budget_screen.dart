@@ -67,161 +67,193 @@ class _BudgetScreenState extends State<BudgetScreen> {
                 SizedBox(height: 10.h),
                 _budgetController.budgetList.isEmpty
                     ? Column(
-                        children: [
-                          SizedBox(
-                            height: 282.h,
-                            width: 282.w,
-                            child: Image.asset('assets/images/budget.png'),
-                          ),
-                          SizedBox(height: 10.h),
-                          titleText('Add More Budget',
-                              size: 25, color: titleTextColor, authPage: true),
-                          SizedBox(height: 10.h),
-                          subTitleText(
-                              'Having  multiple Budget to aspire to is a great \nway to learn how to money manage!',
-                              authPage: true,
-                              color: secondaryTextColor,
-                              fontWeight: FontWeight.w400),
-                        ],
-                      )
+                  children: [
+                    SizedBox(
+                      height: 282.h,
+                      width: 282.w,
+                      child: Image.asset('assets/images/budget.png'),
+                    ),
+                    SizedBox(height: 10.h),
+                    titleText('Add More Budget',
+                        size: 25, color: titleTextColor, authPage: true),
+                    SizedBox(height: 10.h),
+                    subTitleText(
+                        'Having  multiple Budget to aspire to is a great \nway to learn how to money manage!',
+                        authPage: true,
+                        color: secondaryTextColor,
+                        fontWeight: FontWeight.w400),
+                  ],
+                )
                     : GetBuilder<BudgetController>(
-                        id: 'updateBudList',
-                        builder: (controller) {
-                          return Column(
-                            children: [
-                              for (int i = 0;
-                                  i < controller.budgetList.length;
-                                  i++)
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) =>
-                                                BudgetViewScreen(index: i)));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                    child: customCard(
-                                        118.h,
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10.w),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 80.h,
-                                                width: 70.w,
-                                                decoration: BoxDecoration(
-                                                    color: primaryColor
-                                                        .withOpacity(0.1),
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                14.r))),
-                                                child: Center(
-                                                  child: Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 15.0),
-                                                    child: Image.asset(
-                                                        'assets/images/home_vector.png',
-                                                        fit: BoxFit.cover),
-                                                  ),
-                                                ),
+                    id: 'updateBudList',
+                    builder: (controller) {
+                      return Column(
+                        children: [
+                          for (int i = 0;
+                          i < controller.budgetList.length;
+                          i++)
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (_) =>
+                                            BudgetViewScreen(index: i)));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: customCard(
+                                    118.h,
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.w),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            height: 60.h,
+                                            width: 60.w,
+                                            decoration: BoxDecoration(
+                                                color: primaryColor
+                                                    .withOpacity(0.1),
+                                                borderRadius:
+                                                BorderRadius.all(
+                                                    Radius.circular(
+                                                        14.r))),
+                                            child: Center(
+                                              child: Padding(
+                                                padding: const EdgeInsets
+                                                    .symmetric(
+                                                    horizontal: 15.0),
+                                                child: Image.asset(
+                                                    'assets/images/home_vector.png',
+                                                    fit: BoxFit.cover),
                                               ),
-                                              SizedBox(width: 20.w),
-                                              SizedBox(
-                                                width: 250.w,
-                                                child: SingleChildScrollView(
-                                                  child: Column(
+                                            ),
+                                          ),
+                                          SizedBox(width: 10.w),
+                                          SizedBox(
+                                            width: 230.w,
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: [
+                                                  Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                     children: [
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          titleText(
-                                                              controller
-                                                                  .budgetList[i]
-                                                                  .budgetName,
-                                                              color:
-                                                                  blackTextColor,
-                                                              size: 24,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
-                                                          subTitleText('80.00%',
-                                                              size: 10)
-                                                        ],
+                                                      titleText(
+                                                          controller
+                                                              .budgetList[i]
+                                                              .budgetName,
+                                                          color:
+                                                          blackTextColor,
+                                                          size: 24,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w400),
+                                                      subTitleText('80.00%',
+                                                          size: 10)
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                    children: [
+                                                      subTitleText(
+                                                          controller
+                                                              .budgetList[i]
+                                                              .date,
+                                                          size: 10)
+                                                    ],
+                                                  ),
+                                                  Stack(
+                                                    children: [
+                                                      Container(
+                                                        height: 8.h,
+                                                        width:
+                                                        double.infinity,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius
+                                                                .all(Radius
+                                                                .circular(10
+                                                                .r)),
+                                                            color: secondaryTextColor
+                                                                .withOpacity(
+                                                                0.2)),
                                                       ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          subTitleText(
-                                                              controller
-                                                                  .budgetList[i]
-                                                                  .date,
-                                                              size: 10)
-                                                        ],
-                                                      ),
-                                                      Stack(
-                                                        children: [
-                                                          Container(
-                                                            height: 8.h,
-                                                            width:
-                                                                double.infinity,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(10
-                                                                            .r)),
-                                                                color: secondaryTextColor
-                                                                    .withOpacity(
-                                                                        0.2)),
-                                                          ),
-                                                          Container(
-                                                            height: 8.h,
-                                                            width: 177.w,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(10
-                                                                            .r)),
-                                                                color:
-                                                                    primaryColor),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          subTitleText(
-                                                              '${controller.budgetList[i].amount} \$ to go',
-                                                              size: 10),
-                                                          subTitleText(
-                                                              '\$ ${int.parse(_budgetController.budgetList[i].fixedExp) + int.parse(_budgetController.budgetList[i].variableExp) + int.parse(_budgetController.budgetList[i].sinkingFunds)}',
-                                                              size: 10),
-                                                        ],
+                                                      Container(
+                                                        height: 8.h,
+                                                        width: 177.w,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius
+                                                                .all(Radius
+                                                                .circular(10
+                                                                .r)),
+                                                            color:
+                                                            primaryColor),
                                                       ),
                                                     ],
                                                   ),
-                                                ),
-                                              )
-                                            ],
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                    children: [
+                                                      subTitleText(
+                                                          '${controller
+                                                              .budgetList[i]
+                                                              .amount} \$ to go',
+                                                          size: 10),
+                                                      subTitleText(
+                                                          '\$ ${int.parse(
+                                                              _budgetController
+                                                                  .budgetList[i]
+                                                                  .fixedExp) +
+                                                              int.parse(
+                                                                  _budgetController
+                                                                      .budgetList[i]
+                                                                      .variableExp) +
+                                                              int.parse(
+                                                                  _budgetController
+                                                                      .budgetList[i]
+                                                                      .sinkingFunds)}',
+                                                          size: 10),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                        )),
-                                  ),
-                                ),
-                            ],
-                          );
-                        }),
+                                          SizedBox(width: 10.w),
+                                          InkWell(
+                                            onTap: () {
+                                              Get.to(CreateBudget(budgetIndex: i,));
+                                            },
+                                            child: Container(
+                                                height: 30.h,
+                                                width: 30.w,
+                                                decoration: BoxDecoration(
+                                                  color: bgWhite,
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      50.r),
+                                                ),
+                                                child: const Icon(
+                                                    Icons.edit,
+                                                    color: primaryColor,
+                                                    size: 18)),
+                                          )
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ),
+                        ],
+                      );
+                    }),
                 SizedBox(height: 60.h)
               ],
             ),

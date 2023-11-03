@@ -6,31 +6,23 @@ import 'package:get/get.dart';
 import '../utils/utils.dart';
 
 class BudgetController extends GetxController {
-
-
   FirebaseAuth auth = FirebaseAuth.instance;
   final _db = FirebaseFirestore.instance;
   List<CreateBudgetModel> budgetList = [];
-
 
   String top3ExpThisYear = 'Your top 3 expense are : \$500, \$300, \$100';
   String makeLastWeek = 'You make\$1500 in last week';
   String spendLastMonth = 'You spent \$2000 in last week';
 
-  // List<double> topTwoAmounts = budgetList
-  //     .map((budget) => double.parse(budget.amount))
-  //     .toList()
-  //   ..sort((a, b) => b.compareTo(a))
-  //   ..take(2);
-
   Future<void> createBudget(CreateBudgetModel budgetModel) async {
-    await _db
+    final userCollection = FirebaseFirestore.instance
         .collection('User')
         .doc(auth.currentUser?.email)
-        .collection('Budgets')
-        .doc()
-        .set(budgetModel.toJson())
-        .catchError((e) {
+        .collection('Budgets');
+    final uid = userCollection.doc().id;
+    final docRef = userCollection.doc(uid);
+    budgetModel.id = uid;
+    await docRef.set(budgetModel.toJson()).catchError((e) {
       print(e);
       Utils.showSnackBar(e.code);
     });
@@ -39,6 +31,20 @@ class BudgetController extends GetxController {
     update(['updateBudList']);
   }
 
+  Future<void> updateBudget(CreateBudgetModel budgetModel) async {
+    final userCollection = FirebaseFirestore.instance
+        .collection('User')
+        .doc(auth.currentUser?.email)
+        .collection('Budgets');
+    final docRef = userCollection.doc(budgetModel.id);
+    await docRef.update(budgetModel.toJson()).catchError((e) {
+      print(e);
+      Utils.showSnackBar(e.code);
+    });
+    budgetList = [];
+    fetchBudget();
+    update(['updateBudList']);
+  }
 
   Future<List<CreateBudgetModel>> fetchBudget() async {
     try {
@@ -48,11 +54,12 @@ class BudgetController extends GetxController {
           .collection('Budgets');
 
       QuerySnapshot querySnapshot = await collectionReference.get();
-       budgetList = [];
+      budgetList = [];
 
       for (var doc in querySnapshot.docs) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         CreateBudgetModel budgetModel = CreateBudgetModel(
+          data['Id'],
           data['BudgetName'],
           data['Date'],
           data['Income'],
@@ -74,5 +81,4 @@ class BudgetController extends GetxController {
       return [];
     }
   }
-
 }
