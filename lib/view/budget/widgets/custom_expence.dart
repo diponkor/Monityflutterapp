@@ -14,41 +14,105 @@ Widget customExpence({
   return customCard(
     156,
     SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5.h),
-            child: titleText(title ?? 'Income', size: 20),
-          ),
-          Divider(
-            color: secondaryTextColor.withOpacity(0.3),
-            thickness: 1,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          SizedBox(
+            width: 160.w,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                subTitleText(row1text1 ?? 'Salary'),
-                subTitleText(row1text2 ?? '\$ 45350', color: blackTextColor),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                  child: titleText(title ?? 'Income', size: 20),
+                ),
+                Divider(
+                  color: secondaryTextColor.withOpacity(0.3),
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      subTitleText(row1text1 ?? 'Salary'),
+                      subTitleText(row1text2 ?? '\$ 45350', color: blackTextColor),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Divider(
+                    color: secondaryTextColor.withOpacity(0.3),
+                    thickness: 1,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      subTitleText(row2text1 ?? 'Support'),
+                      subTitleText(row2text2 ?? '\$ 55350', color: blackTextColor),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Divider(
-              color: secondaryTextColor.withOpacity(0.3),
-              thickness: 1,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          SizedBox(
+            width: 160.w,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                subTitleText(row2text1 ?? 'Support'),
-                subTitleText(row2text2 ?? '\$ 55350', color: blackTextColor),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.h),
+                  child: titleText('Actual Income', size: 20),
+                ),
+                Divider(
+                  color: secondaryTextColor.withOpacity(0.3),
+                  thickness: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      subTitleText('Salary'),
+                      subTitleText( '\$ 45350', color: blackTextColor),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      subTitleText('Support'),
+                      subTitleText('\$ 55350', color: blackTextColor),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Divider(
+                    color: secondaryTextColor.withOpacity(0.3),
+                    thickness: 1,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 60.w,
+                          child: subTitleText('Total Actual Income')),
+                      subTitleText('\$ 55350', color: blackTextColor),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

@@ -6,6 +6,8 @@ import 'package:finance_and_budget/view/manifestation/manifestation_screen.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'chat/chat_screen.dart';
+
 class CustomNavigation extends StatefulWidget {
   const CustomNavigation({Key? key}) : super(key: key);
 
@@ -21,7 +23,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
     const ManifestationScreen(),
     const BudgetScreen(),
     const AnalyticsScreen(), //please add here the required page
-    const HomeScreen(), //please add here the required page
+    const ChatScreen(), //please add here the required page
   ];
 
   @override

@@ -65,8 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    titleText('Pay off \$5000 Debt',
-                                        color: titleTextColor, size: 20),
+                                    // titleText('Pay off \$5000 Debt',
+                                    //     color: titleTextColor, size: 20),
                                     SliderTheme(
                                         data: SliderTheme.of(context).copyWith(
                                           showValueIndicator:

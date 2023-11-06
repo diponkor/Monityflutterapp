@@ -30,24 +30,29 @@ class AuthController extends GetxController {
     isPasswordValid = Utils.isPasswordValid(pass);
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future<bool> signIn(String email, String password) async {
     //isLoading.value = true;
     validateLogIn(email, password);
     Utils.showLoading();
     if (!isPasswordValid) {
       Utils.showSnackBar('Password lenth is too short');
+      return false;
     }
+    bool success = false;
     await auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
       Utils.showSnackBar('You\'re logged in successfully');
       Utils.hidePopup();
+      success = true;
     }).catchError((e) {
       print(e.code);
       Utils.showSnackBar(e.code);
     });
     //isLoading.value = false;
+    return success;
   }
+
 
   Future<void> signUp(String email, String password) async {
     //isLoading.value = true;

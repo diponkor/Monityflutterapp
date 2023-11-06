@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/colors.dart';
 import 'analytics/analytics_screen.dart';
 import 'budget/budget_screen.dart';
+import 'chat/chat_screen.dart';
 import 'home/home_screen.dart';
 import 'manifestation/manifestation_screen.dart';
 
@@ -21,7 +22,7 @@ class _WebNavigationState extends State<WebNavigation> {
     const ManifestationScreen(),
     const BudgetScreen(),
     const AnalyticsScreen(), //please add here the required page
-    const HomeScreen(), //please add here the required page
+    const ChatScreen(), //please add here the required page
   ];
 
   @override

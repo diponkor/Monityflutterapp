@@ -77,7 +77,10 @@ class _SigninScreenState extends State<SigninScreen> {
                 normalButton('Sign In', onPressed: () {
                   if (email.text.isNotEmpty && pass.text.isNotEmpty) {
                     authController.signIn(email.text, pass.text).then((value) {
-                      Get.offAll(const WebNavigation());
+                      if(value){
+                        Get.offAll(const WebNavigation());
+                      }
+
                     });
                   } else {
                     Utils.showSnackBar('Input Fields is required!');
@@ -148,7 +151,9 @@ class _SigninScreenState extends State<SigninScreen> {
             normalButton('Sign In', onPressed: () {
               if (email.text.isNotEmpty && pass.text.isNotEmpty) {
                 authController.signIn(email.text, pass.text).then((value) {
-                  Get.offAll(const CustomNavigation());
+                  if(value){
+                    Get.offAll(const CustomNavigation());
+                  }
                 });
               } else {
                 Utils.showSnackBar('Input Fields is required!');

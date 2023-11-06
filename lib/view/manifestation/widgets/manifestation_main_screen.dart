@@ -81,7 +81,7 @@ class ManifestationMainScreen extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
-                                          Container(
+                                          /*Container(
                                             height: 79.h,
                                             width: 79.w,
                                             decoration: BoxDecoration(
@@ -99,7 +99,7 @@ class ManifestationMainScreen extends StatelessWidget {
                                                     fit: BoxFit.cover),
                                               ),
                                             ),
-                                          ),
+                                          ),*/
                                           SizedBox(width: 10.w),
                                           Column(
                                             crossAxisAlignment:

@@ -77,7 +77,7 @@ Widget firstAnalyticsScreen(BuildContext context) {
               ),
             )),
         SizedBox(height: 20.h),
-        Container(
+       /* Container(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
             height: 50.h,
             width: 380.w,
@@ -101,7 +101,7 @@ Widget firstAnalyticsScreen(BuildContext context) {
                 titleText('Select', size: 20, fontWeight: FontWeight.w400),
                 const Icon(Icons.keyboard_arrow_down, size: 30)
               ],
-            )),
+            )),*/
         SizedBox(height: 20.h),
         //customCard(313, Container())
       ],

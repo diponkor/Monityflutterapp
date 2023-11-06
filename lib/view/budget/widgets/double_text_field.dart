@@ -5,12 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 Widget doubleTextField({
   TextEditingController? controller1,
   TextEditingController? controller2,
+  Function()? onChangeCntr1,
+  Function()? onChangeCntr2,
   IconData? icon,
   Function()? iconPress,
   Color? iconBgColor,
   String? hintText1,
   String? hintText2,
-  bool isEnable =true,
+  bool isEnable = true,
 }) {
   return Container(
     height: 50.h,
@@ -30,7 +32,9 @@ Widget doubleTextField({
             padding: const EdgeInsets.only(left: 8.0),
             child: TextFormField(
               enabled: isEnable,
-              onChanged: (text) async {},
+              onChanged: (text) async {
+                onChangeCntr1;
+              },
               onEditingComplete: () async {},
               keyboardType: TextInputType.text,
               controller: controller1,
@@ -51,7 +55,9 @@ Widget doubleTextField({
           width: 157.w,
           child: TextFormField(
             enabled: isEnable,
-            onChanged: (text) async {},
+            onChanged: (text) async {
+              onChangeCntr2;
+            },
             onEditingComplete: () async {},
             keyboardType: TextInputType.number,
             controller: controller2,

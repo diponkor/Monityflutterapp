@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
-import '../../constants/font_constants.dart';
 import '../../utils/utils.dart';
 import '../custom_navigation_bar.dart';
 import '../global_widgets/custom_text.dart';
@@ -55,6 +54,8 @@ class _SignupScreenState extends State<SignupScreen>
     email.dispose();
     pass.dispose();
     conPass.dispose();
+    companyName.dispose();
+    userRole.dispose();
     super.dispose();
   }
 
@@ -217,16 +218,8 @@ class _SignupScreenState extends State<SignupScreen>
         subTitleText('Company Name', authPage: true),
         customTextField(companyName),
         SizedBox(height: 20.h),
-        subTitleText('User Role', authPage: true),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(selectedValue ?? ''),
-            Expanded(child: dropDown()),
-            const Icon(Icons.keyboard_arrow_down_outlined),
-          ],
-        ),
-        const Divider(thickness: 1, color: black),
+        subTitleText('Job Title', authPage: true),
+        customTextField(userRole),
         SizedBox(height: 120.h),
         normalButton('Sign Up', onPressed: () {
           if (fName.text.isNotEmpty &&
@@ -235,7 +228,7 @@ class _SignupScreenState extends State<SignupScreen>
               pass.text.isNotEmpty &&
               conPass.text.isNotEmpty &&
               companyName.text.isNotEmpty &&
-              selectedValue.toString().isNotEmpty) {
+              userRole.text.isNotEmpty) {
             authController.signUp(email.text, pass.text).then((value) async {
               final user = UserModel(
                 firstName: fName.text.trim(),
@@ -244,7 +237,7 @@ class _SignupScreenState extends State<SignupScreen>
                 password: pass.text.trim(),
                 confirmPassword: conPass.text.trim(),
                 companyName: companyName.text.trim(),
-                userRole: selectedValue.toString(),
+                userRole: userRole.text.trim(),
               );
               await authController.createUser(user).then((value) {
                 Get.offAll( screenWidth > 730 && kIsWeb?const WebNavigation(): const CustomNavigation());
@@ -277,7 +270,7 @@ class _SignupScreenState extends State<SignupScreen>
     );
   }
 
-  Widget dropDown() {
+  /*Widget dropDown() {
     return DropdownButton<String>(
       iconEnabledColor: white,
       value: selectedValue,
@@ -304,5 +297,5 @@ class _SignupScreenState extends State<SignupScreen>
         });
       },
     );
-  }
+  }*/
 }

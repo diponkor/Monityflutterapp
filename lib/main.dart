@@ -1,4 +1,5 @@
 
+import 'package:finance_and_budget/view/authentication/signin_screen.dart';
 import 'package:finance_and_budget/view/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
                   home:
                   const Scaffold(
                     //body: SplashScreen(),
-                    body: SplashScreen(),
+                    body: SigninScreen(),
                   ),
                 ),
               ),
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
                   debugShowCheckedModeBanner: false,
                   theme: _buildTheme(Brightness.light),
                   home: const Scaffold(
-                    body: SplashScreen(),
+                    body: SigninScreen(),
                     //body: CustomNavigation(),
                   ),
                 ),
@@ -86,7 +87,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: _buildTheme(Brightness.light),
               home: const Scaffold(
-                body: SplashScreen(),
+                body: SigninScreen(),
               ));
         });
   }
