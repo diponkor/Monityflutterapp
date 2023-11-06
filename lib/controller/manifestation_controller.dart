@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_and_budget/model/debt_model.dart';
 import 'package:finance_and_budget/model/manifestation_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../utils/utils.dart';
@@ -12,9 +13,6 @@ class ManifestationController extends GetxController {
     // TODO: implement onInit
     fetchManifestation();
     fetchDebt();
-    print(manifestationList.length);
-
-    print(manifestationList.length);
     super.onInit();
   }
 
@@ -23,16 +21,27 @@ class ManifestationController extends GetxController {
   List<ManifestationModel> manifestationList = [];
   List<DebtModel> debtList = [];
 
+  List<TextEditingController> milestoneControllers = [];
+
+  List<String> mileTextList = [];
+
+  void makeMileList() {
+    for(var x in milestoneControllers){
+      mileTextList.add(x.text);
+    }
+  }
+
   Future<void> createManifestation(
       ManifestationModel manifestationModel) async {
     Utils.showLoading();
-    await _db
+    final manifesCollection = FirebaseFirestore.instance
         .collection('User')
         .doc(auth.currentUser?.email)
-        .collection('Manifestation')
-        .doc()
-        .set(manifestationModel.toJson())
-        .catchError((e) {
+        .collection('Manifestation');
+    final uid = manifesCollection.doc().id;
+    final docRef = manifesCollection.doc(uid);
+    manifestationModel.id = uid;
+    await docRef.set(manifestationModel.toJson()).catchError((e) {
       print(e);
       Utils.showSnackBar(e.code);
     });
@@ -40,6 +49,22 @@ class ManifestationController extends GetxController {
     fetchManifestation();
     update(['updateManifestationList']);
     Utils.hidePopup();
+  }
+
+  Future<void> deleteManifes(int index) async {
+    final manifesCollection = FirebaseFirestore.instance
+        .collection('User')
+        .doc(auth.currentUser?.email)
+        .collection('Manifestation');
+    ManifestationModel manifesModel = manifestationList[index];
+    final docRef = manifesCollection.doc(manifesModel.id);
+    await docRef.delete().catchError((e) {
+      print(e);
+      Utils.showSnackBar(e.code);
+    });
+    manifestationList = [];
+    fetchManifestation();
+    update(['updateManifestationList']);
   }
 
   Future<List<ManifestationModel>> fetchManifestation() async {
@@ -54,8 +79,14 @@ class ManifestationController extends GetxController {
 
       for (var doc in querySnapshot.docs) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-        ManifestationModel maniModel = ManifestationModel(data['GoalName'],
-            data['PopularGoal'], data['Amount'], data['Date'], data['Bank']);
+        ManifestationModel maniModel = ManifestationModel(
+          data['Id'],
+          data['GoalName'],
+          data['Amount'],
+          data['ByWhen'],
+          data['MileStones'],
+          data['Bank'],
+        );
         manifestationList.add(maniModel);
       }
       update(['updateManifestationList']);

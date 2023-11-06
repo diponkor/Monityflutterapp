@@ -116,12 +116,11 @@ class _ItemDetailsState extends State<ItemDetails> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            subTitleText('\$ 250',
-                                size: 16, fontWeight: FontWeight.w500),
-                            subTitleText('\$ 1500',
-                                size: 16, fontWeight: FontWeight.w500),
-                            subTitleText('\$ 2500',
-                                size: 16, fontWeight: FontWeight.w500),
+                            for(var mile in manifestationController
+                                .manifestationList[widget.index].mileStones)
+                              subTitleText(mile,
+                                  size: 16,
+                                  fontWeight: FontWeight.w500),
                           ],
                         ),
                         SizedBox(height: 10.h),
@@ -139,14 +138,11 @@ class _ItemDetailsState extends State<ItemDetails> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  subTitleText('Save \$ 10',
-                                      size: 15, fontWeight: FontWeight.w500),
-                                  subTitleText('Save \$ 100',
-                                      size: 15, fontWeight: FontWeight.w500),
-                                  subTitleText('Save \$ 1500',
-                                      size: 15, fontWeight: FontWeight.w500),
-                                  subTitleText('New Income',
-                                      size: 15, fontWeight: FontWeight.w500),
+                                  for(var mile in manifestationController
+                                      .manifestationList[widget.index].mileStones)
+                                    subTitleText(mile,
+                                        size: 16,
+                                        fontWeight: FontWeight.w500),
                                 ],
                               ),
                             )
@@ -170,7 +166,8 @@ class _ItemDetailsState extends State<ItemDetails> {
           ),
         ),
       ),
-    ): Scaffold(
+    ):
+    Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(107.h),
@@ -259,12 +256,11 @@ class _ItemDetailsState extends State<ItemDetails> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        subTitleText('\$ 250',
-                            size: 16, fontWeight: FontWeight.w500),
-                        subTitleText('\$ 1500',
-                            size: 16, fontWeight: FontWeight.w500),
-                        subTitleText('\$ 2500',
-                            size: 16, fontWeight: FontWeight.w500),
+                        for(var mile in manifestationController
+                            .manifestationList[widget.index].mileStones)
+                          subTitleText(mile,
+                              size: 16,
+                              fontWeight: FontWeight.w500),
                       ],
                     ),
                     SizedBox(height: 10.h),
@@ -282,14 +278,11 @@ class _ItemDetailsState extends State<ItemDetails> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              subTitleText('Save \$ 10',
-                                  size: 15, fontWeight: FontWeight.w500),
-                              subTitleText('Save \$ 100',
-                                  size: 15, fontWeight: FontWeight.w500),
-                              subTitleText('Save \$ 1500',
-                                  size: 15, fontWeight: FontWeight.w500),
-                              subTitleText('New Income',
-                                  size: 15, fontWeight: FontWeight.w500),
+                              for(var mile in manifestationController
+                                  .manifestationList[widget.index].mileStones)
+                                subTitleText(mile,
+                                    size: 16,
+                                    fontWeight: FontWeight.w500),
                             ],
                           ),
                         )

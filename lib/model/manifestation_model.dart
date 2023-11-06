@@ -1,28 +1,27 @@
-
 class ManifestationModel {
+  late String id;
   final String goalName;
-  final String popularGoal;
   final String amount;
-  final String date;
+  final String byWhen;
+  final List<dynamic> mileStones;
   final String bank;
 
   ManifestationModel(
-      this.goalName,
-      this.popularGoal,
-      this.amount,
-      this.date,
-      this.bank,
-      );
+      this.id,
+      this.goalName, this.amount, this.byWhen, this.mileStones, this.bank);
 
-  toJson() {
+  Map<String, dynamic> toJson() {
     return {
+      'Id': id,
       'GoalName': goalName,
-      'PopularGoal': popularGoal,
       'Amount': amount,
-      'Date': date,
+      'ByWhen': byWhen,
+      'MileStones': mileStones,
       'Bank': bank,
     };
   }
+}
+
 
 // factory UserModel.fromSnapshot(
 //     DocumentSnapshot<Map<String, dynamic>> document) {
@@ -37,4 +36,4 @@ class ManifestationModel {
 //     userRole: data?['UserRole'],
 //   );
 // }
-}
+

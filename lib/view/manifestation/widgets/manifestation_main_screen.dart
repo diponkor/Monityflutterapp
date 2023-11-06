@@ -136,37 +136,55 @@ class ManifestationMainScreen extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          subTitleText('\$ 250',
-                                              size: 16,
-                                              fontWeight: FontWeight.w500),
-                                          subTitleText('\$ 1500',
-                                              size: 16,
-                                              fontWeight: FontWeight.w500),
-                                          subTitleText('\$ 2500',
+                                          for(var mile in manifestationController
+                                              .manifestationList[j].mileStones)
+                                          subTitleText(mile,
                                               size: 16,
                                               fontWeight: FontWeight.w500),
                                         ],
                                       ),
                                       SizedBox(height: 10.h),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      ItemDetails(index: j)));
-                                        },
-                                        child: Row(
-                                          children: [
-                                            subTitleText('View Goals',
-                                                size: 16,
-                                                color: blackTextColor),
-                                            SizedBox(width: 10.w),
-                                            const Icon(
-                                              Icons.arrow_forward,
-                                              size: 16,
-                                            )
-                                          ],
-                                        ),
+                                      Row(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          ItemDetails(index: j)));
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsets.all(8.h),
+                                              child: Row(
+                                                children: [
+                                                  subTitleText('View Milestones',
+                                                      size: 18,
+                                                      color: blackTextColor),
+                                                  SizedBox(width: 10.w),
+                                                  const Icon(
+                                                    Icons.arrow_forward,
+                                                    size: 16,
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          const Expanded(child: SizedBox()),
+                                          const Icon(
+                                            Icons.edit,color: primaryColor,
+                                          ),
+                                          SizedBox(width: 15.w),
+                                          GestureDetector(
+                                            onTap: (){
+                                              manifestationController.deleteManifes(j);
+                                            },
+                                            child: const Icon(
+                                              Icons.delete_outline,color: red,
+                                            ),
+                                          ),
+                                          SizedBox(width: 20.w),
+
+                                        ],
                                       )
                                     ],
                                   )),
