@@ -44,9 +44,9 @@ class _MonthBudgetState extends State<MonthBudget> {
             GetBuilder<BudgetController>(
                 id: 'updateBudList',
                 builder: (controller) {
-                  return controller.budgetList.isEmpty
+                  return controller.addBudgetList.length<3
                       ? const Center(
-                          child: CircularProgressIndicator(),
+                          child: SizedBox(),
                         )
                       : Column(
                           children: [
@@ -98,7 +98,7 @@ class _MonthBudgetState extends State<MonthBudget> {
                                                     children: [
                                                       titleText(
                                                           controller
-                                                              .budgetList[i]
+                                                              .addBudgetList[i]
                                                               .budgetName,
                                                           color: blackTextColor,
                                                           size: 24,
@@ -115,7 +115,7 @@ class _MonthBudgetState extends State<MonthBudget> {
                                                     children: [
                                                       subTitleText(
                                                           controller
-                                                              .budgetList[i]
+                                                              .addBudgetList[i]
                                                               .date,
                                                           size: 10)
                                                     ],
@@ -154,10 +154,9 @@ class _MonthBudgetState extends State<MonthBudget> {
                                                             .spaceBetween,
                                                     children: [
                                                       subTitleText(
-                                                          '${controller.budgetList[i].amount} \$ to go',
+                                                          ' \$ to go',
                                                           size: 10),
-                                                      subTitleText(
-                                                          '\$ ${int.parse(_budgetController.budgetList[i].fixedExp) + int.parse(_budgetController.budgetList[i].variableExp) + int.parse(_budgetController.budgetList[i].sinkingFunds)}',
+                                                      subTitleText('',
                                                           size: 10),
                                                     ],
                                                   ),

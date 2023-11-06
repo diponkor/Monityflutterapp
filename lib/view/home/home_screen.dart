@@ -90,8 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         builder: (controller) {
                                           return controller.debtList.isEmpty
                                               ? const Center(
-                                                  child:
-                                                      CircularProgressIndicator())
+                                                  child: SizedBox())
                                               : Center(
                                                   child: SingleChildScrollView(
                                                     physics:
@@ -154,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                             Row(
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
-                                                                                subTitleText(manifestationController.debtList[j].date, size: 10)
+                                                                                subTitleText(manifestationController.debtList[j].interestRate, size: 10)
                                                                               ],
                                                                             ),
                                                                             Stack(
@@ -174,8 +173,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                             Row(
                                                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                               children: [
-                                                                                subTitleText('${manifestationController.debtList[j].haveDebt}\$ to go', size: 10),
-                                                                                subTitleText('\$ ${manifestationController.debtList[j].monthlyPayment}', size: 10),
+                                                                                subTitleText('${manifestationController.debtList[j].amount}\$ to go', size: 10),
+                                                                                subTitleText('\$ ${manifestationController.debtList[j].amount}', size: 10),
                                                                               ],
                                                                             ),
                                                                           ],

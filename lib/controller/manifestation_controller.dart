@@ -99,11 +99,9 @@ class ManifestationController extends GetxController {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         DebtModel newDebtModel = DebtModel(
           data['DebtName'],
-          data['PopularDebt'],
+          data['Amount'],
           data['InterestRate'],
-          data['MonthlyPayment'],
-          data['HaveDebt'],
-          data['Date'],
+          data['Required'],
         );
         debtList.add(newDebtModel);
       }

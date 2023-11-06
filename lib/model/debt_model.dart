@@ -1,29 +1,22 @@
-
 class DebtModel {
   final String debtName;
-  final String popularDebt;
+  final String amount;
   final String interestRate;
-  final String haveDebt;
-  final String monthlyPayment;
-  final String date;
+  final String required;
 
   DebtModel(
-      this.debtName,
-      this.popularDebt,
-      this.interestRate,
-      this.haveDebt,
-      this.monthlyPayment,
-      this.date,
-      );
+    this.debtName,
+    this.amount,
+    this.interestRate,
+    this.required,
+  );
 
   toJson() {
     return {
       'DebtName': debtName,
-      'PopularDebt': popularDebt,
+      'Amount': amount,
       'InterestRate': interestRate,
-      'MonthlyPayment': monthlyPayment,
-      'HaveDebt': haveDebt,
-      'Date': date,
+      'Required': required,
     };
   }
 

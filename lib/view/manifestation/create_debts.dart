@@ -24,19 +24,10 @@ class _CreateDebtsState extends State<CreateDebts> {
   ManifestationController manifestationController = Get.find();
 
   TextEditingController debtNameController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
   TextEditingController interestRateController = TextEditingController();
-  TextEditingController haveDebtController = TextEditingController();
-  TextEditingController monthlyPaymentController = TextEditingController();
+  TextEditingController requiredController = TextEditingController();
 
-  var dateText = 'Ex. - 30 JUNE 2023';
-
-  List<String> popularDebtsList = [
-    'Bank Loan',
-    'Car Loan',
-    'Mortgage',
-    'Money'
-  ];
-  String selectedPopularDebt = '';
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +71,7 @@ class _CreateDebtsState extends State<CreateDebts> {
                               child: const Icon(Icons.arrow_back),
                             ),
                             SizedBox(width: 10.w),
-                            titleText('What debt do you have?',
+                            titleText('What do you owe?',
                                 color: titleTextColor, size: 25, authPage: true),
                           ],
                         ),
@@ -92,129 +83,36 @@ class _CreateDebtsState extends State<CreateDebts> {
                       singleTextField(
                           controller: debtNameController, hintText: 'Debt Name'),
                       SizedBox(height: 15.h),
-                      subTitleText('Choose Popular debt'),
+                      subTitleText('Amount',
+                          color: secondaryTextColor.withOpacity(0.8)),
                       SizedBox(height: 5.h),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            for (int x = 0; x < popularDebtsList.length; x++)
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    selectedPopularDebt = popularDebtsList[x];
-                                  });
-                                  print(selectedPopularDebt);
-                                },
-                                child: Container(
-                                  height: 40.h,
-                                  width: 122.w,
-                                  margin: EdgeInsets.only(right: 5.w),
-                                  decoration: BoxDecoration(
-                                      color:
-                                      selectedPopularDebt == popularDebtsList[x]
-                                          ? blackTextColor
-                                          : bgWhite,
-                                      border: Border.all(
-                                          color: blackTextColor, width: 1),
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(5.r))),
-                                  child: Center(
-                                    child: subTitleText(popularDebtsList[x],
-                                        color: selectedPopularDebt ==
-                                            popularDebtsList[x]
-                                            ? white
-                                            : secondaryTextColor,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 15.h),
+                      singleTextField(
+                          controller: amountController, hintText: 'Enter Amount'),
                       subTitleText('Interest Rate',
                           color: secondaryTextColor.withOpacity(0.8)),
                       SizedBox(height: 5.h),
                       singleTextField(
                           controller: interestRateController,
-                          hintText: 'ex:-  200'),
+                          hintText: 'Interest Rate'),
                       SizedBox(height: 15.h),
-                      subTitleText('How much remaining debt do you have ?',
+                      subTitleText('Required',
                           color: secondaryTextColor.withOpacity(0.8)),
                       SizedBox(height: 5.h),
                       singleTextField(
-                          controller: haveDebtController, hintText: 'ex:-  200'),
-                      SizedBox(height: 15.h),
-                      subTitleText('Monthly Payment ',
-                          color: secondaryTextColor.withOpacity(0.8)),
-                      SizedBox(height: 5.h),
-                      singleTextField(
-                          controller: monthlyPaymentController,
-                          hintText: 'Monthly'),
-                      SizedBox(height: 15.h),
-                      Align(
-                        alignment: Alignment.center,
-                        child: subTitleText('Or',
-                            color: secondaryTextColor.withOpacity(0.8)),
-                      ),
-                      SizedBox(height: 15.h),
-                      subTitleText('Target Date',
-                          color: secondaryTextColor.withOpacity(0.8)),
-                      SizedBox(height: 5.h),
-                      Container(
-                        height: 50.h,
-                        width: double.infinity,
-                        padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5.r),
-                            border: Border.all(color: black, width: 1)),
-                        child: GestureDetector(
-                          onTap: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2000),
-                                lastDate: DateTime(2101));
-                            String formattedDate =
-                            DateFormat('yMMMMd').format(pickedDate!);
-
-                            setState(() {
-                              dateText = formattedDate;
-                            });
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: subTitleText(dateText,
-                                      color: blackTextColor,
-                                      fontWeight: FontWeight.w400,
-                                      size: 18)),
-                              const Icon(
-                                Icons.calendar_month,
-                                color: secondaryTextColor,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                          controller: requiredController, hintText: 'Enter text '),
                       SizedBox(height: 20.h),
                       normalButton('Next', onPressed: () async {
                         if (debtNameController.text.isNotEmpty &&
-                            selectedPopularDebt.isNotEmpty &&
                             interestRateController.text.isNotEmpty &&
-                            haveDebtController.text.isNotEmpty &&
-                            monthlyPaymentController.text.isNotEmpty &&
-                            dateText.isNotEmpty) {
+                            amountController.text.isNotEmpty &&
+                            requiredController.text.isNotEmpty
+                        ) {
                           final debt = DebtModel(
-                            debtNameController.text,
-                            selectedPopularDebt,
-                            interestRateController.text,
-                            haveDebtController.text,
-                            monthlyPaymentController.text,
-                            dateText,
+                              debtNameController.text,
+                              amountController.text,
+                              interestRateController.text,
+                              requiredController.text
+
                           );
                           await manifestationController.createDebt(debt).then((
                               value) {
@@ -230,9 +128,10 @@ class _CreateDebtsState extends State<CreateDebts> {
               ],
             ),
           ),
-        ),
+        )
       ),
-    ): Scaffold(
+    ):
+    Scaffold(
       backgroundColor: bgWhite,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(107.h),
@@ -268,7 +167,7 @@ class _CreateDebtsState extends State<CreateDebts> {
                           child: const Icon(Icons.arrow_back),
                         ),
                         SizedBox(width: 10.w),
-                        titleText('What debt do you have?',
+                        titleText('What do you owe?',
                             color: titleTextColor, size: 25, authPage: true),
                       ],
                     ),
@@ -280,129 +179,36 @@ class _CreateDebtsState extends State<CreateDebts> {
                   singleTextField(
                       controller: debtNameController, hintText: 'Debt Name'),
                   SizedBox(height: 15.h),
-                  subTitleText('Choose Popular debt'),
+                  subTitleText('Amount',
+                      color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        for (int x = 0; x < popularDebtsList.length; x++)
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                selectedPopularDebt = popularDebtsList[x];
-                              });
-                              print(selectedPopularDebt);
-                            },
-                            child: Container(
-                              height: 40.h,
-                              width: 122.w,
-                              margin: EdgeInsets.only(right: 5.w),
-                              decoration: BoxDecoration(
-                                  color:
-                                  selectedPopularDebt == popularDebtsList[x]
-                                      ? blackTextColor
-                                      : bgWhite,
-                                  border: Border.all(
-                                      color: blackTextColor, width: 1),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(5.r))),
-                              child: Center(
-                                child: subTitleText(popularDebtsList[x],
-                                    color: selectedPopularDebt ==
-                                        popularDebtsList[x]
-                                        ? white
-                                        : secondaryTextColor,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15.h),
+                  singleTextField(
+                      controller: amountController, hintText: 'Enter Amount'),
                   subTitleText('Interest Rate',
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   singleTextField(
                       controller: interestRateController,
-                      hintText: 'ex:-  200'),
+                      hintText: 'Interest Rate'),
                   SizedBox(height: 15.h),
-                  subTitleText('How much remaining debt do you have ?',
+                  subTitleText('Required',
                       color: secondaryTextColor.withOpacity(0.8)),
                   SizedBox(height: 5.h),
                   singleTextField(
-                      controller: haveDebtController, hintText: 'ex:-  200'),
-                  SizedBox(height: 15.h),
-                  subTitleText('Monthly Payment ',
-                      color: secondaryTextColor.withOpacity(0.8)),
-                  SizedBox(height: 5.h),
-                  singleTextField(
-                      controller: monthlyPaymentController,
-                      hintText: 'Monthly'),
-                  SizedBox(height: 15.h),
-                  Align(
-                    alignment: Alignment.center,
-                    child: subTitleText('Or',
-                        color: secondaryTextColor.withOpacity(0.8)),
-                  ),
-                  SizedBox(height: 15.h),
-                  subTitleText('Target Date',
-                      color: secondaryTextColor.withOpacity(0.8)),
-                  SizedBox(height: 5.h),
-                  Container(
-                    height: 50.h,
-                    width: double.infinity,
-                    padding: EdgeInsets.only(left: 10.w, right: 10.w),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.r),
-                        border: Border.all(color: black, width: 1)),
-                    child: GestureDetector(
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2000),
-                            lastDate: DateTime(2101));
-                        String formattedDate =
-                        DateFormat('yMMMMd').format(pickedDate!);
-
-                        setState(() {
-                          dateText = formattedDate;
-                        });
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: subTitleText(dateText,
-                                  color: blackTextColor,
-                                  fontWeight: FontWeight.w400,
-                                  size: 18)),
-                          const Icon(
-                            Icons.calendar_month,
-                            color: secondaryTextColor,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                      controller: requiredController, hintText: 'Enter text '),
                   SizedBox(height: 20.h),
                   normalButton('Next', onPressed: () async {
                     if (debtNameController.text.isNotEmpty &&
-                        selectedPopularDebt.isNotEmpty &&
                         interestRateController.text.isNotEmpty &&
-                        haveDebtController.text.isNotEmpty &&
-                        monthlyPaymentController.text.isNotEmpty &&
-                        dateText.isNotEmpty) {
+                        amountController.text.isNotEmpty &&
+                        requiredController.text.isNotEmpty
+                    ) {
                       final debt = DebtModel(
-                        debtNameController.text,
-                        selectedPopularDebt,
-                        interestRateController.text,
-                        haveDebtController.text,
-                        monthlyPaymentController.text,
-                        dateText,
+                          debtNameController.text,
+                          amountController.text,
+                          interestRateController.text,
+                          requiredController.text
+
                       );
                       await manifestationController.createDebt(debt).then((
                           value) {

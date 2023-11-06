@@ -105,7 +105,7 @@ class DebtMainScreen extends StatelessWidget {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  subTitleText(manifestationController.debtList[j].date,
+                                                  subTitleText(manifestationController.debtList[j].interestRate,
                                                       size: 10)
                                                 ],
                                               ),
@@ -138,9 +138,9 @@ class DebtMainScreen extends StatelessWidget {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  subTitleText('${manifestationController.debtList[j].haveDebt}\$ to go',
+                                                  subTitleText('${manifestationController.debtList[j].amount}\$ to go',
                                                       size: 10),
-                                                  subTitleText('\$ ${manifestationController.debtList[j].monthlyPayment}', size: 10),
+                                                  subTitleText('\$ ${manifestationController.debtList[j].amount}', size: 10),
                                                 ],
                                               ),
                                             ],
