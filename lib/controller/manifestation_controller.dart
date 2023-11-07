@@ -51,6 +51,29 @@ class ManifestationController extends GetxController {
     Utils.hidePopup();
   }
 
+  Future<void> updateManifestation(ManifestationModel manifestationModel) async {
+    Utils.showLoading();
+    print('----------');
+    final manifesCollection = FirebaseFirestore.instance
+        .collection('User')
+        .doc(auth.currentUser?.email)
+        .collection('Manifestation');
+    print('----------');
+    final docRef = manifesCollection.doc(manifestationModel.id);
+    print('----------');
+    print(docRef);
+    print('----------');
+    await docRef.update(manifestationModel.toJson()).catchError((e) {
+      print(e);
+      print('----------');
+      Utils.showSnackBar(e.code);
+    });
+    manifestationList = [];
+    fetchManifestation();
+    update(['updateManifestationList']);
+    Utils.hidePopup();
+  }
+
   Future<void> deleteManifes(int index) async {
     final manifesCollection = FirebaseFirestore.instance
         .collection('User')

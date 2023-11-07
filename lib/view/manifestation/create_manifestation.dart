@@ -13,7 +13,9 @@ import '../global_widgets/custom_text.dart';
 import '../global_widgets/normal_button.dart';
 
 class CreateManifestation extends StatefulWidget {
-  const CreateManifestation({super.key});
+  final int? manifestIndex;
+
+  const CreateManifestation({super.key, this.manifestIndex});
 
   @override
   State<CreateManifestation> createState() => _CreateManifestationState();
@@ -27,6 +29,28 @@ class _CreateManifestationState extends State<CreateManifestation> {
   TextEditingController amountController = TextEditingController();
   TextEditingController bankController = TextEditingController();
   var dateText = 'Ex. - 30 JUNE 2023';
+
+  @override
+  void initState() {
+    if (widget.manifestIndex != null) {
+      manifestationController.milestoneControllers = [];
+      goalNameController.text = manifestationController
+          .manifestationList[widget.manifestIndex!].goalName;
+      amountController.text = manifestationController
+          .manifestationList[widget.manifestIndex!].amount;
+      bankController.text =
+          manifestationController.manifestationList[widget.manifestIndex!].bank;
+      dateText = manifestationController
+          .manifestationList[widget.manifestIndex!].byWhen;
+      for (var mile in manifestationController
+          .manifestationList[widget.manifestIndex!].mileStones) {
+        manifestationController.milestoneControllers
+            .add(TextEditingController(text: mile));
+      }
+    }
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -220,24 +244,38 @@ class _CreateManifestationState extends State<CreateManifestation> {
                               if (goalNameController.text.isNotEmpty &&
                                   amountController.text.isNotEmpty &&
                                   dateText.isNotEmpty &&
-                                  manifestationController.mileTextList.isNotEmpty&&
-                                  bankController.text.isNotEmpty
-                              ) {
+                                  manifestationController.mileTextList.isNotEmpty &&
+                                  bankController.text.isNotEmpty) {
                                 final manifestation = ManifestationModel(
-                                    '',
+                                    widget.manifestIndex != null
+                                        ? manifestationController
+                                        .manifestationList[
+                                    widget.manifestIndex!]
+                                        .id
+                                        : '',
                                     goalNameController.text,
                                     amountController.text,
                                     dateText,
                                     manifestationController.mileTextList,
                                     bankController.text);
-                                await manifestationController
+
+                                widget.manifestIndex != null
+                                    ? await manifestationController
+                                    .updateManifestation(manifestation)
+                                    .then((value) {
+                                  Get.back();
+                                  manifestationController
+                                      .milestoneControllers = [];
+                                  manifestationController.mileTextList = [];
+                                })
+                                    : await manifestationController
                                     .createManifestation(manifestation)
                                     .then((value) {
                                   Get.back();
-                                  manifestationController.milestoneControllers = [];
+                                  manifestationController
+                                      .milestoneControllers = [];
                                   manifestationController.mileTextList = [];
                                 });
-
                               } else {
                                 Utils.showSnackBar('Input Fields is required!');
                               }
@@ -436,24 +474,38 @@ class _CreateManifestationState extends State<CreateManifestation> {
                           if (goalNameController.text.isNotEmpty &&
                               amountController.text.isNotEmpty &&
                               dateText.isNotEmpty &&
-                              manifestationController.mileTextList.isNotEmpty&&
-                              bankController.text.isNotEmpty
-                          ) {
-                          final manifestation = ManifestationModel(
-                              '',
-                              goalNameController.text,
-                              amountController.text,
-                              dateText,
-                              manifestationController.mileTextList,
-                              bankController.text);
-                          await manifestationController
-                              .createManifestation(manifestation)
-                              .then((value) {
-                            Get.back();
-                            manifestationController.milestoneControllers = [];
-                            manifestationController.mileTextList = [];
-                          });
+                              manifestationController.mileTextList.isNotEmpty &&
+                              bankController.text.isNotEmpty) {
+                            final manifestation = ManifestationModel(
+                                widget.manifestIndex != null
+                                    ? manifestationController
+                                        .manifestationList[
+                                            widget.manifestIndex!]
+                                        .id
+                                    : '',
+                                goalNameController.text,
+                                amountController.text,
+                                dateText,
+                                manifestationController.mileTextList,
+                                bankController.text);
 
+                            widget.manifestIndex != null
+                                ? await manifestationController
+                                    .updateManifestation(manifestation)
+                                    .then((value) {
+                                    Get.back();
+                                    manifestationController
+                                        .milestoneControllers = [];
+                                    manifestationController.mileTextList = [];
+                                  })
+                                : await manifestationController
+                                    .createManifestation(manifestation)
+                                    .then((value) {
+                                    Get.back();
+                                    manifestationController
+                                        .milestoneControllers = [];
+                                    manifestationController.mileTextList = [];
+                                  });
                           } else {
                             Utils.showSnackBar('Input Fields is required!');
                           }

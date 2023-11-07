@@ -23,8 +23,7 @@ class ManifestationMainScreen extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 80.h),
         child: FloatingActionButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => const CreateManifestation()));
+              Get.to(const CreateManifestation());
             },
             backgroundColor: white,
             child: const Icon(Icons.add, color: blackTextColor)),
@@ -170,8 +169,13 @@ class ManifestationMainScreen extends StatelessWidget {
                                             ),
                                           ),
                                           const Expanded(child: SizedBox()),
-                                          const Icon(
-                                            Icons.edit,color: primaryColor,
+                                          GestureDetector(
+                                            onTap: (){
+                                              Get.to(CreateManifestation(manifestIndex: j));
+                                            },
+                                            child: const Icon(
+                                              Icons.edit,color: primaryColor,
+                                            ),
                                           ),
                                           SizedBox(width: 15.w),
                                           GestureDetector(
