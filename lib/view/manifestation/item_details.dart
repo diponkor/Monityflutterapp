@@ -63,75 +63,30 @@ class _ItemDetailsState extends State<ItemDetails> {
                 ),
                 SizedBox(height: 20.h),
                 customCard(
-                    490,
+                    250,
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                              height: 79.h,
-                              width: 79.w,
-                              decoration: BoxDecoration(
-                                  color: primaryColor.withOpacity(0.1),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(14.r))),
-                              child: Center(
-                                child: Padding(
-                                  padding:
-                                  const EdgeInsets.symmetric(horizontal: 15.0),
-                                  child: Image.asset('assets/images/home2.png',
-                                      fit: BoxFit.cover),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 10.w),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                titleText(manifestationController.manifestationList[widget.index].goalName,
-                                    size: 20, fontWeight: FontWeight.w600),
-                                SizedBox(height: 5.h),
-                                subTitleText(
-                                    'You have saved amount of your goal\nGreat Work!',
-                                    size: 16)
-                              ],
-                            ),
-                          ],
-                        ),
-                        SliderTheme(
-                            data: SliderTheme.of(context).copyWith(
-                              showValueIndicator: ShowValueIndicator.always,
-                              inactiveTrackColor:
-                              secondaryTextColor.withOpacity(0.2),
-                            ),
-                            child: Slider(
-                              onChanged: (value) {
-                                setState(() {
-                                  intValue = value;
-                                });
-                              },
-                              value: intValue,
-                            )),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            for(var mile in manifestationController
-                                .manifestationList[widget.index].mileStones)
-                              subTitleText(mile,
-                                  size: 16,
-                                  fontWeight: FontWeight.w500),
-                          ],
-                        ),
+
                         SizedBox(height: 10.h),
                         subTitleText('Milestones', size: 20, color: blackTextColor),
                         SizedBox(height: 15.h),
                         Row(
                           children: [
+                            SizedBox(width: 20.w),
                             SizedBox(
-                                height: 142.h,
-                                child: Image.asset(
-                                    'assets/images/vertical_indicator.png')),
+                              height: 130.h,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  for(int x=0; x<manifestationController
+                                      .manifestationList[widget.index].mileStones.length;x++ )
+                                    subTitleText("${x+1} .",
+                                        size: 16,
+                                        fontWeight: FontWeight.w500),
+                                ],
+                              ),
+                            ),
                             SizedBox(width: 20.w),
                             SizedBox(
                               height: 130.h,
@@ -149,16 +104,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                           ],
                         ),
                         SizedBox(height: 15.h),
-                        Container(
-                            height: 40.h,
-                            width: 135.w,
-                            decoration: BoxDecoration(
-                              color: primaryColor,
-                              borderRadius: BorderRadius.circular(5.r),
-                            ),
-                            child: Center(
-                              child: subTitleText('View Goals', color: white),
-                            )),
                       ],
                     ))
               ],
@@ -203,75 +148,30 @@ class _ItemDetailsState extends State<ItemDetails> {
             ),
             SizedBox(height: 20.h),
             customCard(
-                490,
+                250,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          height: 79.h,
-                          width: 79.w,
-                          decoration: BoxDecoration(
-                              color: primaryColor.withOpacity(0.1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(14.r))),
-                          child: Center(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 15.0),
-                              child: Image.asset('assets/images/home2.png',
-                                  fit: BoxFit.cover),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10.w),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            titleText(manifestationController.manifestationList[widget.index].goalName,
-                                size: 20, fontWeight: FontWeight.w600),
-                            SizedBox(height: 5.h),
-                            subTitleText(
-                                'You have saved amount of your goal\nGreat Work!',
-                                size: 16)
-                          ],
-                        ),
-                      ],
-                    ),
-                    SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          showValueIndicator: ShowValueIndicator.always,
-                          inactiveTrackColor:
-                              secondaryTextColor.withOpacity(0.2),
-                        ),
-                        child: Slider(
-                          onChanged: (value) {
-                            setState(() {
-                              intValue = value;
-                            });
-                          },
-                          value: intValue,
-                        )),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        for(var mile in manifestationController
-                            .manifestationList[widget.index].mileStones)
-                          subTitleText(mile,
-                              size: 16,
-                              fontWeight: FontWeight.w500),
-                      ],
-                    ),
+
                     SizedBox(height: 10.h),
                     subTitleText('Milestones', size: 20, color: blackTextColor),
                     SizedBox(height: 15.h),
                     Row(
                       children: [
+                        SizedBox(width: 20.w),
                         SizedBox(
-                            height: 142.h,
-                            child: Image.asset(
-                                'assets/images/vertical_indicator.png')),
+                          height: 130.h,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              for(int x=0; x<manifestationController
+                                  .manifestationList[widget.index].mileStones.length;x++ )
+                                subTitleText("${x+1} .",
+                                    size: 16,
+                                    fontWeight: FontWeight.w500),
+                            ],
+                          ),
+                        ),
                         SizedBox(width: 20.w),
                         SizedBox(
                           height: 130.h,
@@ -289,16 +189,6 @@ class _ItemDetailsState extends State<ItemDetails> {
                       ],
                     ),
                     SizedBox(height: 15.h),
-                    Container(
-                        height: 40.h,
-                        width: 135.w,
-                        decoration: BoxDecoration(
-                          color: primaryColor,
-                          borderRadius: BorderRadius.circular(5.r),
-                        ),
-                        child: Center(
-                          child: subTitleText('View Goals', color: white),
-                        )),
                   ],
                 ))
           ],

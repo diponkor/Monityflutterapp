@@ -1,4 +1,3 @@
-import 'package:email_otp/email_otp.dart';
 import 'package:finance_and_budget/controller/auth_controller.dart';
 import 'package:finance_and_budget/view/authentication/widgets/background_screen.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text_field.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
+import '../../utils/utils.dart';
 import '../global_widgets/custom_text.dart';
 import '../global_widgets/normal_button.dart';
 import 'package:get/get.dart';
@@ -34,25 +34,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   void initState() {
-    EmailOTP myauth = EmailOTP();
     super.initState();
 
-    myauth.setSMTP(
-        host: "monityapp@gmail.com",
-        auth: true,
-        username: "monityapp@gmail.com",
-        password: "rajibtalukder1234567890",
-        secure: "TLS",
-        port: 576
-    );
 
-    myauth.setConfig(
-        appEmail: "monityapp@gmail.com",
-        appName: "Monity",
-        userEmail: _emailController.text,
-        otpLength: 4,
-        otpType: OTPType.digitsOnly
-    );
     // Initialize the package
     // final remoteServerConfiguration = {
     //   "server": "https://vltajkttjkfkrvrvtycx.supabase.co",
@@ -95,14 +79,37 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 subTitleText('Email Address', authPage: true),
                 customTextField(_emailController, icon: Icons.done, iconColor: green),
                 SizedBox(height: 100.h),
-                normalButton('Sign In', onPressed: () {
+                normalButton('Send', onPressed: () {
                   // sendOtp();
-                    authController
-                        .sendPasswordResetOTP(_emailController.text)
-                        .then((value) {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (_) => const OtpScreen()));
-                    });
+                  authController
+                      .sendPasswordResetOTP(_emailController.text)
+                      .then((value) {
+
+                    Get.dialog(
+                      AlertDialog(
+                        backgroundColor: white,
+                        title: const Row(
+                          children: [
+                            Icon(
+                              Icons.warning,
+                              color: secondaryTextColor,
+                            ),
+                            Text(' Warning!', style: TextStyle(color: black)),
+                          ],
+                        ),
+                        content: const Text('Please check your email...', style: TextStyle(color: black)),
+                        actions: [
+                          TextButton(
+                            onPressed: (){
+                              Get.back();
+                            },
+                            child: const Text("Ok"),
+                          ),
+                        ],
+                      ),
+                    );
+
+                  });
                 }),
                 SizedBox(height: 20.h),
               ],
@@ -121,13 +128,36 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             subTitleText('Email Address', authPage: true),
             customTextField(_emailController, icon: Icons.done, iconColor: green),
             SizedBox(height: 100.h),
-            normalButton('Sign In', onPressed: () {
-             // sendOtp();
+            normalButton('Send', onPressed: () {
+              // sendOtp();
               authController
                   .sendPasswordResetOTP(_emailController.text)
                   .then((value) {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => const OtpScreen()));
+
+                Get.dialog(
+                  AlertDialog(
+                    backgroundColor: white,
+                    title: const Row(
+                      children: [
+                        Icon(
+                          Icons.warning,
+                          color: secondaryTextColor,
+                        ),
+                        Text(' Warning!', style: TextStyle(color: black)),
+                      ],
+                    ),
+                    content: const Text('Please check your email...', style: TextStyle(color: black)),
+                    actions: [
+                      TextButton(
+                        onPressed: (){
+                          Get.back();
+                        },
+                        child: const Text("Ok"),
+                      ),
+                    ],
+                  ),
+                );
+
               });
             }),
             SizedBox(height: 20.h),

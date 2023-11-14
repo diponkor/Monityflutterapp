@@ -9,9 +9,10 @@ import '../utils/utils.dart';
 
 class BudgetController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
-  final _db = FirebaseFirestore.instance;
   List<CreateBudgetModel> budgetList = [];
   List<AddBudgetModel> addBudgetList = [];
+
+
 
   //income......
   List<TextEditingController> incomeControllers = [];
@@ -116,6 +117,106 @@ class BudgetController extends GetxController {
       print("fixExpMap is null.");
     }
   }
+
+
+  ///Actual data controllers.........................
+  ///
+  //income
+  Map<String, TextEditingController> actualIncomeControllerMap = {};
+  var totalActualIncome = 0;
+
+  void getTotalActualIncome() {
+    actualIncomeControllerMap.forEach((key, value) {
+      try {
+        int val = int.parse(value.text);
+        totalActualIncome += val;
+      } catch (e) {
+        print(e);
+      }
+    });
+  }
+  //fixedExp
+  Map<String, TextEditingController> actualFixedControllerMap = {};
+  var totalActualFixed = 0;
+
+  void getTotalActualFixed() {
+    actualFixedControllerMap.forEach((key, value) {
+      try {
+        int val = int.parse(value.text);
+        totalActualFixed += val;
+      } catch (e) {
+        print(e);
+      }
+    });
+  }
+  //varExp
+  Map<String, TextEditingController> actualVarControllerMap = {};
+  var totalActualVar = 0;
+
+  void getTotalActualVar() {
+    actualVarControllerMap.forEach((key, value) {
+      try {
+        int val = int.parse(value.text);
+        totalActualVar += val;
+      } catch (e) {
+        print(e);
+      }
+    });
+  }
+  //sinkFund
+  Map<String, TextEditingController> actualSinkControllerMap = {};
+  var totalActualSink = 0;
+
+  void getTotalActualSink() {
+    actualSinkControllerMap.forEach((key, value) {
+      try {
+        int val = int.parse(value.text);
+        totalActualSink += val;
+      } catch (e) {
+        print(e);
+      }
+    });
+  }
+
+
+  ///compare function for plannedIncome to actualIncome
+  String compareIncomeText = '';
+  void getCompareIncome() {
+    if(totalIncomeData>totalActualIncome){
+      compareIncomeText = 'You are doing fine';
+    }else{
+      compareIncomeText = 'You have to save money';
+    }
+  }
+
+  ///compare function for plannedFixed to actualFixed
+  String compareFixedText = '';
+  void getCompareFixed() {
+    if(totalFixedExpense>totalActualFixed){
+      compareFixedText = 'You are doing fine';
+    }else{
+      compareFixedText = 'You have to save money';
+    }
+  }
+  ///compare function for plannedFixed to actualFixed
+  String compareVarText = '';
+  void getCompareVar() {
+    if(totalVarExpense>totalActualVar){
+      compareVarText = 'You are doing fine';
+    }else{
+      compareVarText = 'You have to save money';
+    }
+  }
+  ///compare function for plannedFixed to actualFixed
+  String compareSinkText = '';
+  void getCompareSink() {
+    if(totalSinkFund>totalActualSink){
+      compareSinkText = 'You are doing fine';
+    }else{
+      compareSinkText = 'You have to save money';
+    }
+  }
+
 
   String top3ExpThisYear = 'Your top 3 expense are : \$500, \$300, \$100';
   String makeLastWeek = 'You make\$1500 in last week';

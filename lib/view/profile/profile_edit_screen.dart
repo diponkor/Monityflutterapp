@@ -10,19 +10,28 @@ import '../../controller/profile_controller.dart';
 import '../global_widgets/custom_text.dart';
 import '../global_widgets/named_back_button.dart';
 
-class ProfileEditScreen extends StatelessWidget {
+class ProfileEditScreen extends StatefulWidget {
   const ProfileEditScreen({super.key});
 
   static ProfileController profileController = Get.find();
 
   @override
+  State<ProfileEditScreen> createState() => _ProfileEditScreenState();
+}
+
+class _ProfileEditScreenState extends State<ProfileEditScreen> {
+  late TextEditingController fName;
+  late TextEditingController lName;
+
+  @override
+  void initState() {
+    fName=TextEditingController(text: ProfileEditScreen.profileController.userData?.firstName);
+    lName=TextEditingController(text: ProfileEditScreen.profileController.userData?.lastName);
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    TextEditingController fName =
-        TextEditingController(text: profileController.userData?.firstName);
-    TextEditingController lName =
-        TextEditingController(text: profileController.userData?.lastName);
-    TextEditingController email =
-        TextEditingController(text: profileController.userData?.email);
 
     var screenWidth = MediaQuery.of(context).size.width;
     return screenWidth > 730 && kIsWeb?Center(
@@ -75,7 +84,7 @@ class ProfileEditScreen extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(bottom: 40.0.h),
                               child: normalButton('Save', onPressed: () {
-                                profileController.updateProfileData(
+                                ProfileEditScreen.profileController.updateProfileData(
                                     fName.text, lName.text);
                               }),
                             ),
@@ -143,7 +152,7 @@ class ProfileEditScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(bottom: 40.0.h),
                           child: normalButton('Save', onPressed: () {
-                            profileController.updateProfileData(
+                            ProfileEditScreen.profileController.updateProfileData(
                                 fName.text, lName.text);
                           }),
                         ),

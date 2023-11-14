@@ -1,6 +1,8 @@
 import 'package:finance_and_budget/constants/colors.dart';
 import 'package:finance_and_budget/view/analytics/analytics_screen.dart';
+import 'package:finance_and_budget/view/blank_screen.dart';
 import 'package:finance_and_budget/view/budget/budget_screen.dart';
+import 'package:finance_and_budget/view/chatgpt/chat_gpt_screen.dart';
 import 'package:finance_and_budget/view/home/home_screen.dart';
 import 'package:finance_and_budget/view/manifestation/manifestation_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +24,8 @@ class _CustomNavigationState extends State<CustomNavigation> {
     const HomeScreen(),
     const ManifestationScreen(),
     const BudgetScreen(),
-    const AnalyticsScreen(), //please add here the required page
-    const ChatScreen(), //please add here the required page
+    const BlankScreen(), //please add here the required page
+    const ChatGptScreen(), //please add here the required page
   ];
 
   @override

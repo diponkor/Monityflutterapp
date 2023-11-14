@@ -1,7 +1,7 @@
 import 'package:finance_and_budget/constants/colors.dart';
+import 'package:finance_and_budget/view/blank_screen.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_appbar.dart';
 import 'package:finance_and_budget/view/manifestation/widgets/manifestation_main_screen.dart';
-import 'package:finance_and_budget/view/manifestation/widgets/debt_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -74,7 +74,7 @@ class _ManifestationScreenState extends State<ManifestationScreen>
                           physics: BouncingScrollPhysics(),
                           children: [
                             ManifestationMainScreen(),
-                             DebtMainScreen()
+                             BlankScreen()
                           ],
                         ),
                       )

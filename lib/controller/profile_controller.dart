@@ -58,6 +58,7 @@ class ProfileController extends GetxController {
       //'Email': email,
     }).then((value) {
       Utils.showSnackBar('Updated');
+      getUserDetails();
     }).catchError((e){
       print(e);
       Utils.showSnackBar(e.code);

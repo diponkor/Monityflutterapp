@@ -22,6 +22,37 @@ class Utils {
     );
   }
 
+  static void showWarningDialog(String message, {Function()? onAccept}) {
+    Get.dialog(
+      AlertDialog(
+        backgroundColor: white,
+        title: const Row(
+          children: [
+            Icon(
+              Icons.warning,
+              color: secondaryTextColor,
+            ),
+            Text(' Warning!', style: TextStyle(color: black)),
+          ],
+        ),
+        content: Text(message, style: const TextStyle(color: black)),
+        actions: [
+          TextButton(
+            onPressed: onAccept,
+            child: const Text("Yes"),
+          ),
+          TextButton(
+            child: const Text(
+              "No",
+              style: TextStyle(color: black),
+            ),
+            onPressed: () => Get.back(),
+          ),
+        ],
+      ),
+    );
+  }
+
   static bool isEmailValid(String email) {
     RegExp regex = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -50,7 +81,7 @@ class Utils {
         duration: const Duration(seconds: 3),
         messageText: Text(
           message,
-          style: TextStyle(color: white),
+          style: const TextStyle(color: white),
           textAlign: TextAlign.center,
         ),
       ),

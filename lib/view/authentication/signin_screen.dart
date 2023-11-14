@@ -77,16 +77,16 @@ class _SigninScreenState extends State<SigninScreen> {
                 normalButton('Sign In', onPressed: () {
                   if (email.text.isNotEmpty && pass.text.isNotEmpty) {
                     authController.signIn(email.text, pass.text).then((value) {
-                      if(value){
+                      if(value && authController.auth.currentUser!.emailVerified){
                         Get.offAll(const WebNavigation());
                       }
-
+                      if(authController.auth.currentUser!.emailVerified ==false){
+                        Utils.showSnackBar('Email is not verified. Please check your email.');
+                      }
                     });
                   } else {
                     Utils.showSnackBar('Input Fields is required!');
                   }
-                  // Navigator.of(context).push(
-                  //     MaterialPageRoute(builder: (_) => const CustomNavigation()));
                 }),
                 SizedBox(height: 100.h),
                 Row(
@@ -97,7 +97,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => SignupScreen()));
+                              MaterialPageRoute(builder: (_) => const SignupScreen()));
                         },
                         child: subTitleText('Sign up',
                             authPage: true, color: secondaryColor)),
@@ -151,15 +151,18 @@ class _SigninScreenState extends State<SigninScreen> {
             normalButton('Sign In', onPressed: () {
               if (email.text.isNotEmpty && pass.text.isNotEmpty) {
                 authController.signIn(email.text, pass.text).then((value) {
-                  if(value){
+                  if(value && authController.auth.currentUser!.emailVerified){
                     Get.offAll(const CustomNavigation());
                   }
+                  if(authController.auth.currentUser!.emailVerified ==false){
+                    Utils.showSnackBar('Email is not verified. Please check your email.');
+                    print('00000022000');
+                  }
+
                 });
               } else {
                 Utils.showSnackBar('Input Fields is required!');
               }
-              // Navigator.of(context).push(
-              //     MaterialPageRoute(builder: (_) => const CustomNavigation()));
             }),
             SizedBox(height: 100.h),
             Row(
@@ -170,7 +173,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => SignupScreen()));
+                          MaterialPageRoute(builder: (_) => const SignupScreen()));
                     },
                     child: subTitleText('Sign up',
                         authPage: true, color: secondaryColor)),

@@ -9,16 +9,30 @@ import '../global_widgets/named_back_button.dart';
 import '../global_widgets/normal_button.dart';
 import 'package:get/get.dart';
 
-class ChangePasswordScreen extends StatelessWidget {
+class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
 
   static final ProfileController _profileController = Get.find();
 
   @override
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
+}
+
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  late TextEditingController oldPass;
+  late TextEditingController newPass;
+  late TextEditingController confirmNewPass;
+
+  @override
+  void initState() {
+    oldPass = TextEditingController();
+    newPass = TextEditingController();
+    confirmNewPass = TextEditingController();
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    TextEditingController oldPass = TextEditingController();
-    TextEditingController newPass = TextEditingController();
-    TextEditingController confirmNewPass = TextEditingController();
     var screenWidth = MediaQuery.of(context).size.width;
     return screenWidth > 730 && kIsWeb? Center(
       child: SizedBox(
@@ -69,8 +83,8 @@ class ChangePasswordScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(bottom: 40.0.h),
                           child: normalButton('Save', onPressed: () async {
-                            await _profileController.changePassword(
-                              email: _profileController.currentUser?.email.toString(),
+                            await ChangePasswordScreen._profileController.changePassword(
+                              email: ChangePasswordScreen._profileController.currentUser?.email.toString(),
                               newPassword: newPass.text,
                               oldPassword: oldPass.text,
                             );
@@ -132,8 +146,8 @@ class ChangePasswordScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(bottom: 40.0.h),
                       child: normalButton('Save', onPressed: () async {
-                        await _profileController.changePassword(
-                          email: _profileController.currentUser?.email.toString(),
+                        await ChangePasswordScreen._profileController.changePassword(
+                          email: ChangePasswordScreen._profileController.currentUser?.email.toString(),
                           newPassword: newPass.text,
                           oldPassword: oldPass.text,
                         );

@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/colors.dart';
+import '../../../utils/utils.dart';
 import '../../global_widgets/custom_card.dart';
 import '../../global_widgets/custom_text.dart';
 import '../item_details.dart';
@@ -33,35 +34,7 @@ class ManifestationMainScreen extends StatelessWidget {
           builder: (controller) {
             return Center(
               child: controller.manifestationList.isEmpty
-                  ? Column(
-                      children: [
-                        SizedBox(height: 10.h),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: titleText('Manifestations and Goals',
-                              size: 25, color: titleTextColor, authPage: true),
-                        ),
-                        SizedBox(height: 10.h),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: subTitleText(
-                              'Having  multiple Budget to aspire to is a great way to \nlearn how to money manage!',
-                              authPage: true,
-                              color: secondaryTextColor,
-                              size: 14,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        SizedBox(height: 30.h),
-                        SizedBox(
-                          height: 282.h,
-                          width: 282.w,
-                          child: Image.asset('assets/images/goals.png'),
-                        ),
-                        SizedBox(height: 10.h),
-                        titleText('Add More Goals',
-                            size: 25, color: titleTextColor, authPage: true),
-                      ],
-                    )
+                  ? Container()
                   : SingleChildScrollView(
                       physics: const BouncingScrollPhysics(),
                       child: Column(
@@ -75,30 +48,11 @@ class ManifestationMainScreen extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.only(top: 10.h),
                               child: customCard(
-                                  250,
+                                  150,
                                   Column(
                                     children: [
                                       Row(
                                         children: [
-                                          /*Container(
-                                            height: 79.h,
-                                            width: 79.w,
-                                            decoration: BoxDecoration(
-                                                color: primaryColor
-                                                    .withOpacity(0.1),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(14.r))),
-                                            child: Center(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 15.0),
-                                                child: Image.asset(
-                                                    'assets/images/home2.png',
-                                                    fit: BoxFit.cover),
-                                              ),
-                                            ),
-                                          ),*/
                                           SizedBox(width: 10.w),
                                           Column(
                                             crossAxisAlignment:
@@ -112,37 +66,13 @@ class ManifestationMainScreen extends StatelessWidget {
                                                   fontWeight: FontWeight.w600),
                                               SizedBox(height: 5.h),
                                               subTitleText(
-                                                  'You have saved amount of your goal\nGreat Work!',
+                                                  'Your goal is to save : \$${manifestationController
+                                                      .manifestationList[j].amount}',
                                                   size: 16)
                                             ],
                                           ),
                                         ],
                                       ),
-                                      SliderTheme(
-                                          data:
-                                              SliderTheme.of(context).copyWith(
-                                            showValueIndicator:
-                                                ShowValueIndicator.always,
-                                            inactiveTrackColor:
-                                                secondaryTextColor
-                                                    .withOpacity(0.2),
-                                          ),
-                                          child: Slider(
-                                            onChanged: (value) {},
-                                            value: 0,
-                                          )),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          for(var mile in manifestationController
-                                              .manifestationList[j].mileStones)
-                                          subTitleText(mile,
-                                              size: 16,
-                                              fontWeight: FontWeight.w500),
-                                        ],
-                                      ),
-                                      SizedBox(height: 10.h),
                                       Row(
                                         children: [
                                           InkWell(
@@ -180,7 +110,13 @@ class ManifestationMainScreen extends StatelessWidget {
                                           SizedBox(width: 15.w),
                                           GestureDetector(
                                             onTap: (){
-                                              manifestationController.deleteManifes(j);
+                                              Utils.showWarningDialog('Are you sure to delete this?',
+                                                  onAccept: (){
+                                                    manifestationController.deleteManifes(j);
+                                                    Get.back();
+                                                  }
+                                              );
+
                                             },
                                             child: const Icon(
                                               Icons.delete_outline,color: red,

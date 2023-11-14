@@ -83,7 +83,7 @@ class _SignupScreenState extends State<SignupScreen>
                                 authPage: true, color: primaryColor),
                           ),
                           SizedBox(width: 2.w),
-                          subTitleText('Pesonal Info',
+                          subTitleText('Personal Info',
                               authPage: true,
                               fontWeight: FontWeight.w700,
                               color: blackTextColor2),
@@ -230,7 +230,8 @@ class _SignupScreenState extends State<SignupScreen>
               companyName.text.isNotEmpty &&
               userRole.text.isNotEmpty) {
             authController.signUp(email.text, pass.text).then((value) async {
-              final user = UserModel(
+              if(value){
+                  final user = UserModel(
                 firstName: fName.text.trim(),
                 lastName: lName.text.trim(),
                 email: email.text.trim(),
@@ -240,9 +241,14 @@ class _SignupScreenState extends State<SignupScreen>
                 userRole: userRole.text.trim(),
               );
               await authController.createUser(user).then((value) {
-                Get.offAll( screenWidth > 730 && kIsWeb?const WebNavigation(): const CustomNavigation());
+                authController.sendEmailLink(email.text);
+                Get.offAll(const SigninScreen());
+                //Get.offAll( screenWidth > 730 && kIsWeb?const WebNavigation(): const CustomNavigation());
               });
-              Utils.showSnackBar('Account has been created');
+              Utils.showSnackBar('Account will be created once verified');
+              }
+              
+
             });
           } else {
             print(selectedValue);

@@ -113,10 +113,17 @@ class ProfileScreen extends StatelessWidget {
                               SizedBox(height: 30.h),
                               GestureDetector(
                                   onTap: () {
-                                    profileController.signOut().then((value) {
-                                      Utils.showSnackBar(
-                                          'You\'re logged out successfully');
-                                    });
+                                    Utils.showWarningDialog('Are you sure to logout?',
+                                        onAccept: (){
+                                          profileController.signOut()
+                                              .then((value) {
+                                            Utils.showSnackBar(
+                                                'You\'re logged out successfully');
+                                          });
+                                          Get.back();
+                                        }
+                                    );
+
                                   },
                                   child: buildProfileItem(
                                       'assets/images/profile_logout.png',
@@ -227,10 +234,16 @@ class ProfileScreen extends StatelessWidget {
                           SizedBox(height: 30.h),
                           GestureDetector(
                               onTap: () {
-                                profileController.signOut().then((value) {
-                                  Utils.showSnackBar(
-                                      'You\'re logged out successfully');
-                                });
+                                Utils.showWarningDialog('Are you sure to logout?',
+                                    onAccept: (){
+                                      profileController.signOut()
+                                          .then((value) {
+                                        Utils.showSnackBar(
+                                            'You\'re logged out successfully');
+                                      });
+                                      Get.back();
+                                    }
+                                );
                               },
                               child: buildProfileItem(
                                   'assets/images/profile_logout.png',

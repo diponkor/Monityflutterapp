@@ -44,7 +44,7 @@ class CustomAppbar extends StatelessWidget {
               )),
           Row(
             children: [
-              GestureDetector(
+              /*GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) => const MonityChatScreen()));
@@ -60,7 +60,7 @@ class CustomAppbar extends StatelessWidget {
                       child: Image.asset('assets/images/ai_monity.png',
                           fit: BoxFit.contain)),
                 ),
-              ),
+              ),*/
               SizedBox(width: 10.w),
               GestureDetector(
                 onTap: () {

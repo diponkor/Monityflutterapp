@@ -27,8 +27,7 @@ class _CreateManifestationState extends State<CreateManifestation> {
   bool? isChecked = false;
   TextEditingController goalNameController = TextEditingController();
   TextEditingController amountController = TextEditingController();
-  TextEditingController bankController = TextEditingController();
-  var dateText = 'Ex. - 30 JUNE 2023';
+  var dateText = 'Date';
 
   @override
   void initState() {
@@ -38,8 +37,6 @@ class _CreateManifestationState extends State<CreateManifestation> {
           .manifestationList[widget.manifestIndex!].goalName;
       amountController.text = manifestationController
           .manifestationList[widget.manifestIndex!].amount;
-      bankController.text =
-          manifestationController.manifestationList[widget.manifestIndex!].bank;
       dateText = manifestationController
           .manifestationList[widget.manifestIndex!].byWhen;
       for (var mile in manifestationController
@@ -201,13 +198,16 @@ class _CreateManifestationState extends State<CreateManifestation> {
                                       fillColor: white,
                                       suffixIcon: GestureDetector(
                                           onTap: () {
-                                            setState(() {
-                                              manifestationController
-                                                  .milestoneControllers
-                                                  .removeAt(i);
-                                              // manifestationController.mileTextList
-                                              //     .removeAt(i);
-                                            });
+                                            Utils.showWarningDialog('Are you sure to delete this?',
+                                                onAccept: (){
+                                                  setState(() {
+                                                    manifestationController
+                                                        .milestoneControllers
+                                                        .removeAt(i);
+                                                    Get.back();
+                                                  });
+                                                }
+                                            );
                                           },
                                           child: const Icon(Icons.delete_outline,
                                               color: red)),
@@ -230,22 +230,13 @@ class _CreateManifestationState extends State<CreateManifestation> {
                                           color: secondaryTextColor),
                                     )),
                               ),
-                            SizedBox(height: 10.h),
-                            subTitleText('Bank',
-                                color: secondaryTextColor.withOpacity(0.8)),
-                            SizedBox(height: 5.h),
-                            singleTextField(
-                                controller: bankController,
-                                hintText: 'Enter Bank',
-                                textType: TextInputType.text),
                             SizedBox(height: 40.h),
                             normalButton('Next', onPressed: () async {
                               manifestationController.makeMileList();
                               if (goalNameController.text.isNotEmpty &&
                                   amountController.text.isNotEmpty &&
                                   dateText.isNotEmpty &&
-                                  manifestationController.mileTextList.isNotEmpty &&
-                                  bankController.text.isNotEmpty) {
+                                  manifestationController.mileTextList.isNotEmpty) {
                                 final manifestation = ManifestationModel(
                                     widget.manifestIndex != null
                                         ? manifestationController
@@ -256,8 +247,7 @@ class _CreateManifestationState extends State<CreateManifestation> {
                                     goalNameController.text,
                                     amountController.text,
                                     dateText,
-                                    manifestationController.mileTextList,
-                                    bankController.text);
+                                    manifestationController.mileTextList);
 
                                 widget.manifestIndex != null
                                     ? await manifestationController
@@ -431,13 +421,16 @@ class _CreateManifestationState extends State<CreateManifestation> {
                                   fillColor: white,
                                   suffixIcon: GestureDetector(
                                       onTap: () {
-                                        setState(() {
-                                          manifestationController
-                                              .milestoneControllers
-                                              .removeAt(i);
-                                          // manifestationController.mileTextList
-                                          //     .removeAt(i);
-                                        });
+                                        Utils.showWarningDialog('Are you sure to delete this?',
+                                            onAccept: (){
+                                              setState(() {
+                                                manifestationController
+                                                    .milestoneControllers
+                                                    .removeAt(i);
+                                                Get.back();
+                                              });
+                                            }
+                                        );
                                       },
                                       child: const Icon(Icons.delete_outline,
                                           color: red)),
@@ -460,22 +453,13 @@ class _CreateManifestationState extends State<CreateManifestation> {
                                       color: secondaryTextColor),
                                 )),
                           ),
-                        SizedBox(height: 10.h),
-                        subTitleText('Bank',
-                            color: secondaryTextColor.withOpacity(0.8)),
-                        SizedBox(height: 5.h),
-                        singleTextField(
-                            controller: bankController,
-                            hintText: 'Enter Bank',
-                            textType: TextInputType.text),
                         SizedBox(height: 40.h),
                         normalButton('Next', onPressed: () async {
                           manifestationController.makeMileList();
                           if (goalNameController.text.isNotEmpty &&
                               amountController.text.isNotEmpty &&
                               dateText.isNotEmpty &&
-                              manifestationController.mileTextList.isNotEmpty &&
-                              bankController.text.isNotEmpty) {
+                              manifestationController.mileTextList.isNotEmpty) {
                             final manifestation = ManifestationModel(
                                 widget.manifestIndex != null
                                     ? manifestationController
@@ -486,8 +470,7 @@ class _CreateManifestationState extends State<CreateManifestation> {
                                 goalNameController.text,
                                 amountController.text,
                                 dateText,
-                                manifestationController.mileTextList,
-                                bankController.text);
+                                manifestationController.mileTextList);
 
                             widget.manifestIndex != null
                                 ? await manifestationController

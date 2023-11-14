@@ -4,11 +4,14 @@ class ManifestationModel {
   final String amount;
   final String byWhen;
   final List<dynamic> mileStones;
-  final String bank;
 
   ManifestationModel(
-      this.id,
-      this.goalName, this.amount, this.byWhen, this.mileStones, this.bank);
+    this.id,
+    this.goalName,
+    this.amount,
+    this.byWhen,
+    this.mileStones,
+  );
 
   Map<String, dynamic> toJson() {
     return {
@@ -17,11 +20,9 @@ class ManifestationModel {
       'Amount': amount,
       'ByWhen': byWhen,
       'MileStones': mileStones,
-      'Bank': bank,
     };
   }
 }
-
 
 // factory UserModel.fromSnapshot(
 //     DocumentSnapshot<Map<String, dynamic>> document) {
@@ -36,4 +37,3 @@ class ManifestationModel {
 //     userRole: data?['UserRole'],
 //   );
 // }
-

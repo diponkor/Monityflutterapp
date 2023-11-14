@@ -1,3 +1,4 @@
+import 'package:finance_and_budget/utils/utils.dart';
 import 'package:finance_and_budget/view/budget/create_budget.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -97,19 +98,19 @@ class _BudgetScreenState extends State<BudgetScreen> {
                               i++)
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(
+                                   /* Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (_) =>
                                                 BudgetViewScreen(index: i)));
                                     _budgetController.getTotalIncomeData(i);
                                     _budgetController.getTotalFixedExpenseData(i);
                                     _budgetController.getTotalVarExpenseData(i);
-                                    _budgetController.getTotalSinkFundData(i);
+                                    _budgetController.getTotalSinkFundData(i);*/
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom: 8.0),
                                     child: customCard(
-                                        118.h,
+                                        118,
                                         Container(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 10.w),
@@ -123,80 +124,24 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                                     mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: [
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                        children: [
-                                                          titleText(
-                                                              controller
-                                                                  .addBudgetList[i]
-                                                                  .budgetName,
-                                                              color:
-                                                              blackTextColor,
-                                                              size: 24,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .w400),
-                                                          subTitleText('80.00%',
-                                                              size: 10)
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                        children: [
-                                                          subTitleText(
-                                                              controller
-                                                                  .addBudgetList[i]
-                                                                  .date,
-                                                              size: 10)
-                                                        ],
-                                                      ),
-                                                      Stack(
-                                                        children: [
-                                                          Container(
-                                                            height: 8.h,
-                                                            width:
-                                                            double.infinity,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                    .circular(10
-                                                                    .r)),
-                                                                color: secondaryTextColor
-                                                                    .withOpacity(
-                                                                    0.2)),
-                                                          ),
-                                                          Container(
-                                                            height: 8.h,
-                                                            width: 177.w,
-                                                            decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius
-                                                                    .all(Radius
-                                                                    .circular(10
-                                                                    .r)),
-                                                                color:
-                                                                primaryColor),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                        children: [
-                                                          subTitleText(
-                                                              '${controller
-                                                                  .addBudgetList[i].id} \$ to go',
-                                                              size: 10),
-                                                          subTitleText(
-                                                              'Amount',
-                                                              size: 10),
-                                                        ],
-                                                      ),
+                                                      titleText(
+                                                          controller
+                                                              .addBudgetList[i]
+                                                              .budgetName,
+                                                          color:
+                                                          blackTextColor,
+                                                          size: 24,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w400),
+                                                      SizedBox(height: 10.h),
+                                                      subTitleText(
+                                                          controller
+                                                              .addBudgetList[i]
+                                                              .date,
+                                                          size: 12),
                                                     ],
                                                   ),
                                                 ),
@@ -204,7 +149,14 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                               SizedBox(width: 10.w),
                                               InkWell(
                                                 onTap: () {
-                                                  //Get.to(CreateBudget(budgetIndex: i,));
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              BudgetViewScreen(index: i)));
+                                                  _budgetController.getTotalIncomeData(i);
+                                                  _budgetController.getTotalFixedExpenseData(i);
+                                                  _budgetController.getTotalVarExpenseData(i);
+                                                  _budgetController.getTotalSinkFundData(i);
                                                 },
                                                 child: Container(
                                                     height: 30.h,
@@ -223,7 +175,12 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                               SizedBox(width: 10.w),
                                               InkWell(
                                                 onTap: () {
-                                                  _budgetController.deleteBudget(i);
+                                                  Utils.showWarningDialog('Are you sure to delete this?',
+                                                    onAccept: (){
+                                                      _budgetController.deleteBudget(i);
+                                                      Get.back();
+                                                    }
+                                                  );
                                                 },
                                                 child: Container(
                                                     height: 30.h,

@@ -53,19 +53,15 @@ class ManifestationController extends GetxController {
 
   Future<void> updateManifestation(ManifestationModel manifestationModel) async {
     Utils.showLoading();
-    print('----------');
     final manifesCollection = FirebaseFirestore.instance
         .collection('User')
         .doc(auth.currentUser?.email)
         .collection('Manifestation');
-    print('----------');
     final docRef = manifesCollection.doc(manifestationModel.id);
-    print('----------');
+
     print(docRef);
-    print('----------');
     await docRef.update(manifestationModel.toJson()).catchError((e) {
       print(e);
-      print('----------');
       Utils.showSnackBar(e.code);
     });
     manifestationList = [];
@@ -108,7 +104,6 @@ class ManifestationController extends GetxController {
           data['Amount'],
           data['ByWhen'],
           data['MileStones'],
-          data['Bank'],
         );
         manifestationList.add(maniModel);
       }

@@ -1,8 +1,10 @@
+import 'package:finance_and_budget/view/chatgpt/chat_gpt_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/colors.dart';
 import 'analytics/analytics_screen.dart';
+import 'blank_screen.dart';
 import 'budget/budget_screen.dart';
 import 'chat/chat_screen.dart';
 import 'home/home_screen.dart';
@@ -21,8 +23,8 @@ class _WebNavigationState extends State<WebNavigation> {
     const HomeScreen(),
     const ManifestationScreen(),
     const BudgetScreen(),
-    const AnalyticsScreen(), //please add here the required page
-    const ChatScreen(), //please add here the required page
+    const BlankScreen(), //please add here the required page
+    const ChatGptScreen(),  //please add here the required page
   ];
 
   @override
