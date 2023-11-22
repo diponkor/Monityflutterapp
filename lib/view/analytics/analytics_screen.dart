@@ -1,12 +1,12 @@
-import 'package:finance_and_budget/view/analytics/receipts_screen.dart';
-import 'package:finance_and_budget/view/analytics/widget/first_analytics_screen.dart';
-import 'package:finance_and_budget/view/analytics/widget/second_analytics_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../constants/colors.dart';
+import '../../controller/account_controller.dart';
 import '../global_widgets/custom_appbar.dart';
+import '../global_widgets/custom_text.dart';
+import '../home/widgets/accounts_row.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   const AnalyticsScreen({super.key});
@@ -25,6 +25,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
     super.initState();
   }
 
+  AccountController accountController = Get.put(AccountController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +35,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
         preferredSize: Size.fromHeight(107.h),
         child: const CustomAppbar(),
       ),
-      floatingActionButton: Container(
+     /* floatingActionButton: Container(
         padding: EdgeInsets.only(bottom: 80.h),
         child: FloatingActionButton(
             onPressed: () {
@@ -41,62 +43,63 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
             },
             backgroundColor: white,
             child: const Icon(Icons.add, color: blackTextColor)),
-      ),
+      ),*/
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            DefaultTabController(
-              length: 2,
-              child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0.w),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Row(
-                          children: [
-                            Container(
-                                height: 39.h,
-                                width: 360.w,
-                                decoration: BoxDecoration(
-                                    color: white,
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(10.r))),
-                                child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.r)),
-                                  child: const TabBar(
-                                    indicator: BoxDecoration(
-                                      color: primaryColor,
-                                    ),
-                                    unselectedLabelColor: blackTextColor,
-                                    tabs: [
-                                      Text('Account Summary'),
-                                      Text('Transactions'),
-                                    ],
-                                  ),
-                                )),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 600.h,
-                        child: TabBarView(
-                          physics: const BouncingScrollPhysics(),
-                          children: [
-                            firstAnalyticsScreen(context),
-                            secondAnalyticsScreen(context),
-                          ],
-                        ),
-                      )
-                    ],
-                  )),
-            )
-          ],
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 40.h),
+          child: GetBuilder<AccountController>(
+              id: 'updateDetails',
+              builder: (context) {
+                return accountController.isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {});
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                titleText('Accounts Overview',
+                                    color: titleTextColor, size: 20),
+                                titleText('See Accounts Info',
+                                    color: titleTextColor, size: 14),
+                              ],
+                            ),
+                          ),
+                          for (int m = 0;
+                              m <
+                                  accountController
+                                      .plaidAccountsModel.accounts!.length;
+                              m++)
+                            Padding(
+                              padding: EdgeInsets.all(8.h),
+                              child: Column(
+                                children: [
+                                  accountsRow(
+                                      'Account Name',
+                                      accountController.plaidAccountsModel
+                                              .accounts?[m].name ??
+                                          ''),
+                                  accountsRow(
+                                      'Balance',
+                                      accountController.plaidAccountsModel
+                                              .accounts?[m].balances.current
+                                              .toString() ??
+                                          ''),
+                                ],
+                              ),
+                            ),
+                          // accountsRow('Credit Card Utilization',
+                          //     'N12,000.00'),
+                        ],
+                      );
+              }),
         ),
       ),
     );
   }
-
 }

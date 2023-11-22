@@ -2,7 +2,6 @@ import 'package:finance_and_budget/view/global_widgets/custom_appbar.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_card.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text.dart';
 import 'package:finance_and_budget/view/home/widgets/accounts_row.dart';
-import 'package:finance_and_budget/view/home/widgets/month_budget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -228,7 +227,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           //     'N12,000.00'),
                                         ],
                                       );
-                                    })),
+                                    }),
+                            ),
                             SizedBox(height: 20.h),
                             //const MonthBudget(),
                             SizedBox(height: 20.h),

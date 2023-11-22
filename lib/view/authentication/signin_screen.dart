@@ -92,7 +92,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    subTitleText('Don\'t have any account? ',
+                    subTitleText('Don\'t have Monity account? ',
                         authPage: true, color: blackTextColor2),
                     GestureDetector(
                         onTap: () {
@@ -168,7 +168,7 @@ class _SigninScreenState extends State<SigninScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                subTitleText('Don\'t have any account? ',
+                subTitleText('Don\'t have Monity account? ',
                     authPage: true, color: blackTextColor2),
                 GestureDetector(
                     onTap: () {

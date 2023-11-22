@@ -1,6 +1,5 @@
 
 import 'package:finance_and_budget/view/authentication/signin_screen.dart';
-import 'package:finance_and_budget/view/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

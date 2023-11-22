@@ -11,6 +11,14 @@ class AddBudgetModel {
 
   final Map<String, dynamic> sinkingFund;
 
+  final Map<String, dynamic> actualIncomeMap;
+
+  final Map<String, dynamic> actualFixedExpenseMap;
+
+  final Map<String, dynamic> actualVarExpense;
+
+  final Map<String, dynamic> actualSinkingFund;
+
   AddBudgetModel(
       this.id,
       this.budgetName,
@@ -19,6 +27,10 @@ class AddBudgetModel {
       this.fixedExpenseMap,
       this.varExpense,
       this.sinkingFund,
+      this.actualIncomeMap,
+      this.actualFixedExpenseMap,
+      this.actualVarExpense,
+      this.actualSinkingFund
       );
 
   Map<String, dynamic> toMap() {
@@ -30,6 +42,10 @@ class AddBudgetModel {
       "FixedExpenseMap": fixedExpenseMap,
       "VarExpense": varExpense,
       "SinkingFund": sinkingFund,
+      "ActualIncomeMap": actualIncomeMap,
+      "ActualFixedExpenseMap": actualFixedExpenseMap,
+      "ActualVarExpense": actualVarExpense,
+      "ActualSinkingFund": actualSinkingFund,
     };
   }
 }

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:finance_and_budget/model/create_budget_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,6 @@ import '../utils/utils.dart';
 
 class BudgetController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
-  List<CreateBudgetModel> budgetList = [];
   List<AddBudgetModel> addBudgetList = [];
 
 
@@ -59,60 +57,76 @@ class BudgetController extends GetxController {
   }
 
   ///Budget View Income..........
-  var totalIncomeData = 0;
+  double totalIncomeData = 0;
 
   void getTotalIncomeData(int index) {
     final incomeMap = addBudgetList[index].incomeMap;
 
     if (incomeMap != null) {
+      // totalIncomeData = incomeMap.values
+      //     .where((value) => value != null)
+      //     .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
+
+
       totalIncomeData = incomeMap.values
-          .where((value) => value != null) // Filter out null values
-          .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
+          .where((value) => value != null)
+          .fold<double>(0, (a, b) => a + double.parse(b.toString()));
+
     } else {
       print("incomeMap is null.");
     }
   }
 
   ///Budget View fixed expense..........
-  var totalFixedExpense = 0;
+  double totalFixedExpense = 0;
 
   void getTotalFixedExpenseData(int index) {
     final fixExpMap = addBudgetList[index].fixedExpenseMap;
 
     if (fixExpMap != null) {
+      // totalFixedExpense = fixExpMap.values
+      //     .where((value) => value != null) // Filter out null values
+      //     .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
+
       totalFixedExpense = fixExpMap.values
-          .where((value) => value != null) // Filter out null values
-          .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
+          .where((value) => value != null)
+          .fold<double>(0, (a, b) => a + double.parse(b.toString()));
     } else {
       print("fixExpMap is null.");
     }
   }
 
   ///Budget View fixed expense..........
-  var totalVarExpense = 0;
+  double totalVarExpense = 0;
 
   void getTotalVarExpenseData(int index) {
     final variExpMap = addBudgetList[index].varExpense;
 
     if (variExpMap != null) {
+      // totalVarExpense = variExpMap.values
+      //     .where((value) => value != null) // Filter out null values
+      //     .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
       totalVarExpense = variExpMap.values
-          .where((value) => value != null) // Filter out null values
-          .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
+          .where((value) => value != null)
+          .fold<double>(0, (a, b) => a + double.parse(b.toString()));
     } else {
       print("fixExpMap is null.");
     }
   }
 
   ///Budget View fixed expense..........
-  var totalSinkFund = 0;
+  double totalSinkFund = 0;
 
   void getTotalSinkFundData(int index) {
     final sinkFundMap = addBudgetList[index].sinkingFund;
 
     if (sinkFundMap != null) {
+      // totalSinkFund = sinkFundMap.values
+      //     .where((value) => value != null) // Filter out null values
+      //     .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
       totalSinkFund = sinkFundMap.values
-          .where((value) => value != null) // Filter out null values
-          .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
+          .where((value) => value != null)
+          .fold<double>(0, (a, b) => a + double.parse(b.toString()));
     } else {
       print("fixExpMap is null.");
     }
@@ -123,26 +137,58 @@ class BudgetController extends GetxController {
   ///
   //income
   Map<String, TextEditingController> actualIncomeControllerMap = {};
-  var totalActualIncome = 0;
+  double totalActualIncome = 0;
+  Map<String, String> actualIncomeMapData = {};
 
   void getTotalActualIncome() {
     actualIncomeControllerMap.forEach((key, value) {
       try {
-        int val = int.parse(value.text);
+        double val = double.parse(value.text);
         totalActualIncome += val;
       } catch (e) {
         print(e);
       }
     });
   }
+
+  Map<String, String> newActualIncomeMap = {};
+ void makeNewActualIncomeMap(){
+   actualIncomeControllerMap.forEach((key, controller) {
+     newActualIncomeMap[key] = controller.text;
+   });
+   // print(actualIncomeControllerMap.length);
+   // print(newActualIncomeMap);
+ }
+
+  Map<String, String> newActualFixMap = {};
+  void makeNewActualFixMap(){
+    actualFixedControllerMap.forEach((key, controller) {
+      newActualFixMap[key] = controller.text;
+    });
+  }
+
+  Map<String, String> newActualVarMap = {};
+  void makeNewActualVarMap(){
+    actualVarControllerMap.forEach((key, controller) {
+      newActualVarMap[key] = controller.text;
+    });
+  }
+
+  Map<String, String> newActualSingMap = {};
+  void makeNewActualSinkMap(){
+    actualSinkControllerMap.forEach((key, controller) {
+      newActualSingMap[key] = controller.text;
+    });
+  }
+
   //fixedExp
   Map<String, TextEditingController> actualFixedControllerMap = {};
-  var totalActualFixed = 0;
+  double totalActualFixed = 0;
 
   void getTotalActualFixed() {
     actualFixedControllerMap.forEach((key, value) {
       try {
-        int val = int.parse(value.text);
+        double val = double.parse(value.text);
         totalActualFixed += val;
       } catch (e) {
         print(e);
@@ -151,12 +197,12 @@ class BudgetController extends GetxController {
   }
   //varExp
   Map<String, TextEditingController> actualVarControllerMap = {};
-  var totalActualVar = 0;
+  double totalActualVar = 0;
 
   void getTotalActualVar() {
     actualVarControllerMap.forEach((key, value) {
       try {
-        int val = int.parse(value.text);
+        double val = double.parse(value.text);
         totalActualVar += val;
       } catch (e) {
         print(e);
@@ -165,12 +211,12 @@ class BudgetController extends GetxController {
   }
   //sinkFund
   Map<String, TextEditingController> actualSinkControllerMap = {};
-  var totalActualSink = 0;
+  double totalActualSink = 0;
 
   void getTotalActualSink() {
     actualSinkControllerMap.forEach((key, value) {
       try {
-        int val = int.parse(value.text);
+        double val = double.parse(value.text);
         totalActualSink += val;
       } catch (e) {
         print(e);
@@ -244,14 +290,15 @@ class BudgetController extends GetxController {
         .collection('User')
         .doc(auth.currentUser?.email)
         .collection('Budgets');
+    print(budgetModel.actualIncomeMap);
     final docRef = userCollection.doc(budgetModel.id);
     await docRef.update(budgetModel.toMap()).catchError((e) {
       print(e);
       Utils.showSnackBar(e.code);
     });
-    budgetList = [];
+    addBudgetList = [];
     fetchBudget();
-    update(['updateBudList']);
+    Utils.showSnackBar('Updated');
   }
 
   Future<void> deleteBudget(int index) async {
@@ -289,6 +336,10 @@ class BudgetController extends GetxController {
           data['FixedExpenseMap'],
           data['VarExpense'],
           data['SinkingFund'],
+          data['ActualIncomeMap'],
+          data['ActualFixedExpenseMap'],
+          data['ActualVarExpense'],
+          data['ActualSinkingFund'],
         );
       }).toList();
       addBudgetList = [];

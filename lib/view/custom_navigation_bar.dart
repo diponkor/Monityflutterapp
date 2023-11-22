@@ -24,7 +24,7 @@ class _CustomNavigationState extends State<CustomNavigation> {
     const HomeScreen(),
     const ManifestationScreen(),
     const BudgetScreen(),
-    const BlankScreen(), //please add here the required page
+    const AnalyticsScreen(), //please add here the required page
     const ChatGptScreen(), //please add here the required page
   ];
 

@@ -9,12 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
 import '../../utils/utils.dart';
-import '../custom_navigation_bar.dart';
 import '../global_widgets/custom_text.dart';
 import '../global_widgets/normal_button.dart';
 import 'package:get/get.dart';
-
-import '../web_navigation.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -83,7 +80,7 @@ class _SignupScreenState extends State<SignupScreen>
                                 authPage: true, color: primaryColor),
                           ),
                           SizedBox(width: 2.w),
-                          subTitleText('Personal Info',
+                          subTitleText('About You',
                               authPage: true,
                               fontWeight: FontWeight.w700,
                               color: blackTextColor2),
@@ -100,10 +97,12 @@ class _SignupScreenState extends State<SignupScreen>
                                 authPage: true, color: primaryColor),
                           ),
                           SizedBox(width: 2.w),
-                          subTitleText('Customer Info',
-                              authPage: true,
-                              fontWeight: FontWeight.w700,
-                              color: blackTextColor2),
+                          Flexible(
+                            child: subTitleText('About Your Company',
+                                authPage: true,
+                                fontWeight: FontWeight.w700,
+                                color: blackTextColor2),
+                          ),
                         ],
                       ),
                     )
@@ -141,7 +140,7 @@ class _SignupScreenState extends State<SignupScreen>
                             authPage: true, color: primaryColor),
                       ),
                       SizedBox(width: 2.w),
-                      subTitleText('Pesonal Info',
+                      subTitleText('About You',
                           authPage: true,
                           fontWeight: FontWeight.w700,
                           color: blackTextColor2),
@@ -158,10 +157,12 @@ class _SignupScreenState extends State<SignupScreen>
                             authPage: true, color: primaryColor),
                       ),
                       SizedBox(width: 2.w),
-                      subTitleText('Customer Info',
-                          authPage: true,
-                          fontWeight: FontWeight.w700,
-                          color: blackTextColor2),
+                      Flexible(
+                        child: subTitleText('About Your Company',
+                            authPage: true,
+                            fontWeight: FontWeight.w700,
+                            color: blackTextColor2),
+                      ),
                     ],
                   ),
                 )
@@ -245,7 +246,7 @@ class _SignupScreenState extends State<SignupScreen>
                 Get.offAll(const SigninScreen());
                 //Get.offAll( screenWidth > 730 && kIsWeb?const WebNavigation(): const CustomNavigation());
               });
-              Utils.showSnackBar('Account will be created once verified');
+              Utils.showSnackBar('Account will be created once verified, please check your email');
               }
               
 
@@ -261,7 +262,7 @@ class _SignupScreenState extends State<SignupScreen>
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            subTitleText('Already have any account? ',
+            subTitleText('Already have Monity account? ',
                 authPage: true, color: blackTextColor2),
             GestureDetector(
                 onTap: () {

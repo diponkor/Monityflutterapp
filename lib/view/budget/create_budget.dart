@@ -79,7 +79,7 @@ class _CreateBudgetState extends State<CreateBudget> {
     // TODO: implement initState
     if (widget.budgetIndex != null) {
       _budgetName.text =
-          budgetController.budgetList[widget.budgetIndex!].budgetName;
+          budgetController.addBudgetList[widget.budgetIndex!].budgetName;
     }
     super.initState();
   }
@@ -501,13 +501,18 @@ class _CreateBudgetState extends State<CreateBudget> {
                                 //     ? budgetController
                                 //         .budgetList[widget.budgetIndex!].id
                                 //     :
-                                  '',
-                                  _budgetName.text,
-                                  dateText,
-                                  budgetController.incomeAmountMap,
-                                  budgetController.fixedExpMap,
-                                  budgetController.varExpMap,
-                                  budgetController.sinkFundMap);
+                                '',
+                                _budgetName.text,
+                                dateText,
+                                budgetController.incomeAmountMap,
+                                budgetController.fixedExpMap,
+                                budgetController.varExpMap,
+                                budgetController.sinkFundMap,
+                                budgetController.incomeAmountMap,
+                                budgetController.fixedExpMap,
+                                budgetController.varExpMap,
+                                budgetController.sinkFundMap,
+                              );
                               // widget.budgetIndex != null
                               //     ? await budgetController
                               //         .updateBudget(budget)
@@ -946,7 +951,12 @@ class _CreateBudgetState extends State<CreateBudget> {
                               budgetController.incomeAmountMap,
                               budgetController.fixedExpMap,
                               budgetController.varExpMap,
-                              budgetController.sinkFundMap);
+                              budgetController.sinkFundMap,
+                              budgetController.incomeAmountMap,
+                              budgetController.fixedExpMap,
+                              budgetController.varExpMap,
+                              budgetController.sinkFundMap,
+                          );
                           // widget.budgetIndex != null
                           //     ? await budgetController
                           //         .updateBudget(budget)

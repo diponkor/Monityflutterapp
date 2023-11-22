@@ -18,7 +18,7 @@ class BudgetScreen extends StatefulWidget {
 }
 
 class _BudgetScreenState extends State<BudgetScreen> {
-   final BudgetController _budgetController = Get.find();
+  final BudgetController _budgetController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -42,173 +42,208 @@ class _BudgetScreenState extends State<BudgetScreen> {
         children: [
           SingleChildScrollView(
             child: GetBuilder<BudgetController>(
-              id: 'updateBudList',
-              builder: (con) {
-                return Column(
-                  children: [
-                    SizedBox(height: 10.h),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: titleText('Budget',
-                            size: 25, color: titleTextColor, authPage: true),
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: subTitleText(
-                            'Having  multiple Budget to aspire to is a great way to learn \nhow to money manage!',
-                            authPage: true,
-                            color: secondaryTextColor,
-                            size: 14,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                    _budgetController.addBudgetList.isEmpty
-                        ? Column(
-                      children: [
-                        SizedBox(
-                          height: 282.h,
-                          width: 282.w,
-                          child: Image.asset('assets/images/budget.png'),
+                id: 'updateBudList',
+                builder: (con) {
+                  return Column(
+                    children: [
+                      SizedBox(height: 10.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: titleText('Budget',
+                              size: 25, color: titleTextColor, authPage: true),
                         ),
-                        SizedBox(height: 10.h),
-                        titleText('Add More Budget',
-                            size: 25, color: titleTextColor, authPage: true),
-                        SizedBox(height: 10.h),
-                        subTitleText(
-                            'Having  multiple Budget to aspire to is a great \nway to learn how to money manage!',
-                            authPage: true,
-                            color: secondaryTextColor,
-                            fontWeight: FontWeight.w400),
-                      ],
-                    )
-                        : GetBuilder<BudgetController>(
-                        id: 'updateBudList',
-                        builder: (controller) {
-                          return Column(
-                            children: [
-                              for (int i = 0;
-                              i < controller.addBudgetList.length;
-                              i++)
-                                GestureDetector(
-                                  onTap: () {
-                                   /* Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) =>
-                                                BudgetViewScreen(index: i)));
-                                    _budgetController.getTotalIncomeData(i);
-                                    _budgetController.getTotalFixedExpenseData(i);
-                                    _budgetController.getTotalVarExpenseData(i);
-                                    _budgetController.getTotalSinkFundData(i);*/
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 8.0),
-                                    child: customCard(
-                                        118,
-                                        Container(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 10.w),
-                                          child: Row(
-                                            children: [
-                                              SizedBox(width: 10.w),
-                                              SizedBox(
-                                                width: 250.w,
-                                                child: SingleChildScrollView(
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      titleText(
-                                                          controller
-                                                              .addBudgetList[i]
-                                                              .budgetName,
-                                                          color:
-                                                          blackTextColor,
-                                                          size: 24,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w400),
-                                                      SizedBox(height: 10.h),
-                                                      subTitleText(
-                                                          controller
-                                                              .addBudgetList[i]
-                                                              .date,
-                                                          size: 12),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(width: 10.w),
-                                              InkWell(
-                                                onTap: () {
-                                                  Navigator.of(context).push(
-                                                      MaterialPageRoute(
-                                                          builder: (_) =>
-                                                              BudgetViewScreen(index: i)));
-                                                  _budgetController.getTotalIncomeData(i);
-                                                  _budgetController.getTotalFixedExpenseData(i);
-                                                  _budgetController.getTotalVarExpenseData(i);
-                                                  _budgetController.getTotalSinkFundData(i);
-                                                },
-                                                child: Container(
-                                                    height: 30.h,
-                                                    width: 30.w,
-                                                    decoration: BoxDecoration(
-                                                      color: bgWhite,
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          50.r),
-                                                    ),
-                                                    child: const Icon(
-                                                        Icons.edit,
-                                                        color: primaryColor,
-                                                        size: 18)),
-                                              ),
-                                              SizedBox(width: 10.w),
-                                              InkWell(
-                                                onTap: () {
-                                                  Utils.showWarningDialog('Are you sure to delete this?',
-                                                    onAccept: (){
-                                                      _budgetController.deleteBudget(i);
-                                                      Get.back();
-                                                    }
-                                                  );
-                                                },
-                                                child: Container(
-                                                    height: 30.h,
-                                                    width: 30.w,
-                                                    decoration: BoxDecoration(
-                                                      color: bgWhite,
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          50.r),
-                                                    ),
-                                                    child: const Icon(
-                                                        Icons.delete_outline,
-                                                        color: red,
-                                                        size: 18)),
-                                              ),
-                                            ],
-                                          ),
-                                        )),
-                                  ),
+                      ),
+                      SizedBox(height: 10.h),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: titleText(
+                              'A budget is a plan that helps you decide how to use your money wisely by deciding how much to spend and save.',
+                              authPage: true,
+                              color: secondaryTextColor,
+                              size: 14,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+                      _budgetController.addBudgetList.isEmpty
+                          ? Column(
+                              children: [
+                                SizedBox(
+                                  height: 282.h,
+                                  width: 282.w,
+                                  child:
+                                      Image.asset('assets/images/budget.png'),
                                 ),
-                            ],
-                          );
-                        }),
-                    SizedBox(height: 60.h)
-                  ],
-                );
-              }
-            ),
+                                SizedBox(height: 10.h),
+                                titleText('Add More Budget',
+                                    size: 25,
+                                    color: titleTextColor,
+                                    authPage: true),
+                                SizedBox(height: 10.h),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: titleText(
+                                      'Stay on top of your finances effortlessly by planning where ever dollar goes.',
+                                      authPage: true,
+                                      color: secondaryTextColor,
+                                      size: 14,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
+                            )
+                          : GetBuilder<BudgetController>(
+                              id: 'updateBudList',
+                              builder: (controller) {
+                                return Column(
+                                  children: [
+                                    for (int i = 0;
+                                        i < controller.addBudgetList.length;
+                                        i++)
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      BudgetViewScreen(
+                                                          index: i)));
+                                          _budgetController
+                                              .getTotalIncomeData(i);
+                                          _budgetController
+                                              .getTotalFixedExpenseData(i);
+                                          _budgetController
+                                              .getTotalVarExpenseData(i);
+                                          _budgetController
+                                              .getTotalSinkFundData(i);
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 8.0),
+                                          child: customCard(
+                                              118,
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 10.w),
+                                                child: Row(
+                                                  children: [
+                                                    SizedBox(width: 10.w),
+                                                    SizedBox(
+                                                      width: 250.w,
+                                                      child:
+                                                          SingleChildScrollView(
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            titleText(
+                                                                controller
+                                                                    .addBudgetList[
+                                                                        i]
+                                                                    .budgetName,
+                                                                color:
+                                                                    blackTextColor,
+                                                                size: 24,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
+                                                            SizedBox(
+                                                                height: 10.h),
+                                                            subTitleText(
+                                                                controller
+                                                                    .addBudgetList[
+                                                                        i]
+                                                                    .date,
+                                                                size: 12),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 10.w),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        Navigator.of(context).push(
+                                                            MaterialPageRoute(
+                                                                builder: (_) =>
+                                                                    BudgetViewScreen(
+                                                                        index:
+                                                                            i)));
+                                                        _budgetController
+                                                            .getTotalIncomeData(
+                                                                i);
+                                                        _budgetController
+                                                            .getTotalFixedExpenseData(
+                                                                i);
+                                                        _budgetController
+                                                            .getTotalVarExpenseData(
+                                                                i);
+                                                        _budgetController
+                                                            .getTotalSinkFundData(
+                                                                i);
+                                                      },
+                                                      child: Container(
+                                                          height: 30.h,
+                                                          width: 30.w,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: bgWhite,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50.r),
+                                                          ),
+                                                          child: const Icon(
+                                                              Icons.edit,
+                                                              color:
+                                                                  primaryColor,
+                                                              size: 18)),
+                                                    ),
+                                                    SizedBox(width: 10.w),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        Utils.showWarningDialog(
+                                                            'Are you sure to delete this?',
+                                                            onAccept: () {
+                                                          _budgetController
+                                                              .deleteBudget(i);
+                                                          Get.back();
+                                                        });
+                                                      },
+                                                      child: Container(
+                                                          height: 30.h,
+                                                          width: 30.w,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: bgWhite,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50.r),
+                                                          ),
+                                                          child: const Icon(
+                                                              Icons
+                                                                  .delete_outline,
+                                                              color: red,
+                                                              size: 18)),
+                                                    ),
+                                                  ],
+                                                ),
+                                              )),
+                                        ),
+                                      ),
+                                  ],
+                                );
+                              }),
+                      SizedBox(height: 60.h)
+                    ],
+                  );
+                }),
           ),
         ],
       ),
