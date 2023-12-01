@@ -10,6 +10,7 @@ import '../../constants/colors.dart';
 import '../../controller/account_controller.dart';
 import '../../controller/budget_controller.dart';
 import '../../controller/manifestation_controller.dart';
+import '../../controller/profile_controller.dart';
 import '../../utils/utils.dart';
 import '../manifestation/create_manifestation.dart';
 import '../manifestation/item_details.dart';
@@ -25,8 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
   double intValue = 0;
   final BudgetController _budgetController = Get.put(BudgetController());
   ManifestationController manifestationController =
-      Get.put(ManifestationController());
+  Get.put(ManifestationController());
   AccountController accountController = Get.put(AccountController());
+  ProfileController profileController = Get.put(ProfileController());
 
   @override
   void initState() {
@@ -62,177 +64,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    GetBuilder<ManifestationController>(
-                                        id: 'updateManifestationList',
-                                        builder: (controller) {
-                                          return controller.manifestationList.length<2
-                                              ? Center(
-                                                  child: SizedBox(
-                                                    height: 10.h,
-                                                  ))
-                                              : Center(
-                                                  child: SingleChildScrollView(
-                                                    physics:
-                                                        const BouncingScrollPhysics(),
-                                                    child: Column(
-                                                      children: [
-                                                        for (int j = 0;
-                                                            j < 2;
-                                                            j++)
-                                                          Container(
-                                                            margin: EdgeInsets.only(top: 10.h),
-                                                            child: customCard(
-                                                                150,
-                                                                Column(
-                                                                  children: [
-                                                                    Row(
-                                                                      children: [
-                                                                        SizedBox(width: 10.w),
-                                                                        Column(
-                                                                          crossAxisAlignment:
-                                                                          CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            titleText(
-                                                                                manifestationController
-                                                                                    .manifestationList[j]
-                                                                                    .goalName,
-                                                                                size: 20,
-                                                                                fontWeight: FontWeight.w600),
-                                                                            SizedBox(height: 5.h),
-                                                                            subTitleText(
-                                                                                'You goal is to save : \$${manifestationController
-                                                                                    .manifestationList[j].amount}',
-                                                                                size: 16)
-                                                                          ],
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Row(
-                                                                      children: [
-                                                                        InkWell(
-                                                                          onTap: () {
-                                                                            Navigator.of(context).push(
-                                                                                MaterialPageRoute(
-                                                                                    builder: (_) =>
-                                                                                        ItemDetails(index: j)));
-                                                                          },
-                                                                          child: Padding(
-                                                                            padding: EdgeInsets.all(8.h),
-                                                                            child: Row(
-                                                                              children: [
-                                                                                subTitleText('View Milestones',
-                                                                                    size: 18,
-                                                                                    color: blackTextColor),
-                                                                                SizedBox(width: 10.w),
-                                                                                const Icon(
-                                                                                  Icons.arrow_forward,
-                                                                                  size: 16,
-                                                                                )
-                                                                              ],
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        const Expanded(child: SizedBox()),
-                                                                        GestureDetector(
-                                                                          onTap: (){
-                                                                            Get.to(CreateManifestation(manifestIndex: j));
-                                                                          },
-                                                                          child: const Icon(
-                                                                            Icons.edit,color: primaryColor,
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(width: 15.w),
-                                                                        GestureDetector(
-                                                                          onTap: (){
-                                                                            Utils.showWarningDialog('Are you sure to delete this?',
-                                                                                onAccept: (){
-                                                                                  manifestationController.deleteManifes(j);
-                                                                                  Get.back();
-                                                                                }
-                                                                            );
-
-                                                                          },
-                                                                          child: const Icon(
-                                                                            Icons.delete_outline,color: red,
-                                                                          ),
-                                                                        ),
-                                                                        SizedBox(width: 20.w),
-
-                                                                      ],
-                                                                    )
-                                                                  ],
-                                                                )),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                );
-                                        }),
-                                  ],
-                                ),
+                            manifestationWidget(context),
                             SizedBox(height: 20.h),
-                            customCard(
-                                200,
-                                GetBuilder<AccountController>(
-                                    id: 'updateDetails',
-                                    builder: (context) {
-                                      return Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          GestureDetector(
-                                            onTap:(){
-                                              setState(() {
-
-                                              });
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                titleText('Accounts Overview',
-                                                    color: titleTextColor, size: 20),
-                                                titleText('See Accounts Info',
-                                                    color: titleTextColor, size: 14),
-
-                                              ],
-                                            ),
-                                          ),
-                                          for (int m = 0; m < 2; m++)
-                                            Column(
-                                              children: [
-                                                accountsRow(
-                                                    'Account Name',
-                                                    accountController
-                                                            .plaidAccountsModel
-                                                            .accounts?[m]
-                                                            .name ??
-                                                        ''),
-                                                accountsRow(
-                                                    'Balance',
-                                                    accountController
-                                                            .plaidAccountsModel
-                                                            .accounts?[m]
-                                                            .balances
-                                                            .current
-                                                            .toString() ??
-                                                        ''),
-                                              ],
-                                            ),
-                                          // accountsRow('Credit Card Utilization',
-                                          //     'N12,000.00'),
-                                        ],
-                                      );
-                                    }),
-                            ),
+                            // accountOverviewWidget(),
                             SizedBox(height: 20.h),
                             //const MonthBudget(),
                             SizedBox(height: 20.h),
-                           /* customCard(
+                            /* customCard(
                                 228,
                                 Container(
                                   padding: EdgeInsets.all(10.h),
@@ -373,5 +211,180 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               )),
         ));
+  }
+
+  Widget accountOverviewWidget() {
+    return customCard(
+      200,
+      GetBuilder<AccountController>(
+          id: 'updateDetails',
+          builder: (context) {
+            return Column(
+              crossAxisAlignment:
+              CrossAxisAlignment.start,
+              mainAxisAlignment:
+              MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+
+                    });
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      titleText('Accounts Overview',
+                          color: titleTextColor, size: 20),
+                      titleText('See Accounts Info',
+                          color: titleTextColor, size: 14),
+
+                    ],
+                  ),
+                ),
+                for (int m = 0; m < 2; m++)
+                  Column(
+                    children: [
+                      accountsRow(
+                          'Account Name',
+                          accountController
+                              .plaidAccountsModel
+                              .accounts?[m]
+                              .name ??
+                              ''),
+                      accountsRow(
+                          'Balance',
+                          accountController
+                              .plaidAccountsModel
+                              .accounts?[m]
+                              .balances
+                              .current
+                              .toString() ??
+                              ''),
+                    ],
+                  ),
+                // accountsRow('Credit Card Utilization',
+                //     'N12,000.00'),
+              ],
+            );
+          }),
+    );
+  }
+
+  Column manifestationWidget(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GetBuilder<ManifestationController>(
+            id: 'updateManifestationList',
+            builder: (controller) {
+              return controller.manifestationList.length < 2
+                  ? Center(
+                  child: SizedBox(
+                    height: 10.h,
+                  ))
+                  : Center(
+                child: SingleChildScrollView(
+                  physics:
+                  const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      for (int j = 0;
+                      j < 2;
+                      j++)
+                        Container(
+                          margin: EdgeInsets.only(top: 10.h),
+                          child: customCard(
+                              150,
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      SizedBox(width: 10.w),
+                                      Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          titleText(
+                                              manifestationController
+                                                  .manifestationList[j]
+                                                  .goalName,
+                                              size: 20,
+                                              fontWeight: FontWeight.w600),
+                                          SizedBox(height: 5.h),
+                                          subTitleText(
+                                              'You goal is to save : \$${manifestationController
+                                                  .manifestationList[j]
+                                                  .amount}',
+                                              size: 16)
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      ItemDetails(index: j)));
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.all(8.h),
+                                          child: Row(
+                                            children: [
+                                              subTitleText('View Milestones',
+                                                  size: 18,
+                                                  color: blackTextColor),
+                                              SizedBox(width: 10.w),
+                                              const Icon(
+                                                Icons.arrow_forward,
+                                                size: 16,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const Expanded(child: SizedBox()),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.to(CreateManifestation(
+                                              manifestIndex: j));
+                                        },
+                                        child: const Icon(
+                                          Icons.edit, color: primaryColor,
+                                        ),
+                                      ),
+                                      SizedBox(width: 15.w),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Utils.showWarningDialog(
+                                              'Are you sure to delete this?',
+                                              onAccept: () {
+                                                manifestationController
+                                                    .deleteManifes(j);
+                                                Get.back();
+                                              }
+                                          );
+                                        },
+                                        child: const Icon(
+                                          Icons.delete_outline, color: red,
+                                        ),
+                                      ),
+                                      SizedBox(width: 20.w),
+
+                                    ],
+                                  )
+                                ],
+                              )),
+                        ),
+                    ],
+                  ),
+                ),
+              );
+            }),
+      ],
+    );
   }
 }

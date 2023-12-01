@@ -227,39 +227,47 @@ class BudgetController extends GetxController {
 
   ///compare function for plannedIncome to actualIncome
   String compareIncomeText = '';
+  double compareIncomeAmount = 0;
   void getCompareIncome() {
-    if(totalIncomeData>totalActualIncome){
+    if(totalIncomeData>=totalActualIncome){
       compareIncomeText = 'You are doing fine';
     }else{
-      compareIncomeText = 'You have to save money';
+      compareIncomeAmount = (totalActualIncome-totalIncomeData);
+      compareIncomeText = 'You have to save ${compareIncomeAmount.toStringAsFixed(2)} \$';
     }
   }
 
   ///compare function for plannedFixed to actualFixed
   String compareFixedText = '';
+  double compareFixedAmount = 0;
   void getCompareFixed() {
-    if(totalFixedExpense>totalActualFixed){
+    if(totalFixedExpense>=totalActualFixed){
       compareFixedText = 'You are doing fine';
     }else{
-      compareFixedText = 'You have to save money';
+      compareFixedAmount = (totalActualFixed-totalFixedExpense);
+      compareFixedText = 'You have to save ${compareFixedAmount.toStringAsFixed(2)} \$';
     }
   }
   ///compare function for plannedFixed to actualFixed
   String compareVarText = '';
+  double compareVarAmount = 0;
   void getCompareVar() {
-    if(totalVarExpense>totalActualVar){
+    if(totalVarExpense>=totalActualVar){
       compareVarText = 'You are doing fine';
     }else{
-      compareVarText = 'You have to save money';
+      compareVarAmount = (totalActualVar-totalVarExpense);
+      compareVarText = 'You have to save ${compareVarAmount.toStringAsFixed(2)} \$';
     }
   }
   ///compare function for plannedFixed to actualFixed
   String compareSinkText = '';
+  double compareSinkAmount = 0;
   void getCompareSink() {
-    if(totalSinkFund>totalActualSink){
+    if(totalSinkFund>=totalActualSink){
       compareSinkText = 'You are doing fine';
     }else{
-      compareSinkText = 'You have to save money';
+      compareSinkAmount = (totalActualSink-totalSinkFund);
+      compareSinkText = 'You have to save ${compareSinkAmount.toStringAsFixed(2)} \$';
     }
   }
 

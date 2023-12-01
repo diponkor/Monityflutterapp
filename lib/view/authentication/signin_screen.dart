@@ -6,6 +6,7 @@ import 'package:finance_and_budget/view/authentication/widgets/background_screen
 import 'package:finance_and_budget/view/global_widgets/custom_text_field.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_text.dart';
 import 'package:finance_and_budget/view/global_widgets/normal_button.dart';
+import 'package:finance_and_budget/view/landing/landing_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,6 +79,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   if (email.text.isNotEmpty && pass.text.isNotEmpty) {
                     authController.signIn(email.text, pass.text).then((value) {
                       if(value && authController.auth.currentUser!.emailVerified){
+                        //Get.offAll( LandingScreen());
                         Get.offAll(const WebNavigation());
                       }
                       if(authController.auth.currentUser!.emailVerified ==false){
@@ -92,7 +94,7 @@ class _SigninScreenState extends State<SigninScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    subTitleText('Don\'t have Monity account? ',
+                    subTitleText('Don\'t have a Monity account? ',
                         authPage: true, color: blackTextColor2),
                     GestureDetector(
                         onTap: () {
@@ -168,7 +170,7 @@ class _SigninScreenState extends State<SigninScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                subTitleText('Don\'t have Monity account? ',
+                subTitleText('Don\'t have a Monity account? ',
                     authPage: true, color: blackTextColor2),
                 GestureDetector(
                     onTap: () {

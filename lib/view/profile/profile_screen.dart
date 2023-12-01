@@ -2,6 +2,7 @@ import 'package:finance_and_budget/controller/profile_controller.dart';
 import 'package:finance_and_budget/view/global_widgets/named_back_button.dart';
 import 'package:finance_and_budget/view/profile/add_account_screen.dart';
 import 'package:finance_and_budget/view/profile/change_password_screen.dart';
+import 'package:finance_and_budget/view/profile/plaid_screen.dart';
 import 'package:finance_and_budget/view/profile/profile_edit_screen.dart';
 import 'package:finance_and_budget/view/profile/view_account_screen.dart';
 import 'package:finance_and_budget/view/profile/widgets/build_profile_item.dart';
@@ -10,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
-import '../../controller/auth_controller.dart';
+import '../../controller/account_controller.dart';
 import '../../utils/utils.dart';
 import '../global_widgets/custom_text.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   static ProfileController profileController = Get.find();
+  static AccountController accountController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +107,8 @@ class ProfileScreen extends StatelessWidget {
                               SizedBox(height: 30.h),
                               GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (_) => const ViewAccountScreen()));
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (_) => PlaidScreen()));
                                   },
                                   child: buildProfileItem(
                                       'assets/images/home2.png', 'Add Account')),
@@ -226,8 +228,8 @@ class ProfileScreen extends StatelessWidget {
                           SizedBox(height: 30.h),
                           GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => const ViewAccountScreen()));
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (_) => PlaidScreen()));
                               },
                               child: buildProfileItem(
                                   'assets/images/home2.png', 'Add Account')),

@@ -1,21 +1,21 @@
 
 import 'package:finance_and_budget/view/authentication/signin_screen.dart';
+import 'package:finance_and_budget/view/landing/landing_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'constants/colors.dart';
 
 /*
-  ------Here is some necessary information about this project------
-  Firebase Account Information(Google Account).......
+  ------Here is some necessary credential about this project------
+  Firebase Account Credential(Google Account).......
         Email:monityapp@gmail.com
         Password:monityapp123
 
-   Plaid Account Information.......
+   Plaid Account Credential.......
         Email:monityapp@gmail.com
         Password:Monity12345678
 */
@@ -60,13 +60,13 @@ class MyApp extends StatelessWidget {
                   theme: _buildTheme(Brightness.light),
                   home:
                   const Scaffold(
-                    //body: SplashScreen(),
-                    body: SigninScreen(),
+                     // body: SigninScreen(),
+                    body: LandingScreen(),
                   ),
                 ),
               ),
             );
-          } else if (screenWidth > 430) {
+          } else if (screenWidth > 430 && kIsWeb) {
             return Center(
               child: SizedBox(
                 height: 768.h,
@@ -75,8 +75,9 @@ class MyApp extends StatelessWidget {
                   debugShowCheckedModeBanner: false,
                   theme: _buildTheme(Brightness.light),
                   home: const Scaffold(
-                    body: SigninScreen(),
+                    // body: SigninScreen(),
                     //body: CustomNavigation(),
+                    body: LandingScreen(),
                   ),
                 ),
               ),
