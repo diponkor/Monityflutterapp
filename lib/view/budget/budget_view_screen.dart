@@ -38,8 +38,8 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
     budgetController.actualFixedControllerMap = {};
     budgetController.actualVarControllerMap = {};
     budgetController.actualSinkControllerMap = {};
-    for (var incomeData
-        in budgetController.addBudgetList[currentIndex].actualIncomeMap.entries) {
+    for (var incomeData in budgetController
+        .addBudgetList[currentIndex].actualIncomeMap.entries) {
       budgetController.actualIncomeControllerMap[incomeData.key] =
           TextEditingController(text: incomeData.value);
     }
@@ -48,13 +48,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
       budgetController.actualFixedControllerMap[fixData.key] =
           TextEditingController(text: fixData.value);
     }
-    for (var varData
-        in budgetController.addBudgetList[currentIndex].actualVarExpense.entries) {
+    for (var varData in budgetController
+        .addBudgetList[currentIndex].actualVarExpense.entries) {
       budgetController.actualVarControllerMap[varData.key] =
           TextEditingController(text: varData.value);
     }
-    for (var sinkData
-        in budgetController.addBudgetList[currentIndex].actualSinkingFund.entries) {
+    for (var sinkData in budgetController
+        .addBudgetList[currentIndex].actualSinkingFund.entries) {
       budgetController.actualSinkControllerMap[sinkData.key] =
           TextEditingController(text: sinkData.value);
     }
@@ -65,34 +65,22 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
     budgetController.getCompareSink();
 
     ///for initial actual total calculation--------
-    budgetController
-        .totalActualIncome = 0;
-    budgetController
-        .getTotalActualIncome();
-    budgetController
-        .getCompareIncome();
+    budgetController.totalActualIncome = 0;
+    budgetController.getTotalActualIncome();
+    budgetController.getCompareIncome();
 
     //----------------------------
-    budgetController
-        .totalActualFixed = 0;
-    budgetController
-        .getTotalActualFixed();
-    budgetController
-        .getCompareFixed();
+    budgetController.totalActualFixed = 0;
+    budgetController.getTotalActualFixed();
+    budgetController.getCompareFixed();
     //----------------------------
-    budgetController
-        .totalActualVar = 0;
-    budgetController
-        .getTotalActualVar();
-    budgetController
-        .getCompareVar();
+    budgetController.totalActualVar = 0;
+    budgetController.getTotalActualVar();
+    budgetController.getCompareVar();
     //----------------------------
-    budgetController
-        .totalActualSink = 0;
-    budgetController
-        .getTotalActualSink();
-    budgetController
-        .getCompareSink();
+    budgetController.totalActualSink = 0;
+    budgetController.getTotalActualSink();
+    budgetController.getCompareSink();
     super.initState();
   }
 
@@ -127,7 +115,8 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                               Navigator.of(context).pop();
                             },
                             child: Padding(
-                              padding: EdgeInsets.fromLTRB(20.0.h, 20.h, 20.h, 0.h),
+                              padding:
+                                  EdgeInsets.fromLTRB(20.0.h, 20.h, 20.h, 0.h),
                               child: Row(
                                 children: [
                                   Container(
@@ -139,14 +128,15 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                           width: 1,
                                         ),
                                         color: white,
-                                        borderRadius:
-                                        BorderRadius.all(Radius.circular(50.r))),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(50.r))),
                                     child: const Icon(Icons.arrow_back),
                                   ),
                                   SizedBox(width: 10.w),
                                   titleText(
                                       budgetController
-                                          .addBudgetList[currentIndex].budgetName,
+                                          .addBudgetList[currentIndex]
+                                          .budgetName,
                                       color: titleTextColor,
                                       size: 25,
                                       authPage: true),
@@ -195,7 +185,8 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                           SizedBox(height: 30.h),
                           Container(
                             height: 700.h,
-                            padding: EdgeInsets.fromLTRB(20.0.h, 0.h, 20.h, 0.h),
+                            padding:
+                                EdgeInsets.fromLTRB(20.0.h, 0.h, 20.h, 0.h),
                             child: TabBarView(
                               controller: controller,
                               children: [
@@ -206,17 +197,23 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                         Center(
                                           child: Container(
                                             child: subTitleText(
-                                                budgetController.compareIncomeText),
+                                                budgetController
+                                                    .compareIncomeText,
+                                                color: budgetController
+                                                            .compareIncomeText ==
+                                                    'You are doing fine'
+                                                    ? secondaryTextColor
+                                                    : red),
                                           ),
                                         )),
                                     SizedBox(height: 10.h),
                                     Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
@@ -231,18 +228,18 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               thickness: 1,
                                             ),
                                             for (var incomeData
-                                            in budgetController
-                                                .addBudgetList[currentIndex]
-                                                .incomeMap
-                                                .entries)
+                                                in budgetController
+                                                    .addBudgetList[currentIndex]
+                                                    .incomeMap
+                                                    .entries)
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                       width: 200.w,
@@ -256,8 +253,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Divider(
                                                 color: secondaryTextColor
                                                     .withOpacity(0.3),
@@ -265,12 +263,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   subTitleText(
                                                       'Total Planned Income',
@@ -286,7 +285,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                         SizedBox(height: 20.h),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
@@ -296,13 +295,16 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                   size: 22),
                                             ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 const SizedBox(),
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(
                                                       vertical: 5.h),
-                                                  child: subTitleText('You can edit this value',
+                                                  child: subTitleText(
+                                                      'You can edit this value',
                                                       color: titleTextColor,
                                                       size: 14),
                                                 ),
@@ -314,18 +316,18 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               thickness: 1,
                                             ),
                                             for (var incomeData
-                                            in budgetController
-                                                .addBudgetList[currentIndex]
-                                                .actualIncomeMap
-                                                .entries)
+                                                in budgetController
+                                                    .addBudgetList[currentIndex]
+                                                    .actualIncomeMap
+                                                    .entries)
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                       width: 200.w,
@@ -335,9 +337,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                     Container(
                                                         width: 80.w,
                                                         height: 40.h,
-                                                        padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 2.h),
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 2.h),
                                                         child: TextFormField(
                                                           onChanged: (text) {
                                                             setState(() {
@@ -349,20 +351,23 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                                   .getCompareIncome();
                                                             });
                                                           },
-                                                          controller: budgetController
-                                                              .actualIncomeControllerMap[
-                                                          incomeData.key],
+                                                          controller:
+                                                              budgetController
+                                                                      .actualIncomeControllerMap[
+                                                                  incomeData
+                                                                      .key],
                                                           // Use the controller from the map
                                                           keyboardType:
-                                                          TextInputType
-                                                              .number,
+                                                              TextInputType
+                                                                  .number,
                                                         )),
                                                   ],
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Divider(
                                                 color: secondaryTextColor
                                                     .withOpacity(0.3),
@@ -370,12 +375,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   subTitleText(
                                                       'Total Actual Income',
@@ -388,48 +394,67 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             ),
                                             GestureDetector(
                                               onTap: () async {
-                                                budgetController.makeNewActualIncomeMap();
+                                                budgetController
+                                                    .makeNewActualIncomeMap();
                                                 // budgetController.makeNewActualFixMap();
                                                 // budgetController.makeNewActualVarMap();
                                                 // budgetController.makeNewActualSinkMap();
                                                 final budget = AddBudgetModel(
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .id,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .budgetName,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .date,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .incomeMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .fixedExpenseMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .varExpense,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .sinkingFund,
-                                                    budgetController.newActualIncomeMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualFixedExpenseMap,
+                                                        .newActualIncomeMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualVarExpense,
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualFixedExpenseMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualSinkingFund
-                                                );
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualVarExpense,
+                                                    budgetController
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualSinkingFund);
                                                 await budgetController
-                                                    .updateBudget(budget).then((value){
-                                                  budgetController.actualIncomeControllerMap.clear();
+                                                    .updateBudget(budget)
+                                                    .then((value) {
+                                                  budgetController
+                                                      .actualIncomeControllerMap
+                                                      .clear();
                                                   // budgetController.actualFixedControllerMap.clear();
                                                   // budgetController.actualVarControllerMap.clear();
                                                   // budgetController.actualSinkControllerMap.clear();
 
-                                                  budgetController.newActualIncomeMap.clear();
+                                                  budgetController
+                                                      .newActualIncomeMap
+                                                      .clear();
                                                   // budgetController.newActualFixMap.clear();
                                                   // budgetController.newActualVarMap.clear();
                                                   // budgetController.newActualSingMap.clear();
@@ -437,19 +462,19 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               },
                                               child: Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0,
-                                                    vertical: 12.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0,
+                                                        vertical: 12.0),
                                                 child: SizedBox(
                                                     width: 100.w,
-                                                    child: normalButton('Save')),
+                                                    child:
+                                                        normalButton('Save')),
                                               ),
                                             ),
                                           ],
                                         ),
                                       ],
                                     ),
-
                                   ],
                                 ),
                                 Column(
@@ -458,18 +483,23 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                         100,
                                         Center(
                                           child: Container(
-                                            child: subTitleText(
-                                                budgetController.compareFixedText),
+                                            child: subTitleText(budgetController
+                                                .compareFixedText,
+                                                color: budgetController
+                                                    .compareFixedText ==
+                                                    'You are doing fine'
+                                                    ? secondaryTextColor
+                                                    : red),
                                           ),
                                         )),
                                     SizedBox(height: 10.h),
                                     Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
@@ -483,18 +513,19 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                   .withOpacity(0.3),
                                               thickness: 1,
                                             ),
-                                            for (var fixedData in budgetController
-                                                .addBudgetList[currentIndex]
-                                                .fixedExpenseMap
-                                                .entries)
+                                            for (var fixedData
+                                                in budgetController
+                                                    .addBudgetList[currentIndex]
+                                                    .fixedExpenseMap
+                                                    .entries)
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                       width: 200.w,
@@ -508,8 +539,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Divider(
                                                 color: secondaryTextColor
                                                     .withOpacity(0.3),
@@ -517,12 +549,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   subTitleText(
                                                       'Total Planned Fixed',
@@ -538,7 +571,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                         SizedBox(height: 20.h),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
@@ -548,13 +581,16 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                   size: 22),
                                             ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 const SizedBox(),
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(
                                                       vertical: 5.h),
-                                                  child: subTitleText('You can edit this value',
+                                                  child: subTitleText(
+                                                      'You can edit this value',
                                                       color: titleTextColor,
                                                       size: 14),
                                                 ),
@@ -565,18 +601,19 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                   .withOpacity(0.3),
                                               thickness: 1,
                                             ),
-                                            for (var fixedData in budgetController
-                                                .addBudgetList[currentIndex]
-                                                .actualFixedExpenseMap
-                                                .entries)
+                                            for (var fixedData
+                                                in budgetController
+                                                    .addBudgetList[currentIndex]
+                                                    .actualFixedExpenseMap
+                                                    .entries)
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                         width: 200.w,
@@ -585,9 +622,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                     Container(
                                                         width: 80.w,
                                                         height: 40.h,
-                                                        padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 2.h),
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 2.h),
                                                         child: TextFormField(
                                                           onChanged: (text) {
                                                             setState(() {
@@ -599,20 +636,23 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                                   .getCompareFixed();
                                                             });
                                                           },
-                                                          controller: budgetController
-                                                              .actualFixedControllerMap[
-                                                          fixedData.key],
+                                                          controller:
+                                                              budgetController
+                                                                      .actualFixedControllerMap[
+                                                                  fixedData
+                                                                      .key],
                                                           // Use the controller from the map
                                                           keyboardType:
-                                                          TextInputType
-                                                              .number,
+                                                              TextInputType
+                                                                  .number,
                                                         )),
                                                   ],
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Divider(
                                                 color: secondaryTextColor
                                                     .withOpacity(0.3),
@@ -620,12 +660,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   subTitleText(
                                                       'Total Actual Fixed',
@@ -638,62 +679,84 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             ),
                                             GestureDetector(
                                               onTap: () async {
-                                                budgetController.makeNewActualIncomeMap();
-                                                budgetController.makeNewActualFixMap();
-                                                budgetController.makeNewActualVarMap();
-                                                budgetController.makeNewActualSinkMap();
+                                                budgetController
+                                                    .makeNewActualIncomeMap();
+                                                budgetController
+                                                    .makeNewActualFixMap();
+                                                budgetController
+                                                    .makeNewActualVarMap();
+                                                budgetController
+                                                    .makeNewActualSinkMap();
                                                 final budget = AddBudgetModel(
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .id,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .budgetName,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .date,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .incomeMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .fixedExpenseMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .varExpense,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .sinkingFund,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualIncomeMap,
-                                                    budgetController.newActualFixMap,
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualIncomeMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualVarExpense,
+                                                        .newActualFixMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualSinkingFund
-                                                );
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualVarExpense,
+                                                    budgetController
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualSinkingFund);
                                                 await budgetController
-                                                    .updateBudget(budget).then((value){
+                                                    .updateBudget(budget)
+                                                    .then((value) {
                                                   //budgetController.actualIncomeControllerMap.clear();
-                                                  budgetController.actualFixedControllerMap.clear();
+                                                  budgetController
+                                                      .actualFixedControllerMap
+                                                      .clear();
                                                   // budgetController.actualVarControllerMap.clear();
                                                   // budgetController.actualSinkControllerMap.clear();
 
                                                   // budgetController.newActualIncomeMap.clear();
-                                                  budgetController.newActualFixMap.clear();
+                                                  budgetController
+                                                      .newActualFixMap
+                                                      .clear();
                                                   // budgetController.newActualVarMap.clear();
                                                   // budgetController.newActualSingMap.clear();
                                                 });
                                               },
                                               child: Padding(
-                                                  padding:
-                                                  const EdgeInsets.symmetric(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
                                                       horizontal: 8.0,
                                                       vertical: 12.0),
-                                                  child:  SizedBox(
+                                                  child: SizedBox(
                                                       width: 100.w,
-                                                      child: normalButton('Save'))
-                                              ),
+                                                      child: normalButton(
+                                                          'Save'))),
                                             ),
                                           ],
                                         ),
@@ -707,23 +770,29 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                         100,
                                         Center(
                                           child: Container(
-                                            child: subTitleText(
-                                                budgetController.compareVarText),
+                                            child: subTitleText(budgetController
+                                                .compareVarText,
+                                                color: budgetController
+                                                    .compareVarText ==
+                                                    'You are doing fine'
+                                                    ? secondaryTextColor
+                                                    : red),
                                           ),
                                         )),
                                     SizedBox(height: 10.h),
                                     Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 5.h),
-                                              child: titleText('Planned Variable',
+                                              child: titleText(
+                                                  'Planned Variable',
                                                   color: titleTextColor,
                                                   size: 22),
                                             ),
@@ -738,12 +807,12 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                 .entries)
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                       width: 200.w,
@@ -757,8 +826,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Divider(
                                                 color: secondaryTextColor
                                                     .withOpacity(0.3),
@@ -766,12 +836,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   subTitleText(
                                                       'Total Planned Variable',
@@ -787,23 +858,27 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                         SizedBox(height: 20.h),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 5.h),
-                                              child: titleText('Actual Variable',
+                                              child: titleText(
+                                                  'Actual Variable',
                                                   color: titleTextColor,
                                                   size: 22),
                                             ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 const SizedBox(),
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(
                                                       vertical: 5.h),
-                                                  child: subTitleText('You can edit this value',
+                                                  child: subTitleText(
+                                                      'You can edit this value',
                                                       color: titleTextColor,
                                                       size: 14),
                                                 ),
@@ -820,12 +895,12 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                 .entries)
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                       width: 200.w,
@@ -835,9 +910,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                     Container(
                                                         width: 80.w,
                                                         height: 40.h,
-                                                        padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 2.h),
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 2.h),
                                                         child: TextFormField(
                                                           onChanged: (text) {
                                                             setState(() {
@@ -849,20 +924,22 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                                   .getCompareVar();
                                                             });
                                                           },
-                                                          controller: budgetController
-                                                              .actualVarControllerMap[
-                                                          varData.key],
+                                                          controller:
+                                                              budgetController
+                                                                      .actualVarControllerMap[
+                                                                  varData.key],
                                                           // Use the controller from the map
                                                           keyboardType:
-                                                          TextInputType
-                                                              .number,
+                                                              TextInputType
+                                                                  .number,
                                                         )),
                                                   ],
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Divider(
                                                 color: secondaryTextColor
                                                     .withOpacity(0.3),
@@ -870,12 +947,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   subTitleText(
                                                       'Total Actual Variable',
@@ -888,62 +966,84 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             ),
                                             GestureDetector(
                                               onTap: () async {
-                                                budgetController.makeNewActualIncomeMap();
-                                                budgetController.makeNewActualFixMap();
-                                                budgetController.makeNewActualVarMap();
-                                                budgetController.makeNewActualSinkMap();
+                                                budgetController
+                                                    .makeNewActualIncomeMap();
+                                                budgetController
+                                                    .makeNewActualFixMap();
+                                                budgetController
+                                                    .makeNewActualVarMap();
+                                                budgetController
+                                                    .makeNewActualSinkMap();
                                                 final budget = AddBudgetModel(
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .id,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .budgetName,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .date,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .incomeMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .fixedExpenseMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .varExpense,
                                                     budgetController
-                                                        .addBudgetList[currentIndex]
+                                                        .addBudgetList[
+                                                            currentIndex]
                                                         .sinkingFund,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualIncomeMap,
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualIncomeMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualFixedExpenseMap,
-                                                    budgetController.newActualVarMap,
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualFixedExpenseMap,
                                                     budgetController
-                                                        .addBudgetList[currentIndex].actualSinkingFund
-                                                );
+                                                        .newActualVarMap,
+                                                    budgetController
+                                                        .addBudgetList[
+                                                            currentIndex]
+                                                        .actualSinkingFund);
                                                 await budgetController
-                                                    .updateBudget(budget).then((value){
+                                                    .updateBudget(budget)
+                                                    .then((value) {
                                                   // budgetController.actualIncomeControllerMap.clear();
                                                   // budgetController.actualFixedControllerMap.clear();
-                                                  budgetController.actualVarControllerMap.clear();
+                                                  budgetController
+                                                      .actualVarControllerMap
+                                                      .clear();
                                                   // budgetController.actualSinkControllerMap.clear();
 
                                                   // budgetController.newActualIncomeMap.clear();
                                                   // budgetController.newActualFixMap.clear();
-                                                  budgetController.newActualVarMap.clear();
+                                                  budgetController
+                                                      .newActualVarMap
+                                                      .clear();
                                                   // budgetController.newActualSingMap.clear();
                                                 });
                                               },
                                               child: Padding(
-                                                  padding:
-                                                  const EdgeInsets.symmetric(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
                                                       horizontal: 8.0,
                                                       vertical: 12.0),
-                                                  child:  SizedBox(
+                                                  child: SizedBox(
                                                       width: 100.w,
-                                                      child: normalButton('Save'))
-                                              ),
+                                                      child: normalButton(
+                                                          'Save'))),
                                             ),
                                           ],
                                         ),
@@ -957,23 +1057,30 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                         100,
                                         Center(
                                           child: Container(
-                                            child: subTitleText(
-                                                budgetController.compareSinkText),
+                                            child: subTitleText(budgetController
+                                                .compareSinkText,
+                                                color: budgetController
+                                                    .compareSinkText ==
+                                                    'You are doing fine'
+                                                    ? secondaryTextColor
+                                                    : red
+                                                ),
                                           ),
                                         )),
                                     SizedBox(height: 10.h),
                                     Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 5.h),
-                                              child: titleText('Planned Sinking',
+                                              child: titleText(
+                                                  'Planned Sinking',
                                                   color: titleTextColor,
                                                   size: 22),
                                             ),
@@ -982,18 +1089,19 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                   .withOpacity(0.3),
                                               thickness: 1,
                                             ),
-                                            for (var sinkData in budgetController
-                                                .addBudgetList[currentIndex]
-                                                .sinkingFund
-                                                .entries)
+                                            for (var sinkData
+                                                in budgetController
+                                                    .addBudgetList[currentIndex]
+                                                    .sinkingFund
+                                                    .entries)
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                         width: 200.w,
@@ -1006,8 +1114,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Divider(
                                                 color: secondaryTextColor
                                                     .withOpacity(0.3),
@@ -1015,12 +1124,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   subTitleText(
                                                       'Total Planned Sinking',
@@ -1036,7 +1146,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                         SizedBox(height: 20.h),
                                         Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.symmetric(
@@ -1046,13 +1156,16 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                   size: 22),
                                             ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 const SizedBox(),
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(
                                                       vertical: 5.h),
-                                                  child: subTitleText('You can edit this value',
+                                                  child: subTitleText(
+                                                      'You can edit this value',
                                                       color: titleTextColor,
                                                       size: 14),
                                                 ),
@@ -1063,18 +1176,19 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                   .withOpacity(0.3),
                                               thickness: 1,
                                             ),
-                                            for (var sinkData in budgetController
-                                                .addBudgetList[currentIndex]
-                                                .actualSinkingFund
-                                                .entries)
+                                            for (var sinkData
+                                                in budgetController
+                                                    .addBudgetList[currentIndex]
+                                                    .actualSinkingFund
+                                                    .entries)
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8.0),
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                         width: 200.w,
@@ -1083,9 +1197,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                     Container(
                                                         width: 80.w,
                                                         height: 40.h,
-                                                        padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 2.h),
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 2.h),
                                                         child: TextFormField(
                                                           onChanged: (text) {
                                                             setState(() {
@@ -1097,20 +1211,22 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                                   .getCompareSink();
                                                             });
                                                           },
-                                                          controller: budgetController
-                                                              .actualSinkControllerMap[
-                                                          sinkData.key],
+                                                          controller:
+                                                              budgetController
+                                                                      .actualSinkControllerMap[
+                                                                  sinkData.key],
                                                           // Use the controller from the map
                                                           keyboardType:
-                                                          TextInputType
-                                                              .number,
+                                                              TextInputType
+                                                                  .number,
                                                         )),
                                                   ],
                                                 ),
                                               ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Divider(
                                                 color: secondaryTextColor
                                                     .withOpacity(0.3),
@@ -1118,12 +1234,13 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   subTitleText(
                                                       'Total Actual Sinking',
@@ -1136,62 +1253,85 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             ),
                                             GestureDetector(
                                               onTap: () async {
-                                                budgetController.makeNewActualIncomeMap();
-                                                budgetController.makeNewActualFixMap();
-                                                budgetController.makeNewActualVarMap();
-                                                budgetController.makeNewActualSinkMap();
+                                                budgetController
+                                                    .makeNewActualIncomeMap();
+                                                budgetController
+                                                    .makeNewActualFixMap();
+                                                budgetController
+                                                    .makeNewActualVarMap();
+                                                budgetController
+                                                    .makeNewActualSinkMap();
                                                 final budget = AddBudgetModel(
                                                   budgetController
-                                                      .addBudgetList[currentIndex]
+                                                      .addBudgetList[
+                                                          currentIndex]
                                                       .id,
                                                   budgetController
-                                                      .addBudgetList[currentIndex]
+                                                      .addBudgetList[
+                                                          currentIndex]
                                                       .budgetName,
                                                   budgetController
-                                                      .addBudgetList[currentIndex]
+                                                      .addBudgetList[
+                                                          currentIndex]
                                                       .date,
                                                   budgetController
-                                                      .addBudgetList[currentIndex]
+                                                      .addBudgetList[
+                                                          currentIndex]
                                                       .incomeMap,
                                                   budgetController
-                                                      .addBudgetList[currentIndex]
+                                                      .addBudgetList[
+                                                          currentIndex]
                                                       .fixedExpenseMap,
                                                   budgetController
-                                                      .addBudgetList[currentIndex]
+                                                      .addBudgetList[
+                                                          currentIndex]
                                                       .varExpense,
                                                   budgetController
-                                                      .addBudgetList[currentIndex]
+                                                      .addBudgetList[
+                                                          currentIndex]
                                                       .sinkingFund,
                                                   budgetController
-                                                      .addBudgetList[currentIndex].actualIncomeMap,
+                                                      .addBudgetList[
+                                                          currentIndex]
+                                                      .actualIncomeMap,
                                                   budgetController
-                                                      .addBudgetList[currentIndex].actualFixedExpenseMap,
+                                                      .addBudgetList[
+                                                          currentIndex]
+                                                      .actualFixedExpenseMap,
                                                   budgetController
-                                                      .addBudgetList[currentIndex].actualVarExpense,
-                                                  budgetController.newActualSingMap,
+                                                      .addBudgetList[
+                                                          currentIndex]
+                                                      .actualVarExpense,
+                                                  budgetController
+                                                      .newActualSingMap,
                                                 );
                                                 await budgetController
-                                                    .updateBudget(budget).then((value){
+                                                    .updateBudget(budget)
+                                                    .then((value) {
                                                   // budgetController.actualIncomeControllerMap.clear();
                                                   // budgetController.actualFixedControllerMap.clear();
                                                   // budgetController.actualVarControllerMap.clear();
-                                                  budgetController.actualSinkControllerMap.clear();
+                                                  budgetController
+                                                      .actualSinkControllerMap
+                                                      .clear();
 
                                                   // budgetController.newActualIncomeMap.clear();
                                                   // budgetController.newActualFixMap.clear();
                                                   // budgetController.newActualVarMap.clear();
-                                                  budgetController.newActualSingMap.clear();
+                                                  budgetController
+                                                      .newActualSingMap
+                                                      .clear();
                                                 });
                                               },
                                               child: Padding(
-                                                  padding:
-                                                  const EdgeInsets.symmetric(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
                                                       horizontal: 8.0,
                                                       vertical: 12.0),
-                                                  child:  SizedBox(
+                                                  child: SizedBox(
                                                       width: 100.w,
-                                                      child: normalButton('Save'))
-                                              ),
+                                                      child: normalButton(
+                                                          'Save'))),
                                             ),
                                           ],
                                         ),
@@ -1209,374 +1349,377 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
             ),
           )
         : Scaffold(
-        backgroundColor: bgWhite,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(107.h),
-          child: const CustomAppbar(),
-        ),
-        body: SingleChildScrollView(
-          child: Column(children: [
-            Column(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20.0.h, 20.h, 20.h, 0.h),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 35.h,
-                          width: 37.w,
-                          decoration: BoxDecoration(
-                              border: Border.all(
+            backgroundColor: bgWhite,
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(107.h),
+              child: const CustomAppbar(),
+            ),
+            body: SingleChildScrollView(
+              child: Column(children: [
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(20.0.h, 20.h, 20.h, 0.h),
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 35.h,
+                              width: 37.w,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: titleTextColor,
+                                    width: 1,
+                                  ),
+                                  color: white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50.r))),
+                              child: const Icon(Icons.arrow_back),
+                            ),
+                            SizedBox(width: 10.w),
+                            titleText(
+                                budgetController
+                                    .addBudgetList[currentIndex].budgetName,
                                 color: titleTextColor,
-                                width: 1,
-                              ),
-                              color: white,
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(50.r))),
-                          child: const Icon(Icons.arrow_back),
+                                size: 25,
+                                authPage: true),
+                          ],
                         ),
-                        SizedBox(width: 10.w),
-                        titleText(
-                            budgetController
-                                .addBudgetList[currentIndex].budgetName,
-                            color: titleTextColor,
-                            size: 25,
-                            authPage: true),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-                SizedBox(height: 30.h),
-                Container(
-                  height: 50.h,
-                  color: white,
-                  child: TabBar(
-                    physics: const BouncingScrollPhysics(),
-                    controller: controller,
-                    isScrollable: true,
-                    labelColor: primaryColor,
-                    indicatorColor: primaryColor,
-                    tabs: [
-                      Tab(
-                        child: subTitleText('Income',
-                            authPage: true,
-                            fontWeight: FontWeight.w500,
-                            color: titleTextColor),
+                    SizedBox(height: 30.h),
+                    Container(
+                      height: 50.h,
+                      color: white,
+                      child: TabBar(
+                        physics: const BouncingScrollPhysics(),
+                        controller: controller,
+                        isScrollable: true,
+                        labelColor: primaryColor,
+                        indicatorColor: primaryColor,
+                        tabs: [
+                          Tab(
+                            child: subTitleText('Income',
+                                authPage: true,
+                                fontWeight: FontWeight.w500,
+                                color: titleTextColor),
+                          ),
+                          Tab(
+                            child: subTitleText('Fixed Expense',
+                                authPage: true,
+                                fontWeight: FontWeight.w500,
+                                color: titleTextColor),
+                          ),
+                          Tab(
+                            child: subTitleText('Variable Expense',
+                                authPage: true,
+                                fontWeight: FontWeight.w500,
+                                color: titleTextColor),
+                          ),
+                          Tab(
+                            child: subTitleText('Sinking Funds',
+                                authPage: true,
+                                fontWeight: FontWeight.w500,
+                                color: titleTextColor),
+                          )
+                        ],
                       ),
-                      Tab(
-                        child: subTitleText('Fixed Expense',
-                            authPage: true,
-                            fontWeight: FontWeight.w500,
-                            color: titleTextColor),
-                      ),
-                      Tab(
-                        child: subTitleText('Variable Expense',
-                            authPage: true,
-                            fontWeight: FontWeight.w500,
-                            color: titleTextColor),
-                      ),
-                      Tab(
-                        child: subTitleText('Sinking Funds',
-                            authPage: true,
-                            fontWeight: FontWeight.w500,
-                            color: titleTextColor),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(height: 30.h),
-                Container(
-                  height: 700.h,
-                  padding: EdgeInsets.fromLTRB(20.0.h, 0.h, 20.h, 0.h),
-                  child: TabBarView(
-                    controller: controller,
-                    children: [
-                      Column(
+                    ),
+                    SizedBox(height: 30.h),
+                    Container(
+                      height: 700.h,
+                      padding: EdgeInsets.fromLTRB(20.0.h, 0.h, 20.h, 0.h),
+                      child: TabBarView(
+                        controller: controller,
                         children: [
-                          customCard(
-                              100,
-                              Center(
-                                child: Container(
-                                  child: subTitleText(
-                                      budgetController.compareIncomeText),
-                                ),
-                              )),
-                          SizedBox(height: 10.h),
-                            Column(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 5.h),
-                                      child: titleText('Planned Income',
-                                          color: titleTextColor,
-                                          size: 22),
+                          Column(
+                            children: [
+                              customCard(
+                                  100,
+                                  Center(
+                                    child: Container(
+                                      child: subTitleText(
+                                          budgetController.compareIncomeText,
+                                          color: budgetController
+                                              .compareIncomeText ==
+                                              'You are doing fine'
+                                              ? secondaryTextColor
+                                              : red
+                                          ),
                                     ),
-                                    Divider(
-                                      color: secondaryTextColor
-                                          .withOpacity(0.3),
-                                      thickness: 1,
-                                    ),
-                                    for (var incomeData
-                                    in budgetController
-                                        .addBudgetList[currentIndex]
-                                        .incomeMap
-                                        .entries)
+                                  )),
+                              SizedBox(height: 10.h),
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
                                       Padding(
                                         padding:
-                                        const EdgeInsets.symmetric(
+                                            EdgeInsets.symmetric(vertical: 5.h),
+                                        child: titleText('Planned Income',
+                                            color: titleTextColor, size: 22),
+                                      ),
+                                      Divider(
+                                        color:
+                                            secondaryTextColor.withOpacity(0.3),
+                                        thickness: 1,
+                                      ),
+                                      for (var incomeData in budgetController
+                                          .addBudgetList[currentIndex]
+                                          .incomeMap
+                                          .entries)
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(
+                                                width: 200.w,
+                                                child: subTitleText(
+                                                    incomeData.key),
+                                              ),
+                                              subTitleText(
+                                                  '\$${incomeData.value}',
+                                                  color: blackTextColor),
+                                            ],
+                                          ),
+                                        ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0),
+                                        child: Divider(
+                                          color: secondaryTextColor
+                                              .withOpacity(0.3),
+                                          thickness: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
                                             horizontal: 8.0),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            SizedBox(
-                                              width: 200.w,
-                                              child: subTitleText(
-                                                  incomeData.key),
-                                            ),
+                                            subTitleText('Total Planned Income',
+                                                color: black),
                                             subTitleText(
-                                                '\$${incomeData.value}',
+                                                '\$${budgetController.totalIncomeData.toStringAsFixed(2)}',
+                                                color: black),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 20.h),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 5.h),
+                                        child: titleText('Actual Income',
+                                            color: titleTextColor, size: 22),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const SizedBox(),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 5.h),
+                                            child: subTitleText(
+                                                'You can edit this value',
+                                                color: titleTextColor,
+                                                size: 14),
+                                          ),
+                                        ],
+                                      ),
+                                      Divider(
+                                        color:
+                                            secondaryTextColor.withOpacity(0.3),
+                                        thickness: 1,
+                                      ),
+                                      for (var incomeData in budgetController
+                                          .addBudgetList[currentIndex]
+                                          .actualIncomeMap
+                                          .entries)
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              SizedBox(
+                                                width: 200.w,
+                                                child: subTitleText(
+                                                    incomeData.key),
+                                              ),
+                                              Container(
+                                                  width: 80.w,
+                                                  height: 40.h,
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: 2.h),
+                                                  child: TextFormField(
+                                                    onChanged: (text) {
+                                                      setState(() {
+                                                        budgetController
+                                                            .totalActualIncome = 0;
+                                                        budgetController
+                                                            .getTotalActualIncome();
+                                                        budgetController
+                                                            .getCompareIncome();
+                                                      });
+                                                    },
+                                                    controller: budgetController
+                                                            .actualIncomeControllerMap[
+                                                        incomeData.key],
+                                                    // Use the controller from the map
+                                                    keyboardType:
+                                                        TextInputType.number,
+                                                  )),
+                                            ],
+                                          ),
+                                        ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0),
+                                        child: Divider(
+                                          color: secondaryTextColor
+                                              .withOpacity(0.3),
+                                          thickness: 1,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            subTitleText('Total Actual Income',
+                                                color: black),
+                                            subTitleText(
+                                                '\$${budgetController.totalActualIncome.toStringAsFixed(2)}',
                                                 color: blackTextColor),
                                           ],
                                         ),
                                       ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Divider(
-                                        color: secondaryTextColor
-                                            .withOpacity(0.3),
-                                        thickness: 1,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment
-                                            .spaceBetween,
-                                        children: [
-                                          subTitleText(
-                                              'Total Planned Income',
-                                              color: black),
-                                          subTitleText(
-                                              '\$${budgetController.totalIncomeData.toStringAsFixed(2)}',
-                                              color: black),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 20.h),
-                                Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 5.h),
-                                      child: titleText('Actual Income',
-                                          color: titleTextColor,
-                                          size: 22),
-                                    ),
-                                    Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const SizedBox(),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 5.h),
-                                          child: subTitleText('You can edit this value',
-                                              color: titleTextColor,
-                                              size: 14),
-                                        ),
-                                      ],
-                                    ),
-                                    Divider(
-                                      color: secondaryTextColor
-                                          .withOpacity(0.3),
-                                      thickness: 1,
-                                    ),
-                                    for (var incomeData
-                                    in budgetController
-                                        .addBudgetList[currentIndex]
-                                        .actualIncomeMap
-                                        .entries)
-                                      Padding(
-                                        padding:
-                                        const EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
-                                          children: [
-                                            SizedBox(
-                                              width: 200.w,
-                                              child: subTitleText(
-                                                  incomeData.key),
-                                            ),
-                                            Container(
-                                                width: 80.w,
-                                                height: 40.h,
-                                                padding:
-                                                EdgeInsets.symmetric(
-                                                    vertical: 2.h),
-                                                child: TextFormField(
-                                                  onChanged: (text) {
-                                                    setState(() {
-                                                      budgetController
-                                                          .totalActualIncome = 0;
-                                                      budgetController
-                                                          .getTotalActualIncome();
-                                                      budgetController
-                                                          .getCompareIncome();
-                                                    });
-                                                  },
-                                                  controller: budgetController
-                                                      .actualIncomeControllerMap[
-                                                  incomeData.key],
-                                                  // Use the controller from the map
-                                                  keyboardType:
-                                                  TextInputType
-                                                      .number,
-                                                )),
-                                          ],
+                                      GestureDetector(
+                                        onTap: () async {
+                                          budgetController
+                                              .makeNewActualIncomeMap();
+                                          // budgetController.makeNewActualFixMap();
+                                          // budgetController.makeNewActualVarMap();
+                                          // budgetController.makeNewActualSinkMap();
+                                          final budget = AddBudgetModel(
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .id,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .budgetName,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .date,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .incomeMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .fixedExpenseMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .varExpense,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .sinkingFund,
+                                              budgetController
+                                                  .newActualIncomeMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualFixedExpenseMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualVarExpense,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualSinkingFund);
+                                          await budgetController
+                                              .updateBudget(budget)
+                                              .then((value) {
+                                            budgetController
+                                                .actualIncomeControllerMap
+                                                .clear();
+                                            // budgetController.actualFixedControllerMap.clear();
+                                            // budgetController.actualVarControllerMap.clear();
+                                            // budgetController.actualSinkControllerMap.clear();
+
+                                            budgetController.newActualIncomeMap
+                                                .clear();
+                                            // budgetController.newActualFixMap.clear();
+                                            // budgetController.newActualVarMap.clear();
+                                            // budgetController.newActualSingMap.clear();
+                                          });
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0, vertical: 12.0),
+                                          child: SizedBox(
+                                              width: 100.w,
+                                              child: normalButton('Save')),
                                         ),
                                       ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Divider(
-                                        color: secondaryTextColor
-                                            .withOpacity(0.3),
-                                        thickness: 1,
-                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              customCard(
+                                  100,
+                                  Center(
+                                    child: Container(
+                                      child: subTitleText(
+                                          budgetController.compareFixedText,
+                                          color: budgetController
+                                              .compareFixedText ==
+                                              'You are doing fine'
+                                              ? secondaryTextColor
+                                              : red),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment
-                                            .spaceBetween,
-                                        children: [
-                                          subTitleText(
-                                              'Total Actual Income',
-                                              color: black),
-                                          subTitleText(
-                                              '\$${budgetController.totalActualIncome.toStringAsFixed(2)}',
-                                              color: blackTextColor),
-                                        ],
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () async {
-                                        budgetController.makeNewActualIncomeMap();
-                                        // budgetController.makeNewActualFixMap();
-                                        // budgetController.makeNewActualVarMap();
-                                        // budgetController.makeNewActualSinkMap();
-                                        final budget = AddBudgetModel(
-                                          budgetController
-                                              .addBudgetList[currentIndex]
-                                              .id,
-                                          budgetController
-                                              .addBudgetList[currentIndex]
-                                              .budgetName,
-                                          budgetController
-                                              .addBudgetList[currentIndex]
-                                              .date,
-                                          budgetController
-                                              .addBudgetList[currentIndex]
-                                              .incomeMap,
-                                          budgetController
-                                              .addBudgetList[currentIndex]
-                                              .fixedExpenseMap,
-                                          budgetController
-                                              .addBudgetList[currentIndex]
-                                              .varExpense,
-                                          budgetController
-                                              .addBudgetList[currentIndex]
-                                              .sinkingFund,
-                                          budgetController.newActualIncomeMap,
-                                            budgetController
-                                                .addBudgetList[currentIndex].actualFixedExpenseMap,
-                                            budgetController
-                                                .addBudgetList[currentIndex].actualVarExpense,
-                                            budgetController
-                                                .addBudgetList[currentIndex].actualSinkingFund
-                                        );
-                                        await budgetController
-                                            .updateBudget(budget).then((value){
-                                          budgetController.actualIncomeControllerMap.clear();
-                                          // budgetController.actualFixedControllerMap.clear();
-                                          // budgetController.actualVarControllerMap.clear();
-                                          // budgetController.actualSinkControllerMap.clear();
-
-                                          budgetController.newActualIncomeMap.clear();
-                                          // budgetController.newActualFixMap.clear();
-                                          // budgetController.newActualVarMap.clear();
-                                          // budgetController.newActualSingMap.clear();
-                                        });
-                                      },
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.symmetric(
-                                            horizontal: 8.0,
-                                            vertical: 12.0),
-                                        child: SizedBox(
-                                            width: 100.w,
-                                            child: normalButton('Save')),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          customCard(
-                              100,
-                              Center(
-                                child: Container(
-                                  child: subTitleText(
-                                      budgetController.compareFixedText),
-                                ),
-                              )),
-                          SizedBox(height: 10.h),
-                            Column(
+                                  )),
+                              SizedBox(height: 10.h),
+                              Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 5.h),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 5.h),
                                         child: titleText('Planned Fixed',
-                                            color: titleTextColor,
-                                            size: 22),
+                                            color: titleTextColor, size: 22),
                                       ),
                                       Divider(
-                                        color: secondaryTextColor
-                                            .withOpacity(0.3),
+                                        color:
+                                            secondaryTextColor.withOpacity(0.3),
                                         thickness: 1,
                                       ),
                                       for (var fixedData in budgetController
@@ -1584,18 +1727,16 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                           .fixedExpenseMap
                                           .entries)
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
                                                 width: 200.w,
-                                                child: subTitleText(
-                                                    fixedData.key),
+                                                child:
+                                                    subTitleText(fixedData.key),
                                               ),
                                               subTitleText(
                                                   '\$${fixedData.value}',
@@ -1617,11 +1758,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             horizontal: 8.0),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            subTitleText(
-                                                'Total Planned Fixed',
+                                            subTitleText('Total Planned Fixed',
                                                 color: black),
                                             subTitleText(
                                                 '\$${budgetController.totalFixedExpense.toStringAsFixed(2)}',
@@ -1634,31 +1773,32 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                   SizedBox(height: 20.h),
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 5.h),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 5.h),
                                         child: titleText('Actual Fixed',
-                                            color: titleTextColor,
-                                            size: 22),
+                                            color: titleTextColor, size: 22),
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const SizedBox(),
                                           Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 5.h),
-                                            child: subTitleText('You can edit this value',
+                                            child: subTitleText(
+                                                'You can edit this value',
                                                 color: titleTextColor,
                                                 size: 14),
                                           ),
                                         ],
                                       ),
                                       Divider(
-                                        color: secondaryTextColor
-                                            .withOpacity(0.3),
+                                        color:
+                                            secondaryTextColor.withOpacity(0.3),
                                         thickness: 1,
                                       ),
                                       for (var fixedData in budgetController
@@ -1666,13 +1806,11 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                           .actualFixedExpenseMap
                                           .entries)
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
                                                   width: 200.w,
@@ -1681,8 +1819,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               Container(
                                                   width: 80.w,
                                                   height: 40.h,
-                                                  padding:
-                                                  EdgeInsets.symmetric(
+                                                  padding: EdgeInsets.symmetric(
                                                       vertical: 2.h),
                                                   child: TextFormField(
                                                     onChanged: (text) {
@@ -1696,12 +1833,11 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                       });
                                                     },
                                                     controller: budgetController
-                                                        .actualFixedControllerMap[
-                                                    fixedData.key],
+                                                            .actualFixedControllerMap[
+                                                        fixedData.key],
                                                     // Use the controller from the map
                                                     keyboardType:
-                                                    TextInputType
-                                                        .number,
+                                                        TextInputType.number,
                                                   )),
                                             ],
                                           ),
@@ -1720,11 +1856,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             horizontal: 8.0),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            subTitleText(
-                                                'Total Actual Fixed',
+                                            subTitleText('Total Actual Fixed',
                                                 color: black),
                                             subTitleText(
                                                 '\$${budgetController.totalActualFixed.toStringAsFixed(2)}',
@@ -1734,98 +1868,110 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                       ),
                                       GestureDetector(
                                         onTap: () async {
-                                          budgetController.makeNewActualIncomeMap();
-                                          budgetController.makeNewActualFixMap();
-                                          budgetController.makeNewActualVarMap();
-                                          budgetController.makeNewActualSinkMap();
+                                          budgetController
+                                              .makeNewActualIncomeMap();
+                                          budgetController
+                                              .makeNewActualFixMap();
+                                          budgetController
+                                              .makeNewActualVarMap();
+                                          budgetController
+                                              .makeNewActualSinkMap();
                                           final budget = AddBudgetModel(
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .id,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .budgetName,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .date,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .incomeMap,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .fixedExpenseMap,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .varExpense,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .sinkingFund,
-                                            budgetController
-                                                .addBudgetList[currentIndex].actualIncomeMap,
-                                            budgetController.newActualFixMap,
-                                            budgetController
-                                                .addBudgetList[currentIndex].actualVarExpense,
                                               budgetController
-                                              .addBudgetList[currentIndex].actualSinkingFund
-                                          );
+                                                  .addBudgetList[currentIndex]
+                                                  .id,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .budgetName,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .date,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .incomeMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .fixedExpenseMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .varExpense,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .sinkingFund,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualIncomeMap,
+                                              budgetController.newActualFixMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualVarExpense,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualSinkingFund);
                                           await budgetController
-                                              .updateBudget(budget).then((value){
+                                              .updateBudget(budget)
+                                              .then((value) {
                                             //budgetController.actualIncomeControllerMap.clear();
-                                            budgetController.actualFixedControllerMap.clear();
+                                            budgetController
+                                                .actualFixedControllerMap
+                                                .clear();
                                             // budgetController.actualVarControllerMap.clear();
                                             // budgetController.actualSinkControllerMap.clear();
 
-                                           // budgetController.newActualIncomeMap.clear();
-                                            budgetController.newActualFixMap.clear();
+                                            // budgetController.newActualIncomeMap.clear();
+                                            budgetController.newActualFixMap
+                                                .clear();
                                             // budgetController.newActualVarMap.clear();
                                             // budgetController.newActualSingMap.clear();
                                           });
                                         },
                                         child: Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 8.0,
-                                              vertical: 12.0),
-                                          child:  SizedBox(
-                                              width: 100.w,
-                                              child: normalButton('Save'))
-                                        ),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8.0,
+                                                vertical: 12.0),
+                                            child: SizedBox(
+                                                width: 100.w,
+                                                child: normalButton('Save'))),
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          customCard(
-                              100,
-                              Center(
-                                child: Container(
-                                  child: subTitleText(
-                                      budgetController.compareVarText),
-                                ),
-                              )),
-                          SizedBox(height: 10.h),
-                           Column(
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              customCard(
+                                  100,
+                                  Center(
+                                    child: Container(
+                                      child: subTitleText(
+                                          budgetController.compareVarText,
+                                          color: budgetController
+                                              .compareVarText ==
+                                              'You are doing fine'
+                                              ? secondaryTextColor
+                                              : red),
+                                    ),
+                                  )),
+                              SizedBox(height: 10.h),
+                              Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 5.h),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 5.h),
                                         child: titleText('Planned Variable',
-                                            color: titleTextColor,
-                                            size: 22),
+                                            color: titleTextColor, size: 22),
                                       ),
                                       Divider(
-                                        color: secondaryTextColor
-                                            .withOpacity(0.3),
+                                        color:
+                                            secondaryTextColor.withOpacity(0.3),
                                         thickness: 1,
                                       ),
                                       for (var varData in budgetController
@@ -1833,21 +1979,18 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                           .varExpense
                                           .entries)
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
                                                 width: 200.w,
-                                                child: subTitleText(
-                                                    varData.key),
+                                                child:
+                                                    subTitleText(varData.key),
                                               ),
-                                              subTitleText(
-                                                  '\$${varData.value}',
+                                              subTitleText('\$${varData.value}',
                                                   color: blackTextColor),
                                             ],
                                           ),
@@ -1866,8 +2009,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             horizontal: 8.0),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             subTitleText(
                                                 'Total Planned Variable',
@@ -1883,31 +2025,32 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                   SizedBox(height: 20.h),
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 5.h),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 5.h),
                                         child: titleText('Actual Variable',
-                                            color: titleTextColor,
-                                            size: 22),
+                                            color: titleTextColor, size: 22),
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const SizedBox(),
                                           Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 5.h),
-                                            child: subTitleText('You can edit this value',
+                                            child: subTitleText(
+                                                'You can edit this value',
                                                 color: titleTextColor,
                                                 size: 14),
                                           ),
                                         ],
                                       ),
                                       Divider(
-                                        color: secondaryTextColor
-                                            .withOpacity(0.3),
+                                        color:
+                                            secondaryTextColor.withOpacity(0.3),
                                         thickness: 1,
                                       ),
                                       for (var varData in budgetController
@@ -1915,24 +2058,21 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                           .actualVarExpense
                                           .entries)
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
                                                 width: 200.w,
-                                                child: subTitleText(
-                                                    varData.key),
+                                                child:
+                                                    subTitleText(varData.key),
                                               ),
                                               Container(
                                                   width: 80.w,
                                                   height: 40.h,
-                                                  padding:
-                                                  EdgeInsets.symmetric(
+                                                  padding: EdgeInsets.symmetric(
                                                       vertical: 2.h),
                                                   child: TextFormField(
                                                     onChanged: (text) {
@@ -1946,12 +2086,11 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                       });
                                                     },
                                                     controller: budgetController
-                                                        .actualVarControllerMap[
-                                                    varData.key],
+                                                            .actualVarControllerMap[
+                                                        varData.key],
                                                     // Use the controller from the map
                                                     keyboardType:
-                                                    TextInputType
-                                                        .number,
+                                                        TextInputType.number,
                                                   )),
                                             ],
                                           ),
@@ -1970,8 +2109,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             horizontal: 8.0),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             subTitleText(
                                                 'Total Actual Variable',
@@ -1984,98 +2122,110 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                       ),
                                       GestureDetector(
                                         onTap: () async {
-                                          budgetController.makeNewActualIncomeMap();
-                                          budgetController.makeNewActualFixMap();
-                                          budgetController.makeNewActualVarMap();
-                                          budgetController.makeNewActualSinkMap();
+                                          budgetController
+                                              .makeNewActualIncomeMap();
+                                          budgetController
+                                              .makeNewActualFixMap();
+                                          budgetController
+                                              .makeNewActualVarMap();
+                                          budgetController
+                                              .makeNewActualSinkMap();
                                           final budget = AddBudgetModel(
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .id,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .budgetName,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .date,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .incomeMap,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .fixedExpenseMap,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .varExpense,
-                                            budgetController
-                                                .addBudgetList[currentIndex]
-                                                .sinkingFund,
                                               budgetController
-                                                  .addBudgetList[currentIndex].actualIncomeMap,
+                                                  .addBudgetList[currentIndex]
+                                                  .id,
                                               budgetController
-                                                  .addBudgetList[currentIndex].actualFixedExpenseMap,
-                                            budgetController.newActualVarMap,
+                                                  .addBudgetList[currentIndex]
+                                                  .budgetName,
                                               budgetController
-                                                  .addBudgetList[currentIndex].actualSinkingFund
-                                          );
+                                                  .addBudgetList[currentIndex]
+                                                  .date,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .incomeMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .fixedExpenseMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .varExpense,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .sinkingFund,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualIncomeMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualFixedExpenseMap,
+                                              budgetController.newActualVarMap,
+                                              budgetController
+                                                  .addBudgetList[currentIndex]
+                                                  .actualSinkingFund);
                                           await budgetController
-                                              .updateBudget(budget).then((value){
+                                              .updateBudget(budget)
+                                              .then((value) {
                                             // budgetController.actualIncomeControllerMap.clear();
                                             // budgetController.actualFixedControllerMap.clear();
-                                            budgetController.actualVarControllerMap.clear();
-                                           // budgetController.actualSinkControllerMap.clear();
+                                            budgetController
+                                                .actualVarControllerMap
+                                                .clear();
+                                            // budgetController.actualSinkControllerMap.clear();
 
                                             // budgetController.newActualIncomeMap.clear();
                                             // budgetController.newActualFixMap.clear();
-                                            budgetController.newActualVarMap.clear();
+                                            budgetController.newActualVarMap
+                                                .clear();
                                             // budgetController.newActualSingMap.clear();
                                           });
                                         },
                                         child: Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 8.0,
-                                              vertical: 12.0),
-                                          child:  SizedBox(
-                                              width: 100.w,
-                                              child: normalButton('Save'))
-                                        ),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8.0,
+                                                vertical: 12.0),
+                                            child: SizedBox(
+                                                width: 100.w,
+                                                child: normalButton('Save'))),
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          customCard(
-                              100,
-                              Center(
-                                child: Container(
-                                  child: subTitleText(
-                                      budgetController.compareSinkText),
-                                ),
-                              )),
-                          SizedBox(height: 10.h),
+                            ],
+                          ),
                           Column(
+                            children: [
+                              customCard(
+                                  100,
+                                  Center(
+                                    child: Container(
+                                      child: subTitleText(
+                                          budgetController.compareSinkText,
+                                          color: budgetController
+                                              .compareSinkText ==
+                                              'You are doing fine'
+                                              ? secondaryTextColor
+                                              : red),
+                                    ),
+                                  )),
+                              SizedBox(height: 10.h),
+                              Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 5.h),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 5.h),
                                         child: titleText('Planned Sinking',
-                                            color: titleTextColor,
-                                            size: 22),
+                                            color: titleTextColor, size: 22),
                                       ),
                                       Divider(
-                                        color: secondaryTextColor
-                                            .withOpacity(0.3),
+                                        color:
+                                            secondaryTextColor.withOpacity(0.3),
                                         thickness: 1,
                                       ),
                                       for (var sinkData in budgetController
@@ -2083,13 +2233,11 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                           .sinkingFund
                                           .entries)
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
                                                   width: 200.w,
@@ -2115,8 +2263,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             horizontal: 8.0),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             subTitleText(
                                                 'Total Planned Sinking',
@@ -2132,31 +2279,32 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                   SizedBox(height: 20.h),
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 5.h),
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 5.h),
                                         child: titleText('Actual Sinking',
-                                            color: titleTextColor,
-                                            size: 22),
+                                            color: titleTextColor, size: 22),
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           const SizedBox(),
                                           Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 5.h),
-                                            child: subTitleText('You can edit this value',
+                                            child: subTitleText(
+                                                'You can edit this value',
                                                 color: titleTextColor,
                                                 size: 14),
                                           ),
                                         ],
                                       ),
                                       Divider(
-                                        color: secondaryTextColor
-                                            .withOpacity(0.3),
+                                        color:
+                                            secondaryTextColor.withOpacity(0.3),
                                         thickness: 1,
                                       ),
                                       for (var sinkData in budgetController
@@ -2164,13 +2312,11 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                           .actualSinkingFund
                                           .entries)
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
                                                   width: 200.w,
@@ -2179,8 +2325,7 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                               Container(
                                                   width: 80.w,
                                                   height: 40.h,
-                                                  padding:
-                                                  EdgeInsets.symmetric(
+                                                  padding: EdgeInsets.symmetric(
                                                       vertical: 2.h),
                                                   child: TextFormField(
                                                     onChanged: (text) {
@@ -2194,12 +2339,11 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                       });
                                                     },
                                                     controller: budgetController
-                                                        .actualSinkControllerMap[
-                                                    sinkData.key],
+                                                            .actualSinkControllerMap[
+                                                        sinkData.key],
                                                     // Use the controller from the map
                                                     keyboardType:
-                                                    TextInputType
-                                                        .number,
+                                                        TextInputType.number,
                                                   )),
                                             ],
                                           ),
@@ -2218,11 +2362,9 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                             horizontal: 8.0),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            subTitleText(
-                                                'Total Actual Sinking',
+                                            subTitleText('Total Actual Sinking',
                                                 color: black),
                                             subTitleText(
                                                 '\$${budgetController.totalActualSink.toStringAsFixed(2)}',
@@ -2232,14 +2374,17 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                       ),
                                       GestureDetector(
                                         onTap: () async {
-                                          budgetController.makeNewActualIncomeMap();
-                                          budgetController.makeNewActualFixMap();
-                                          budgetController.makeNewActualVarMap();
-                                          budgetController.makeNewActualSinkMap();
+                                          budgetController
+                                              .makeNewActualIncomeMap();
+                                          budgetController
+                                              .makeNewActualFixMap();
+                                          budgetController
+                                              .makeNewActualVarMap();
+                                          budgetController
+                                              .makeNewActualSinkMap();
                                           final budget = AddBudgetModel(
                                             budgetController
-                                                .addBudgetList[currentIndex]
-                                                .id,
+                                                .addBudgetList[currentIndex].id,
                                             budgetController
                                                 .addBudgetList[currentIndex]
                                                 .budgetName,
@@ -2259,48 +2404,53 @@ class _BudgetViewScreenState extends State<BudgetViewScreen>
                                                 .addBudgetList[currentIndex]
                                                 .sinkingFund,
                                             budgetController
-                                                .addBudgetList[currentIndex].actualIncomeMap,
+                                                .addBudgetList[currentIndex]
+                                                .actualIncomeMap,
                                             budgetController
-                                                .addBudgetList[currentIndex].actualFixedExpenseMap,
+                                                .addBudgetList[currentIndex]
+                                                .actualFixedExpenseMap,
                                             budgetController
-                                            .addBudgetList[currentIndex].actualVarExpense,
+                                                .addBudgetList[currentIndex]
+                                                .actualVarExpense,
                                             budgetController.newActualSingMap,
                                           );
                                           await budgetController
-                                              .updateBudget(budget).then((value){
+                                              .updateBudget(budget)
+                                              .then((value) {
                                             // budgetController.actualIncomeControllerMap.clear();
                                             // budgetController.actualFixedControllerMap.clear();
                                             // budgetController.actualVarControllerMap.clear();
-                                            budgetController.actualSinkControllerMap.clear();
+                                            budgetController
+                                                .actualSinkControllerMap
+                                                .clear();
 
                                             // budgetController.newActualIncomeMap.clear();
                                             // budgetController.newActualFixMap.clear();
                                             // budgetController.newActualVarMap.clear();
-                                            budgetController.newActualSingMap.clear();
+                                            budgetController.newActualSingMap
+                                                .clear();
                                           });
                                         },
                                         child: Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 8.0,
-                                              vertical: 12.0),
-                                          child:  SizedBox(
-                                              width: 100.w,
-                                              child: normalButton('Save'))
-                                        ),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8.0,
+                                                vertical: 12.0),
+                                            child: SizedBox(
+                                                width: 100.w,
+                                                child: normalButton('Save'))),
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
+                            ],
+                          ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-              ],
-            )
-          ]),
-        ));
+                    ),
+                  ],
+                )
+              ]),
+            ));
   }
 }

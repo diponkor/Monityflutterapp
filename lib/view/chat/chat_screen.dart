@@ -1,4 +1,3 @@
-import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,14 +14,14 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  late DialogFlowtter dialogFlowtter;
+  //late DialogFlowtter dialogFlowtter;
   final TextEditingController _controller = TextEditingController();
 
   List<Map<String, dynamic>> messages = [];
 
   @override
   void initState() {
-    DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+    //DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
     // TODO: implement initState
 
     super.initState();
@@ -124,7 +123,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     },
                     onSelected: (String selection) {
                       print('You just selected $selection');
-                      sendMessage(selection.toString());
+                      //sendMessage(selection.toString());
                     },
                     fieldViewBuilder: (BuildContext context,
                         TextEditingController textEditingController,
@@ -276,7 +275,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 },
                 onSelected: (String selection) {
                   print('You just selected $selection');
-                  sendMessage(selection.toString());
+                  //sendMessage(selection.toString());
                 },
                 fieldViewBuilder: (BuildContext context,
                     TextEditingController textEditingController,
@@ -358,7 +357,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  sendMessage(String text) async {
+/*  sendMessage(String text) async {
     if (text.isEmpty) {
       print('Message is empty');
     } else {
@@ -373,9 +372,9 @@ class _ChatScreenState extends State<ChatScreen> {
         addMessage(response.message!);
       });
     }
-  }
+  }*/
 
-  addMessage(Message message, [bool isUserMessage = false]) {
-    messages.add({'message': message, 'isUserMessage': isUserMessage});
-  }
+  // addMessage(Message message, [bool isUserMessage = false]) {
+  //   messages.add({'message': message, 'isUserMessage': isUserMessage});
+  // }
 }

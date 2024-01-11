@@ -1,6 +1,7 @@
 
 import 'package:finance_and_budget/view/authentication/signin_screen.dart';
 import 'package:finance_and_budget/view/landing/landing_screen.dart';
+import 'package:finance_and_budget/view/new_landing/new_landing_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
                   home:
                   const Scaffold(
                      // body: SigninScreen(),
-                    body: LandingScreen(),
+                    body: NewLandingScreen(),
                   ),
                 ),
               ),
@@ -77,7 +78,8 @@ class MyApp extends StatelessWidget {
                   home: const Scaffold(
                     // body: SigninScreen(),
                     //body: CustomNavigation(),
-                    body: LandingScreen(),
+                    // body: LandingScreen(),
+                    body: NewLandingScreen(),
                   ),
                 ),
               ),

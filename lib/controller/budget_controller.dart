@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../model/add_budget_model.dart';
 import '../utils/utils.dart';
@@ -9,8 +10,6 @@ import '../utils/utils.dart';
 class BudgetController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   List<AddBudgetModel> addBudgetList = [];
-
-
 
   //income......
   List<TextEditingController> incomeControllers = [];
@@ -67,11 +66,9 @@ class BudgetController extends GetxController {
       //     .where((value) => value != null)
       //     .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
 
-
       totalIncomeData = incomeMap.values
           .where((value) => value != null)
           .fold<double>(0, (a, b) => a + double.parse(b.toString()));
-
     } else {
       print("incomeMap is null.");
     }
@@ -132,7 +129,6 @@ class BudgetController extends GetxController {
     }
   }
 
-
   ///Actual data controllers.........................
   ///
   //income
@@ -152,30 +148,34 @@ class BudgetController extends GetxController {
   }
 
   Map<String, String> newActualIncomeMap = {};
- void makeNewActualIncomeMap(){
-   actualIncomeControllerMap.forEach((key, controller) {
-     newActualIncomeMap[key] = controller.text;
-   });
-   // print(actualIncomeControllerMap.length);
-   // print(newActualIncomeMap);
- }
+
+  void makeNewActualIncomeMap() {
+    actualIncomeControllerMap.forEach((key, controller) {
+      newActualIncomeMap[key] = controller.text;
+    });
+    // print(actualIncomeControllerMap.length);
+    // print(newActualIncomeMap);
+  }
 
   Map<String, String> newActualFixMap = {};
-  void makeNewActualFixMap(){
+
+  void makeNewActualFixMap() {
     actualFixedControllerMap.forEach((key, controller) {
       newActualFixMap[key] = controller.text;
     });
   }
 
   Map<String, String> newActualVarMap = {};
-  void makeNewActualVarMap(){
+
+  void makeNewActualVarMap() {
     actualVarControllerMap.forEach((key, controller) {
       newActualVarMap[key] = controller.text;
     });
   }
 
   Map<String, String> newActualSingMap = {};
-  void makeNewActualSinkMap(){
+
+  void makeNewActualSinkMap() {
     actualSinkControllerMap.forEach((key, controller) {
       newActualSingMap[key] = controller.text;
     });
@@ -195,6 +195,7 @@ class BudgetController extends GetxController {
       }
     });
   }
+
   //varExp
   Map<String, TextEditingController> actualVarControllerMap = {};
   double totalActualVar = 0;
@@ -209,6 +210,7 @@ class BudgetController extends GetxController {
       }
     });
   }
+
   //sinkFund
   Map<String, TextEditingController> actualSinkControllerMap = {};
   double totalActualSink = 0;
@@ -224,53 +226,61 @@ class BudgetController extends GetxController {
     });
   }
 
-
   ///compare function for plannedIncome to actualIncome
   String compareIncomeText = '';
   double compareIncomeAmount = 0;
+
   void getCompareIncome() {
-    if(totalIncomeData>=totalActualIncome){
+    if (totalIncomeData >= totalActualIncome) {
       compareIncomeText = 'You are doing fine';
-    }else{
-      compareIncomeAmount = (totalActualIncome-totalIncomeData);
-      compareIncomeText = 'You have to save ${compareIncomeAmount.toStringAsFixed(2)} \$';
+    } else {
+      compareIncomeAmount = (totalActualIncome - totalIncomeData);
+      compareIncomeText =
+          'You spent more than expected \$${compareIncomeAmount.toStringAsFixed(2)}';
     }
   }
 
   ///compare function for plannedFixed to actualFixed
   String compareFixedText = '';
   double compareFixedAmount = 0;
+
   void getCompareFixed() {
-    if(totalFixedExpense>=totalActualFixed){
+    if (totalFixedExpense >= totalActualFixed) {
       compareFixedText = 'You are doing fine';
-    }else{
-      compareFixedAmount = (totalActualFixed-totalFixedExpense);
-      compareFixedText = 'You have to save ${compareFixedAmount.toStringAsFixed(2)} \$';
-    }
-  }
-  ///compare function for plannedFixed to actualFixed
-  String compareVarText = '';
-  double compareVarAmount = 0;
-  void getCompareVar() {
-    if(totalVarExpense>=totalActualVar){
-      compareVarText = 'You are doing fine';
-    }else{
-      compareVarAmount = (totalActualVar-totalVarExpense);
-      compareVarText = 'You have to save ${compareVarAmount.toStringAsFixed(2)} \$';
-    }
-  }
-  ///compare function for plannedFixed to actualFixed
-  String compareSinkText = '';
-  double compareSinkAmount = 0;
-  void getCompareSink() {
-    if(totalSinkFund>=totalActualSink){
-      compareSinkText = 'You are doing fine';
-    }else{
-      compareSinkAmount = (totalActualSink-totalSinkFund);
-      compareSinkText = 'You have to save ${compareSinkAmount.toStringAsFixed(2)} \$';
+    } else {
+      compareFixedAmount = (totalActualFixed - totalFixedExpense);
+      compareFixedText =
+          'You have to save ${compareFixedAmount.toStringAsFixed(2)} \$';
     }
   }
 
+  ///compare function for plannedFixed to actualFixed
+  String compareVarText = '';
+  double compareVarAmount = 0;
+
+  void getCompareVar() {
+    if (totalVarExpense >= totalActualVar) {
+      compareVarText = 'You are doing fine';
+    } else {
+      compareVarAmount = (totalActualVar - totalVarExpense);
+      compareVarText =
+          'You have to save ${compareVarAmount.toStringAsFixed(2)} \$';
+    }
+  }
+
+  ///compare function for plannedFixed to actualFixed
+  String compareSinkText = '';
+  double compareSinkAmount = 0;
+
+  void getCompareSink() {
+    if (totalSinkFund >= totalActualSink) {
+      compareSinkText = 'You are doing fine';
+    } else {
+      compareSinkAmount = (totalActualSink - totalSinkFund);
+      compareSinkText =
+          'You have to save ${compareSinkAmount.toStringAsFixed(2)} \$';
+    }
+  }
 
   String top3ExpThisYear = 'Your top 3 expense are : \$500, \$300, \$100';
   String makeLastWeek = 'You make\$1500 in last week';
@@ -358,6 +368,30 @@ class BudgetController extends GetxController {
       print('Error fetching budget: $e');
       Utils.showSnackBar('Error fetching budget: $e');
       return [];
+    }
+  }
+
+  void monthComparison() {
+    String dateString = addBudgetList[0].date;
+
+    // Step 1: Parse the string to extract start and end dates
+    List<String> dateParts = dateString.split(' to ');
+    String startDateString = dateParts[0];
+    String endDateString = dateParts[1];
+
+    // Step 2: Parse the start and end dates
+    DateTime startDate = DateFormat('MMMM d, y').parse(startDateString);
+    DateTime endDate = DateFormat('MMMM d, y').parse(endDateString);
+
+    // Step 3: Get the current month
+    DateTime currentDate = DateTime.now();
+    int currentMonth = currentDate.month;
+
+    // Compare the current month with the months in the extracted dates
+    if (currentDate.isAfter(startDate) && currentDate.isBefore(endDate)) {
+      print('Current month is within the specified date range.');
+    } else {
+      print('Current month is outside the specified date range.');
     }
   }
 }
