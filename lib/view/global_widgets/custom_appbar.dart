@@ -12,7 +12,7 @@ class CustomAppbar extends StatelessWidget {
   const CustomAppbar({super.key});
 
   static final ProfileController _profileController =
-      Get.put(ProfileController());
+  Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class CustomAppbar extends StatelessWidget {
                       child: Image.asset('assets/images/ai_monity.png',
                           fit: BoxFit.contain)),
                 ),
-              ),*/
+              ),
               SizedBox(width: 10.w),
               GestureDetector(
                 onTap: () {
@@ -72,7 +72,7 @@ class CustomAppbar extends StatelessWidget {
                   height: 50.h,
                   child: Image.asset('assets/images/textIcon.png'),
                 ),
-              ),
+              ),*/
               SizedBox(width: 10.w),
               GestureDetector(
                 onTap: () {
@@ -83,7 +83,8 @@ class CustomAppbar extends StatelessWidget {
                 child: SizedBox(
                   width: 50.w,
                   height: 50.h,
-                  child: Image.asset('assets/images/profileIcon.png'),
+                  //child: Image.asset('assets/images/profileIcon.png'),
+                  child: const Icon(Icons.person, size: 30),
                 ),
               )
             ],
