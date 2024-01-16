@@ -101,11 +101,11 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                         maxMinWidget(),
                         SizedBox(
                           height: 500.h,
-                          child: customFlowChart(),
+                          child: SizedBox(),
                         ),
                         SizedBox(
                           height: 500.h,
-                          child: LineChartWidget(),
+                          child: customFlowChart(),
                         ),
                       ],
                     ),
@@ -184,9 +184,9 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
             titleText('Maximum 3 numbers are : ',
                 color: titleTextColor, size: 18),
             titleText(
-                analyticsController.max3.map((x) => x.toString()).join(" , "),
+                analyticsController.max3.map((x) => x.toString()).join(" \n "),
                 color: titleTextColor,
-                size: 14),
+                size: 16),
           ],
         ),
         SizedBox(height: 20.h),
@@ -196,9 +196,9 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
             titleText('Minimum 3 numbers are : ',
                 color: titleTextColor, size: 18),
             titleText(
-                analyticsController.min3.map((x) => x.toString()).join(" , "),
+                analyticsController.min3.map((x) => x.toString()).join(" \n "),
                 color: titleTextColor,
-                size: 14),
+                size: 16),
           ],
         ),
       ],

@@ -2,7 +2,9 @@ import 'package:chat_gpt_sdk/chat_gpt_sdk.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:finance_and_budget/constants/colors.dart';
 import 'package:finance_and_budget/constants/constants.dart';
+import 'package:finance_and_budget/controller/analytics_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChatGptScreen extends StatefulWidget {
   const ChatGptScreen({super.key});
@@ -12,7 +14,10 @@ class ChatGptScreen extends StatefulWidget {
 }
 
 class _ChatGptScreenState extends State<ChatGptScreen> {
+
+  AnalyticsController con =  Get.find();
   final _openAI = OpenAI.instance.build(
+
     token: chatgptApiKey,
     baseOption: HttpSetup(
       receiveTimeout: const Duration(
@@ -55,6 +60,7 @@ class _ChatGptScreenState extends State<ChatGptScreen> {
           ),
           onSend: (ChatMessage m) {
             getChatResponse(m);
+            //con.getChatGPTResponse(m.text);
           },
           messages: _messages),
     );
@@ -73,12 +79,13 @@ class _ChatGptScreenState extends State<ChatGptScreen> {
       }
     }).toList();
     final request = ChatCompleteText(
-      model: GptTurbo0301ChatModel(),
+      model: GptTurboChatModel(),
       messages: _messagesHistory,
       maxToken: 200,
     );
     final response = await _openAI.onChatCompletion(request: request);
     print(response);
+    print('response');
     for (var element in response!.choices) {
       if (element.message != null) {
         setState(() {

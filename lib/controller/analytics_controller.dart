@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finance_and_budget/constants/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 import '../model/add_budget_model.dart';
 import '../utils/utils.dart';
+import 'package:http/http.dart' as http;
 
 class AnalyticsController extends GetxController {
   @override
@@ -11,12 +15,14 @@ class AnalyticsController extends GetxController {
     fetchBudget();
     super.onInit();
   }
+
   FirebaseAuth auth = FirebaseAuth.instance;
   List<AddBudgetModel> budgetList = [];
-  List allExpenses = [];
+  List<Map<String, double>> allExpenses = [];
   RxBool isLoading = false.obs;
-  var maximumValue ;
-  var minimumValue ;
+  var maximumValue;
+
+  var minimumValue;
 
   var max3;
   var min3;
@@ -51,11 +57,15 @@ class AnalyticsController extends GetxController {
       budgetList.addAll(addBudgetModel);
       allExpenses = [];
       for (int i = 0; i < budgetList.length; i++) {
-        allExpenses.add(budgetList[i]
+        double totalExpenses = budgetList[i]
             .fixedExpenseMap
             .values
             .where((value) => value != null)
-            .fold<double>(0, (a, b) => a + double.parse(b.toString())));
+            .fold<double>(0, (a, b) => a + double.parse(b.toString()));
+        allExpenses.add({
+          budgetList[i].budgetName: totalExpenses,
+          //'Total Expenses': totalExpenses,
+        });
       }
       print(allExpenses);
       update(['updateAnalyticsBudList']);
@@ -68,25 +78,85 @@ class AnalyticsController extends GetxController {
     }
   }
 
-  void makeHighest(){
+
+  void makeHighest() {
     isLoading.value = true;
-    allExpenses.sort((a, b) => b.compareTo(a));
-     max3 = allExpenses.sublist(0, 3);
-     max3.sort();
-     maximumValue = max3.last;
-     isLoading.value = false;
+
+    // Sort allExpenses based on the values
+    allExpenses.sort((Map<String, double> a, Map<String, double> b) {
+      return b.values.first.compareTo(a.values.first);
+    });
+
+    // Extract the top three values
+    max3 = allExpenses.length >= 3 ? allExpenses.sublist(0, 3) : allExpenses;
+
+    // Sort max3 if necessary
+    max3.sort((Map<String, double> a, Map<String, double> b) {
+      return b.values.first.compareTo(a.values.first);
+    });
+
+    // Find the maximum value in max3
+    maximumValue = max3.isEmpty ? null : max3.last.values.first;
+
+    isLoading.value = false;
     print(max3);
+    print('-----');
   }
 
-  void makeLowest(){
+
+
+
+
+  void makeLowest() {
     isLoading.value = true;
-    allExpenses.sort((a, b) => a.compareTo(b)); // Sort the list in ascending order
-    min3 = allExpenses.sublist(0, 3);
-    min3.sort();
-    minimumValue = min3.first;
+
+    // Sort allExpenses based on the values
+    allExpenses.sort((Map<String, double> a, Map<String, double> b) {
+      return a.values.first.compareTo(b.values.first);
+    });
+
+    // Extract the top three values
+    min3 = allExpenses.length >= 3 ? allExpenses.sublist(0, 3) : allExpenses;
+
+    // Sort max3 if necessary
+    min3.sort((Map<String, double> a, Map<String, double> b) {
+      return b.values.first.compareTo(a.values.first);
+    });
+
+    // Find the maximum value in max3
+    minimumValue = min3.isEmpty ? null : min3.last.values.first;
+
     isLoading.value = false;
     print(min3);
+    print('============');
   }
 
-  
+  Future<String> getChatGPTResponse(String userInput) async {
+    final apiKey = chatgptApiKey;
+    const endpoint = 'https://api.openai.com/v1/chat/completions';
+
+    final response = await http.post(
+      Uri.parse(endpoint),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $apiKey',
+      },
+      body: '{"model": "gpt-3.5-turbo", "messages": [{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": "$userInput"}]}',
+    );
+
+    print(response.body);
+    print('printed response');
+
+    if (response.statusCode == 200) {
+      // Parse and extract the response from the API
+      // You may want to handle the response based on your application's needs
+      final jsonResponse = json.decode(response.body);
+      final chatGPTResponse = jsonResponse['choices'][0]['message']['content'];
+      return chatGPTResponse;
+    } else {
+      // Handle error
+      throw Exception('Failed to get response from ChatGPT');
+    }
+  }
+
 }

@@ -22,12 +22,12 @@ class LineChartWidget extends StatelessWidget {
         lineBarsData: [
           LineChartBarData(
               spots:analyticsController.allExpenses.length>=5? [
-                 FlSpot(1, analyticsController.allExpenses[0]),
+                 /*FlSpot(1, analyticsController.allExpenses[0]),
                  FlSpot(2, analyticsController.allExpenses[1]),
                  FlSpot(3, analyticsController.allExpenses[2]),
                  FlSpot(4, analyticsController.allExpenses[3]),
                  FlSpot(5, analyticsController.allExpenses[4]),
-                 FlSpot(6, analyticsController.allExpenses[5]),
+                 FlSpot(6, analyticsController.allExpenses[5]),*/
               ]:[
                 FlSpot(0, 0),
                 FlSpot(2, 0),
