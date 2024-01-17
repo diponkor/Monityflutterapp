@@ -38,6 +38,12 @@ class ManifestationController extends GetxController {
     }
   }
 
+  void makeMileListCheck() {
+    for (var x=0;x< milestoneControllers.length;x++) {
+      mileTextList.add({'mile': milestoneControllers[x].text, "isChecked": checkboxValues[x]});
+    }
+  }
+
 
 
   Future<void> createManifestation(ManifestationModel manifestationModel) async {
