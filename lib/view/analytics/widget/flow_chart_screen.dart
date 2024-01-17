@@ -1,6 +1,7 @@
 import 'package:finance_and_budget/controller/analytics_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class LineChartWidget extends StatelessWidget {
@@ -10,8 +11,16 @@ class LineChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10.w),
+      child: Container(
+        decoration: BoxDecoration(
 
-    return LineChart(LineChartData(
+        ),
+      ),
+    );
+
+   /* return LineChart(LineChartData(
         //minX: 0,
         //maxX: 10,
         minY: 0,
@@ -22,12 +31,12 @@ class LineChartWidget extends StatelessWidget {
         lineBarsData: [
           LineChartBarData(
               spots:analyticsController.allExpenses.length>=5? [
-                 /*FlSpot(1, analyticsController.allExpenses[0]),
+                 *//*FlSpot(1, analyticsController.allExpenses[0]),
                  FlSpot(2, analyticsController.allExpenses[1]),
                  FlSpot(3, analyticsController.allExpenses[2]),
                  FlSpot(4, analyticsController.allExpenses[3]),
                  FlSpot(5, analyticsController.allExpenses[4]),
-                 FlSpot(6, analyticsController.allExpenses[5]),*/
+                 FlSpot(6, analyticsController.allExpenses[5]),*//*
               ]:[
                 FlSpot(0, 0),
                 FlSpot(2, 0),
@@ -43,6 +52,6 @@ class LineChartWidget extends StatelessWidget {
                 show: true,
                 //colors: gradiantColors.map((color) => color.withOpacity(.4)).toList()
               ))
-        ]));
+        ]));*/
   }
 }

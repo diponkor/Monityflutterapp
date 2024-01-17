@@ -99,10 +99,8 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                       children: [
                         pieWidget(context, screenSize),
                         maxMinWidget(),
-                        SizedBox(
-                          height: 500.h,
-                          child: SizedBox(),
-                        ),
+                        LineChartWidget(),
+
                         SizedBox(
                           height: 500.h,
                           child: customFlowChart(),

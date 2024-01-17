@@ -24,6 +24,12 @@ class ManifestationController extends GetxController {
   List<TextEditingController> milestoneControllers = [];
 
   List<String> mileTextList = [];
+  final List<bool> checkboxValues = List.generate(5, (index) => false);
+
+  void toggleCheckbox(int index) {
+    checkboxValues[index] = !checkboxValues[index];
+    update(['checkUpdate']);
+  }
 
   void makeMileList() {
     for(var x in milestoneControllers){
