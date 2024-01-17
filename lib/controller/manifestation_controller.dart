@@ -12,7 +12,7 @@ class ManifestationController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     fetchManifestation();
-    fetchDebt();
+    //fetchDebt();
     super.onInit();
   }
 
@@ -23,39 +23,55 @@ class ManifestationController extends GetxController {
 
   List<TextEditingController> milestoneControllers = [];
 
-  List<String> mileTextList = [];
-  final List<bool> checkboxValues = List.generate(5, (index) => false);
+   List<bool> checkboxValues = List.generate(5, (index) => false);
 
   void toggleCheckbox(int index) {
     checkboxValues[index] = !checkboxValues[index];
     update(['checkUpdate']);
   }
 
+  List<Map<String, dynamic>> mileTextList = [];
+
   void makeMileList() {
-    for(var x in milestoneControllers){
-      mileTextList.add(x.text);
+    for (var x in milestoneControllers) {
+      mileTextList.add({'mile': x.text, "isChecked": false});
     }
   }
 
-  Future<void> createManifestation(
-      ManifestationModel manifestationModel) async {
+
+
+  Future<void> createManifestation(ManifestationModel manifestationModel) async {
     Utils.showLoading();
-    final manifesCollection = FirebaseFirestore.instance
-        .collection('User')
-        .doc(auth.currentUser?.email)
-        .collection('Manifestation');
-    final uid = manifesCollection.doc().id;
-    final docRef = manifesCollection.doc(uid);
-    manifestationModel.id = uid;
-    await docRef.set(manifestationModel.toJson()).catchError((e) {
-      print(e);
-      Utils.showSnackBar(e.code);
-    });
-    manifestationList = [];
-    fetchManifestation();
-    update(['updateManifestationList']);
-    Utils.hidePopup();
+    print(manifestationModel.mileStones);
+    print('______=+_______');
+
+    try {
+      final manifesCollection = FirebaseFirestore.instance
+          .collection('User')
+          .doc(auth.currentUser?.email)
+          .collection('Manifestation');
+
+      final uid = manifesCollection.doc().id;
+      final docRef = manifesCollection.doc(uid);
+      manifestationModel.id = uid;
+      print(manifestationModel.mileStones);
+
+      await docRef.set(manifestationModel.toJson());
+      manifestationList = [];
+      print('____1');
+      await fetchManifestation();
+      print('____2');
+      update(['updateManifestationList']);
+    } catch (e, stackTrace) {
+      print('Error: $e');
+      print('StackTrace: $stackTrace');
+      Utils.showSnackBar('Error creating manifestation: $e');
+    } finally {
+      Utils.hidePopup();
+    }
   }
+
+
 
   Future<void> updateManifestation(ManifestationModel manifestationModel) async {
     Utils.showLoading();
@@ -104,12 +120,18 @@ class ManifestationController extends GetxController {
 
       for (var doc in querySnapshot.docs) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+
+        // Convert 'MileStones' to the correct type
+        List<Map<String, dynamic>> mileStones = (data['MileStones'] as List<dynamic>)
+            .map((milestone) => Map<String, dynamic>.from(milestone))
+            .toList();
+
         ManifestationModel maniModel = ManifestationModel(
           data['Id'],
           data['GoalName'],
           data['Amount'],
           data['ByWhen'],
-          data['MileStones'],
+          mileStones,
         );
         manifestationList.add(maniModel);
       }
@@ -121,6 +143,7 @@ class ManifestationController extends GetxController {
       return [];
     }
   }
+
 
   Future<void> createDebt(DebtModel debtModel) async {
     Utils.showLoading();

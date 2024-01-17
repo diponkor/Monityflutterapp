@@ -33,6 +33,7 @@ class _CreateManifestationState extends State<CreateManifestation> {
   void initState() {
     if (widget.manifestIndex != null) {
       manifestationController.milestoneControllers = [];
+      manifestationController.checkboxValues =  List.generate(5, (index) => false);
       goalNameController.text = manifestationController
           .manifestationList[widget.manifestIndex!].goalName;
       amountController.text = manifestationController
@@ -42,7 +43,8 @@ class _CreateManifestationState extends State<CreateManifestation> {
       for (var mile in manifestationController
           .manifestationList[widget.manifestIndex!].mileStones) {
         manifestationController.milestoneControllers
-            .add(TextEditingController(text: mile));
+            .add(TextEditingController(text: mile['mile']));
+        manifestationController.checkboxValues.add(mile['isChecked']);
       }
     }
     // TODO: implement initState

@@ -113,7 +113,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                         for (var mile in manifestationController
                                             .manifestationList[widget.index]
                                             .mileStones)
-                                          subTitleText(mile,
+                                          subTitleText(mile['text'],
                                               size: 16,
                                               fontWeight: FontWeight.w500),
                                       ],
@@ -230,7 +230,7 @@ class _ItemDetailsState extends State<ItemDetails> {
                                           SizedBox(width: 20.w),
                                           subTitleText(manifestationController
                                               .manifestationList[widget.index]
-                                              .mileStones[mile],
+                                              .mileStones[mile]['text'],
                                               size: 16,
                                               fontWeight: FontWeight.w500),
                                         ],

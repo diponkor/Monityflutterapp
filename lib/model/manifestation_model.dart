@@ -3,7 +3,7 @@ class ManifestationModel {
   final String goalName;
   final String amount;
   final String byWhen;
-  final List<dynamic> mileStones;
+  final List<Map<String, dynamic>> mileStones;
 
   ManifestationModel(
     this.id,
