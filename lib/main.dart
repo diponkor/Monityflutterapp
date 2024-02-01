@@ -1,6 +1,5 @@
 
 import 'package:finance_and_budget/view/authentication/signin_screen.dart';
-import 'package:finance_and_budget/view/landing/landing_screen.dart';
 import 'package:finance_and_budget/view/new_landing/new_landing_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -113,5 +112,5 @@ ThemeData _buildTheme(brightness) {
 
 //flutter build web --no-tree-shake-icons
 //npm install -g firebase-tools
-//PowerShell -ExecutionPolicy Bypass -File "C:\Users\Admin\AppData\Roaming\npm\firebase.ps1" login
+//PowerShell -ExecutionPolicy Bypass -File "C:\Users\Admin\AppData\Roaming\npm\firebase.ps1" loginPowerShell -ExecutionPolicy Bypass -File "C:\Users\Admin\AppData\Roaming\npm\firebase.ps1" login
 //PowerShell -ExecutionPolicy Bypass -File "C:\Users\Admin\AppData\Roaming\npm\firebase.ps1" deploy --only hosting

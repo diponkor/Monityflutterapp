@@ -1,6 +1,6 @@
 import 'package:finance_and_budget/controller/analytics_controller.dart';
 import 'package:finance_and_budget/view/analytics/widget/custom_flow_chart.dart';
-import 'package:finance_and_budget/view/analytics/widget/flow_chart_screen.dart';
+import 'package:finance_and_budget/view/analytics/widget/bar_chart_sample2.dart';
 import 'package:finance_and_budget/view/analytics/widget/pie_chart_screen.dart';
 import 'package:finance_and_budget/view/global_widgets/custom_dialog.dart';
 import 'package:flutter/material.dart';
@@ -99,7 +99,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen>
                       children: [
                         pieWidget(context, screenSize),
                         maxMinWidget(),
-                        LineChartWidget(),
+                        BarChartSample2(),
 
                         SizedBox(
                           height: 500.h,

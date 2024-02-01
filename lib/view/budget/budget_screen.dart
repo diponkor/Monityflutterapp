@@ -85,7 +85,8 @@ class _BudgetScreenState extends State<BudgetScreen> {
                                     authPage: true),
                                 SizedBox(height: 10.h),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0),
                                   child: titleText(
                                       'Stay on top of your finances effortlessly by planning where ever dollar goes.',
                                       authPage: true,

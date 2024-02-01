@@ -62,10 +62,6 @@ class BudgetController extends GetxController {
     final incomeMap = addBudgetList[index].incomeMap;
 
     if (incomeMap != null) {
-      // totalIncomeData = incomeMap.values
-      //     .where((value) => value != null)
-      //     .fold(0, (a, b) => a.toInt() + int.parse(b.toString()));
-
       totalIncomeData = incomeMap.values
           .where((value) => value != null)
           .fold<double>(0, (a, b) => a + double.parse(b.toString()));
@@ -153,8 +149,6 @@ class BudgetController extends GetxController {
     actualIncomeControllerMap.forEach((key, controller) {
       newActualIncomeMap[key] = controller.text;
     });
-    // print(actualIncomeControllerMap.length);
-    // print(newActualIncomeMap);
   }
 
   Map<String, String> newActualFixMap = {};

@@ -48,25 +48,17 @@ class ManifestationController extends GetxController {
 
   Future<void> createManifestation(ManifestationModel manifestationModel) async {
     Utils.showLoading();
-    print(manifestationModel.mileStones);
-    print('______=+_______');
-
     try {
       final manifesCollection = FirebaseFirestore.instance
           .collection('User')
           .doc(auth.currentUser?.email)
           .collection('Manifestation');
-
       final uid = manifesCollection.doc().id;
       final docRef = manifesCollection.doc(uid);
       manifestationModel.id = uid;
-      print(manifestationModel.mileStones);
-
       await docRef.set(manifestationModel.toJson());
       manifestationList = [];
-      print('____1');
       await fetchManifestation();
-      print('____2');
       update(['updateManifestationList']);
     } catch (e, stackTrace) {
       print('Error: $e');
@@ -126,8 +118,6 @@ class ManifestationController extends GetxController {
 
       for (var doc in querySnapshot.docs) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-
-        // Convert 'MileStones' to the correct type
         List<Map<String, dynamic>> mileStones = (data['MileStones'] as List<dynamic>)
             .map((milestone) => Map<String, dynamic>.from(milestone))
             .toList();
@@ -144,7 +134,6 @@ class ManifestationController extends GetxController {
       update(['updateManifestationList']);
       return manifestationList;
     } catch (e) {
-      print(e);
       Utils.showSnackBar(e.toString());
       return [];
     }
